@@ -1,0 +1,66 @@
+
+# create functions needed to create plots of data and results
+source("R/functions/functions_create_plots.R", echo = FALSE)
+
+# preprocess data: clusters
+source("R/data_processing/01_dp_preprocess_data_clusters.R", echo = FALSE)
+
+# preprocess data: cases, sequences and clusters
+source("R/data_processing/02_dp_data_cases_sequences_clusters.R", echo = FALSE)
+
+# process data: results of parameter estimations using model one
+source("R/data_processing/03_dp_results_model_one.R", echo = FALSE)
+
+# process data: results of parameter estimations using model two
+source("R/data_processing/04_dp_results_model_two.R", echo = FALSE)
+
+# create plots of prior distributions
+source("R/create_plots/01_plots_prior_distributions.R", echo = FALSE)
+
+# create plots of data used for parameter estimation for individual countries
+source("R/create_plots/02_plots_results_data_individual_countries.R", echo = FALSE)
+
+# create plots of data used for parameter estimation for all countries
+source("R/create_plots/03_plots_results_data_all_countries.R", echo = FALSE)
+
+# create plots of parameter estimations for individual countries with model one
+source("R/create_plots/04_plots_results_model_one_individual_countries.R", echo = FALSE)
+
+# create plots of parameter estimations for all countries with model one
+source("R/create_plots/05_plots_results_model_one_all_countries.R", echo = FALSE)
+
+# create plots of parameter estimations for individual countries with model two
+source("R/create_plots/06_plots_results_model_two_individual_countries.R", echo = FALSE)
+
+# create plots of parameter estimations for all countries with model two
+source("R/create_plots/07_plots_results_model_two_all_countries.R", echo = FALSE)
+
+# create plots of parameter estimations for individual countries with models one and two
+source("R/create_plots/08_plots_results_models_one_two_individual_countries.R", echo = FALSE)
+
+# create plots of parameter estimations for all countries with models one and two
+source("R/create_plots/09_plots_results_models_one_two_all_countries.R", echo = FALSE)
+
+# create plot of transmission tree
+source("R/create_plots/10_plots_model_transmission_tree.R", echo = FALSE)
+
+# create plot of results of simulation study of model one
+source("R/create_plots/11_plots_sim_results_model_one.R", echo = FALSE)
+
+# create plots of results of posterior predictive check of model one
+source("R/posterior_predictive_check/12_plots_ppc_results_model_one.R", echo = FALSE)
+
+# create overview table of data: number of cases, sequences and clusters
+source("R/create_tables/01_ct_overview_data.R", echo = FALSE)
+
+# create overview table of results of parameter estimation with model one
+source("R/create_tables/02_ct_results_model_one.R", echo = FALSE)
+
+# create overview table of results of parameter estimation with model two
+source("R/create_tables/03_ct_results_model_two.R", echo = FALSE)
+
+
+
+
+
+
