@@ -20,7 +20,7 @@ The aim of this repository is to provide everything necessary to reproduce the s
 Load all necessary R-packages and define paths. `setup.R` needs to be run first.
 
 #### main
-Contains all steps needed to process data and results and create figures and tables.
+Contains all steps needed to process data and results and to create figures and tables.
 
 #### functions
 Custom functions for creating plots. All files in this folder are sourced when running `setup.R`.
@@ -29,11 +29,16 @@ Custom functions for creating plots. All files in this folder are sourced when r
 All R-scripts covering the processing of data and results.
 
 #### simulation study
-
+* `01_sim_setup.R` setting up the simulation study: define parameter combinations for which clusters of identical sequences shall be simulated
+* `02_sim_simulate_data_parallel.R` simulation of identical sequence clusters (run in parallel on the high performance computing cluster of the University of Bern, UBELIX)
+* `03_sim_estimate_parameters_model_one_parallel.R` estimation of parameters from simulated data (run in parallel on the high performance computing cluster of the University of Bern, UBELIX)
 
 #### parameter estimation
+All R-scripts to estimate parameters from data from Switzerland, Denmark and Germany using the main (model one) or the alternative model (mdoel two). These files were run in parallel on the high performance computing cluster of the University of Bern, UBELIX.
 
 #### posterior predictive check
+* `01_ppc_model_one_setup.R` setting up the posterior predictive check: define parameter combinations for which clusters of identical sequences shall be simulated
+* `02_ppc_model_one_simulations_parallel.R` simulation of identical sequence clusters (run in parallel on the high performance computing cluster of the University of Bern, UBELIX)
 
 #### create plots
 All R-scripts covering the creation of figures.
@@ -94,11 +99,17 @@ The repository contains the following data files (see folder `data`):
 
 #### all countries
 
-##### raw
+##### covariants
+
+###### raw
 * `data_variants_shares_ch_dk_de_raw.csv` shares of SARS-CoV-2 variants (alpha, delta, omicron and other) among sequences on bi-weekly interval during 2021 (obtained from https://covariants.org/per-country?country=Germany&country=Denmark&country=Switzerland)
 
-##### processed
+###### processed
 * `data_variants_shares_ch_dk_de_processed.csv` shares of SARS-CoV-2 variants (alpha, delta, omicron and other) among sequences on bi-weekly interval during 2021 and auxiliary variables needed for plotting
+
+##### posterior predictive check
+* `data_parameters_ppc_model_one.csv` all parameter combinations for which identical sequence clusters were simulated during the posterior predictive check
+* `index_parameters_ppc_model_one.txt` auxiliary file needed during the posterior predictive check for the parallel execution of cluster simulation
 
 #### simulation
 * `parameters_grid_simulation.csv` all parameter combinations for which identical sequence clusters were simulated during the simulation study
