@@ -4,7 +4,15 @@ This repository contains the code of the statistical analysis of the paper "Esti
 ## Overview of content of repository
 The aim of this repository is to provide everything necessary to reproduce the statistical analysis of the paper cited above. All files (R-scripts as well as data) used to obtain the results are contained in this repository. Furthermore, the complete simulated data used for the validation of the model as well as all stanfit files containing the results of the parameter estimation can be found in this repository.
 
-## Detailed information
+## How to run
+
+## Further remarks
+
+### R package estRodis
+
+### Emma Hodcroft's sc2_k repository
+
+## Detailed information on content of repository
 
 ### data
 The repository contains the following data files (see folder `data`):
@@ -38,15 +46,11 @@ The repository contains the following data files (see folder `data`):
 
 
 
-## How to run
 
 
 
-## Further remarks
 
-### R package estRodis
 
-### Emma Hodcroft's sc2_k repository
 
 
 
