@@ -7,13 +7,23 @@ The aim of this repository is to provide everything necessary to reproduce the s
 ## Detailed information
 
 ### data
-The repository contains the following data files (all in folder `data`):
+The repository contains the following data files (see folder `data`):
 
-(1) For Switzerland, Denmark and Germany:
-(a) distribution of size of identical sequence clusters (coming from (ADD LINK TO EMMA'S sc2_k REPOSITORY))
-(b) number of new confirmed cases 
-(c) estimate of effective reproduction number on daily basis based on number of confirmed cases
-(d) date of sampling of all sequences contained in identical sequence clusters used for the analysis
+#### Switzerland
+
+##### raw
+* `Switzerland_cluster_distribution_dates_100whole.tsv`: distribution of size of identical sequence clusters (coming from (ADD LINK TO EMMA'S sc2_k REPOSITORY))
+* `data_new_confirmed_cases_ch_raw.csv` number of new confirmed cases (coming from https://github.com/covid-19-Re/dailyRe-Data)
+* `data_r_e_ch_raw.csv` estimate of effective reproduction number on daily basis based on number of confirmed cases- (coming from https://www.covid19.admin.ch/en/overview)
+* `switzerland_date_only.csv` date of sampling of all sequences contained in identical sequence clusters used for the analysis
+
+##### processed
+
+#### Denmark
+
+
+#### Germany
+
 
 ### R
 
