@@ -13,9 +13,10 @@ The simulation of identical sequence clusters as well as the models to estimate 
 The estRodis package can be found here: https://github.com/mwohlfender/estRodis_test
 
 ### Emma Hodcroft's sc2_k repository
+The structuring of sequence data into clusters of identical sequences was done by Emma Hodcroft. Her code can be found here: (ADD LINK TO EMMA'S sc2_k REPOSITORY)
 
-### Conventions
-* Whenever "model one" is mentioned in comments in the code, this refers to the standard model developed in the paper and "model two" refers to the alternative model described in the section "Sensitivity analysis" of the supplementary material.
+### Name convention
+Whenever "model one" is mentioned in comments in the code, this refers to the standard model developed in the paper and "model two" refers to the alternative model described in the section "Sensitivity analysis" of the supplementary material.
 
 ## (D) Detailed information on content of repository
 
@@ -151,9 +152,10 @@ stanfit files containing the results of the parameter estimation from simulated 
 `results_sim_model_one_processed.csv` summary of the results of the parameter estimation from simulated data (see `data/simulated_clusters`)
 
 ### D.4 plots
+Graphical and tabular representations of data, model and results of simulation study, parameter estimation and posterior predictive check both for Switzerland, Denmark and Germany individually and for all three countries together.
 
 ### D.5 supplementary_material
-
+Markdown file and bibliography file of supplementary material
 
 
 
