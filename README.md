@@ -15,7 +15,7 @@ The estRodis package can be found here: https://github.com/mwohlfender/estRodis_
 ### Emma Hodcroft's sc2_k repository
 
 ### Conventions
-* Whenever "model_one" is mentioned in comments in the code, this refers to the standard model developed in the paper and "model_two" refers to the alternative model described in the section "Sensitivity analysis" of the supplementary material.
+* Whenever "model one" is mentioned in comments in the code, this refers to the standard model developed in the paper and "model two" refers to the alternative model described in the section "Sensitivity analysis" of the supplementary material.
 
 ## (D) Detailed information on content of repository
 
@@ -120,28 +120,37 @@ The repository contains the following data files (see folder `data`):
 * `parameters_grid_simulation.csv` all parameter combinations for which identical sequence clusters were simulated during the simulation study
 * `indices_simulation.txt` and `indices_estimation.txt` auxiliary files needed during the simulation study for the parallel execution of cluster simulation, respectively parameter estimation
 * `simulated_clusters` number of simulated clusters of each size for each combination of parameters contained in `parameters_grid_simulation.csv`
-
+* `simulated_clusters` simulated data based on parameters defined in `parameters_grid_simulation.csv`
 
 ### D.3 results
 
 #### D.3.a Switzerland
+stanfit files containing the results of the parameter estimation from data of Switzerland using models one and two
 
 #### D.3.b Denmark
+stanfit files containing the results of the parameter estimation from data of Denmark using models one and two
 
 #### D.3.c Germany
+stanfit files containing the results of the parameter estimation from data of Germany using models one and two
 
 #### D.3.d all countries
+
+##### parameter_estimations
+* `results_model_one_ch_dk_de_2021_months.csv` summary of the results of the parameter estimation from data of Switzerland, Denmark and Germany using model one
+* `results_model_two_ch_dk_de_2021_months.csv` summary of the results of the parameter estimation from data of Switzerland, Denmark and Germany using model two
+
+##### posterior_predictive_check
+* `results_ppc_model_one_ch_dk_de.csv` summary of the results of the posterior predictive check of the results of the parameter estimation from data of Switzerland, Denmark and Germany using model one
 
 #### D.3.e simulation
 
 ##### raw
-stanfit files containing the results of the parameter estimation for each combination of parameters defined in `parameters_grid_simulation.csv`
+stanfit files containing the results of the parameter estimation from simulated data (see `data/simulated_clusters`)
 
 ##### processed
-`results_sim_model_one_processed.csv` summary of results of the parameter estimation for each combination of parameters defined in `parameters_grid_simulation.csv`
+`results_sim_model_one_processed.csv` summary of the results of the parameter estimation from simulated data (see `data/simulated_clusters`)
 
 ### D.4 plots
-
 
 ### D.5 supplementary_material
 
