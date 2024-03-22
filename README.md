@@ -9,6 +9,12 @@ The aim of this repository is to provide everything necessary to reproduce the s
 ### data
 The repository contains the following data files (all in folder `data`):
 
+(1) For Switzerland, Denmark and Germany:
+(a) distribution of size of identical sequence clusters (coming from (ADD LINK TO EMMA'S sc2_k REPOSITORY))
+(b) number of new confirmed cases 
+(c) estimate of effective reproduction number on daily basis based on number of confirmed cases
+(d) date of sampling of all sequences contained in identical sequence clusters used for the analysis
+
 ### R
 
 
