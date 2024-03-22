@@ -41,7 +41,7 @@ All R-scripts to estimate parameters from data from Switzerland, Denmark and Ger
 * `02_ppc_model_one_simulations_parallel.R` simulation of identical sequence clusters (run in parallel on the high performance computing cluster of the University of Bern, UBELIX)
 
 #### D.1.h create plots
-All R-scripts covering the creation of figures.
+All R-scripts covering the creation of figures (contained in paper and supplementary material).
 
 #### D.1.i create tables
 All R-scripts covering the creation of overview tables of data and results (contained in supplementary material).
