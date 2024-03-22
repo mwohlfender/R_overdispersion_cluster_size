@@ -5,17 +5,23 @@ This repository contains the code of the statistical analysis of the paper "Esti
 The aim of this repository is to provide everything necessary to reproduce the statistical analysis of the paper cited above. All files (R-scripts as well as data) used to obtain the results are contained in this repository. Furthermore, the complete simulated data used for the validation of the model as well as all stanfit files containing the results of the parameter estimation can be found in this repository.
 
 ## (B) How to run
+* The whole R code is structured in an R-project (`R_overdispersion_cluster_size.Rproj`).
+* Before running any other R file, the file `setup.R` (contained in folder `R`) needs to be run. In this file, all paths to data and results files are defined (with respect to the path `R_overdispersion_cluster_size.Rproj`).
+* R files are grouped by topic (data processing, creating plots, ...).
+* Running the file `main.R` (contained in folder `R`) calls all R scripts necessary to redo the processing of data and results as well as the creation of plots and tables. Data and result files need to be stored at the paths defined in `setup.R`.
+* Parameter estimation, both from simulated data and from data from Switzerland, Denmark and Germany, has been run on the high performance computing cluster of the University of Bern, UBELIX.
+* Simulation of clusters for the simulation study and for the posterior predictive check have been run on the high performance computing cluster of the University of Bern, UBELIX.
 
 ## (C) Further remarks
 
-### R package estRodis
+### C.1 R package estRodis
 The simulation of identical sequence clusters as well as the models to estimate parameters from the sequence cluster size distribution are implemented as functions in an R-package, called estRodis.
 The estRodis package can be found here: https://github.com/mwohlfender/estRodis_test
 
-### Emma Hodcroft's sc2_k repository
+### C.2 Emma Hodcroft's sc2_k repository
 The structuring of sequence data into clusters of identical sequences was done by Emma Hodcroft. Her code can be found here: (ADD LINK TO EMMA'S sc2_k REPOSITORY)
 
-### Name convention
+### C.3 Name convention
 Whenever "model one" is mentioned in comments in the code, this refers to the standard model developed in the paper and "model two" refers to the alternative model described in the section "Sensitivity analysis" of the supplementary material.
 
 ## (D) Detailed information on content of repository
@@ -156,10 +162,6 @@ Graphical and tabular representations of data, model and results of simulation s
 
 ### D.5 supplementary_material
 Markdown file and bibliography file of supplementary material
-
-
-
-
 
 
 
