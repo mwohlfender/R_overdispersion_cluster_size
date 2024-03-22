@@ -138,7 +138,7 @@ The repository contains the following data files (see folder `data`):
 stanfit files containing the results of the parameter estimation for each combination of parameters defined in `parameters_grid_simulation.csv`
 
 ##### processed
-summary of results of the parameter estimation for each combination of parameters defined in `parameters_grid_simulation.csv`
+`results_sim_model_one_processed.csv` summary of results of the parameter estimation for each combination of parameters defined in `parameters_grid_simulation.csv`
 
 ### D.4 plots
 
