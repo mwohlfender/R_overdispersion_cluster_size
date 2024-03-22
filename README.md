@@ -4,52 +4,52 @@ This repository contains the code of the statistical analysis of the paper "Esti
 ## (A) Overview of content of repository
 The aim of this repository is to provide everything necessary to reproduce the statistical analysis of the paper cited above. All files (R-scripts as well as data) used to obtain the results are contained in this repository. Furthermore, the complete simulated data used for the validation of the model as well as all stanfit files containing the results of the parameter estimation can be found in this repository.
 
-## How to run
+## (B) How to run
 
-## Further remarks
+## (C) Further remarks
 
 ### R package estRodis
 
 ### Emma Hodcroft's sc2_k repository
 
-## Detailed information on content of repository
+## (D) Detailed information on content of repository
 
-### R
+### D.1 R
 
-#### setup
+#### D.1.a setup
 Load all necessary R-packages and define paths. `setup.R` needs to be run first.
 
-#### main
+#### D.1.b main
 Contains all steps needed to process data and results and to create figures and tables.
 
-#### functions
+#### D.1.c functions
 Custom functions for creating plots. All files in this folder are sourced when running `setup.R`.
 
-#### data processing
+#### D.1.d data processing
 All R-scripts covering the processing of data and results.
 
-#### simulation study
+#### D.1.e simulation study
 * `01_sim_setup.R` setting up the simulation study: define parameter combinations for which clusters of identical sequences shall be simulated
 * `02_sim_simulate_data_parallel.R` simulation of identical sequence clusters (run in parallel on the high performance computing cluster of the University of Bern, UBELIX)
 * `03_sim_estimate_parameters_model_one_parallel.R` estimation of parameters from simulated data (run in parallel on the high performance computing cluster of the University of Bern, UBELIX)
 
-#### parameter estimation
+#### D.1.f parameter estimation
 All R-scripts to estimate parameters from data from Switzerland, Denmark and Germany using the main (model one) or the alternative model (mdoel two). These files were run in parallel on the high performance computing cluster of the University of Bern, UBELIX.
 
-#### posterior predictive check
+#### D.1.g posterior predictive check
 * `01_ppc_model_one_setup.R` setting up the posterior predictive check: define parameter combinations for which clusters of identical sequences shall be simulated
 * `02_ppc_model_one_simulations_parallel.R` simulation of identical sequence clusters (run in parallel on the high performance computing cluster of the University of Bern, UBELIX)
 
-#### create plots
+#### D.1.h create plots
 All R-scripts covering the creation of figures.
 
-#### create tables
+#### D.1.i create tables
 All R-scripts covering the creation of overview tables of data and results (contained in supplementary material).
 
-### data
+### D.2 data
 The repository contains the following data files (see folder `data`):
 
-#### Switzerland
+#### D.2.a Switzerland
 
 ##### raw
 * `Switzerland_cluster_distribution_dates_100whole.tsv` distribution of size of identical sequence clusters (obtained from (ADD LINK TO EMMA'S sc2_k REPOSITORY))
@@ -65,7 +65,7 @@ The repository contains the following data files (see folder `data`):
 * `data_r_e_ch_processed.csv` estimate of effective reproduction number on daily basis based on number of confirmed cases, filtered to 2021
 * `sequencing_probas_ch_2021_months.csv` probability of a confirmed case being sequenced on monthly basis during 2021
 
-#### Denmark
+#### D.2.b Denmark
 
 ##### raw
 * `Denmark_cluster_distribution_dates_100whole.tsv` distribution of size of identical sequence clusters (obtained from (ADD LINK TO EMMA'S sc2_k REPOSITORY))
@@ -81,7 +81,7 @@ The repository contains the following data files (see folder `data`):
 * `data_r_e_dk_processed.csv` estimate of effective reproduction number on daily basis based on number of confirmed cases, filtered to 2021
 * `sequencing_probas_dk_2021_months.csv` probability of a confirmed case being sequenced on monthly basis during 2021
 
-#### Germany
+#### D.2.c Germany
 
 ##### raw
 * `Germany_cluster_distribution_dates_100whole.tsv` distribution of size of identical sequence clusters (obtained from (ADD LINK TO EMMA'S sc2_k REPOSITORY))
@@ -97,7 +97,7 @@ The repository contains the following data files (see folder `data`):
 * `data_r_e_de_processed.csv` estimate of effective reproduction number on daily basis based on number of confirmed cases, filtered to 2021
 * `sequencing_probas_de_2021_months.csv` probability of a confirmed case being sequenced on monthly basis during 2021
 
-#### all countries
+#### D.2.d all countries
 
 ##### covariants
 
@@ -111,19 +111,19 @@ The repository contains the following data files (see folder `data`):
 * `data_parameters_ppc_model_one.csv` all parameter combinations for which identical sequence clusters were simulated during the posterior predictive check
 * `index_parameters_ppc_model_one.txt` auxiliary file needed during the posterior predictive check for the parallel execution of cluster simulation
 
-#### simulation
+#### D.2.e simulation
 * `parameters_grid_simulation.csv` all parameter combinations for which identical sequence clusters were simulated during the simulation study
 * `indices_simulation.txt` and `indices_estimation.txt` auxiliary files needed during the simulation study for the parallel execution of cluster simulation, respectively parameter estimation
 * `simulated_clusters` number of simulated clusters of each size for each combination of parameters contained in `parameters_grid_simulation.csv`
 
 
-### results
+### D.3 results
 
 
-### plots
+### D.4 plots
 
 
-### supplementary_material
+### D.5 supplementary_material
 
 
 
