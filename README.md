@@ -124,6 +124,21 @@ The repository contains the following data files (see folder `data`):
 
 ### D.3 results
 
+#### D.3.a Switzerland
+
+#### D.3.b Denmark
+
+#### D.3.c Germany
+
+#### D.3.d all countries
+
+#### D.3.e simulation
+
+##### raw
+stanfit files containing the results of the parameter estimation for each combination of parameters defined in `parameters_grid_simulation.csv`
+
+##### processed
+summary of results of the parameter estimation for each combination of parameters defined in `parameters_grid_simulation.csv`
 
 ### D.4 plots
 
