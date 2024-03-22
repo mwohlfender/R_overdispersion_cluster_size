@@ -9,6 +9,8 @@ The aim of this repository is to provide everything necessary to reproduce the s
 ## (C) Further remarks
 
 ### R package estRodis
+The simulation of identical sequence clusters as well as the models to estimate parameters from the sequence cluster size distribution are implemented as functions in an R-package, called estRodis.
+The estRodis package can be found here: https://github.com/mwohlfender/estRodis_test
 
 ### Emma Hodcroft's sc2_k repository
 
