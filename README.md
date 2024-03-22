@@ -14,6 +14,33 @@ The aim of this repository is to provide everything necessary to reproduce the s
 
 ## Detailed information on content of repository
 
+### R
+
+#### setup
+Load all necessary R-packages and define paths. `setup.R` needs to be run first.
+
+#### main
+Contains all steps needed to process data and results and create figures and tables.
+
+#### functions
+Custom functions for creating plots. All files in this folder are sourced when running `setup.R`.
+
+#### data processing
+All R-scripts covering the processing of data and results.
+
+#### simulation study
+
+
+#### parameter estimation
+
+#### posterior predictive check
+
+#### create plots
+All R-scripts covering the creation of figures.
+
+#### create tables
+All R-scripts covering the creation of overview tables of data and results (contained in supplementary material).
+
 ### data
 The repository contains the following data files (see folder `data`):
 
@@ -74,11 +101,9 @@ The repository contains the following data files (see folder `data`):
 * `data_variants_shares_ch_dk_de_processed.csv` shares of SARS-CoV-2 variants (alpha, delta, omicron and other) among sequences on bi-weekly interval during 2021 and auxiliary variables needed for plotting
 
 #### simulation
-* `parameters_grid_simulation.csv` all parameter combinations for which identical sequence clusters were simulated for the simulation study
-* `indices_simulation.txt` and `indices_estimation.txt` auxiliary files needed  for the parallel execution of cluster simulation, respectively parameter estimation
+* `parameters_grid_simulation.csv` all parameter combinations for which identical sequence clusters were simulated during the simulation study
+* `indices_simulation.txt` and `indices_estimation.txt` auxiliary files needed during the simulation study for the parallel execution of cluster simulation, respectively parameter estimation
 * `simulated_clusters` number of simulated clusters of each size for each combination of parameters contained in `parameters_grid_simulation.csv`
-
-### R
 
 
 ### results
