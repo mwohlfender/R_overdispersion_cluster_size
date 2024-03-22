@@ -12,6 +12,9 @@ The aim of this repository is to provide everything necessary to reproduce the s
 
 ### Emma Hodcroft's sc2_k repository
 
+### Conventions
+* Whenever "model_one" is mentioned in comments in the code, this refers to the standard model developed in the paper and "model_two" refers to the alternative model described in the section "Sensitivity analysis" of the supplementary material.
+
 ## (D) Detailed information on content of repository
 
 ### D.1 R
