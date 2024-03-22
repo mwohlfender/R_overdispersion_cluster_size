@@ -53,7 +53,7 @@ The repository contains the following data files (see folder `data`):
 
 ##### raw
 * `Germany_cluster_distribution_dates_100whole.tsv` distribution of size of identical sequence clusters (obtained from (ADD LINK TO EMMA'S sc2_k REPOSITORY))
-* `data_new_confirmed_cases_de_raw.csv` number of new confirmed cases (obtained from https://github.com/covid-19-Re/dailyRe-Data)
+* `data_new_confirmed_cases_de_raw.csv` number of new confirmed cases (obtained from https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Situationsberichte/COVID-19-Trends/COVID-19-Trends.html?__blob=publicationFile#/home)
 * `data_r_e_de_raw.csv` estimate of effective reproduction number on daily basis based on number of confirmed cases (obtained from https://github.com/covid-19-Re/dailyRe-Data)
 * `germany_date_only.csv` date of sampling of all sequences contained in identical sequence clusters used for the analysis
 
@@ -64,6 +64,19 @@ The repository contains the following data files (see folder `data`):
 * `data_new_confirmed_cases_de_processed.csv` number of new confirmed cases, filtered to 2021
 * `data_r_e_de_processed.csv` estimate of effective reproduction number on daily basis based on number of confirmed cases, filtered to 2021
 * `sequencing_probas_de_2021_months.csv` probability of a confirmed case being sequenced on monthly basis during 2021
+
+#### all countries
+
+##### raw
+* `data_variants_shares_ch_dk_de_raw.csv` shares of SARS-CoV-2 variants (alpha, delta, omicron and other) among sequences on bi-weekly interval during 2021 (obtained from https://covariants.org/per-country?country=Germany&country=Denmark&country=Switzerland)
+
+##### processed
+* `data_variants_shares_ch_dk_de_processed.csv` shares of SARS-CoV-2 variants (alpha, delta, omicron and other) among sequences on bi-weekly interval during 2021 and auxiliary variables needed for plotting
+
+#### simulation
+* `parameters_grid_simulation.csv` all parameter combinations for which identical sequence clusters were simulated for the simulation study
+* `indices_simulation.txt` and `indices_estimation.txt` auxiliary files needed  for the parallel execution of cluster simulation, respectively parameter estimation
+* `simulated_clusters` number of simulated clusters of each size for each combination of parameters contained in `parameters_grid_simulation.csv`
 
 ### R
 
