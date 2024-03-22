@@ -30,10 +30,10 @@ The repository contains the following data files (see folder `data`):
    overview of number of confirmed cases, number of sequences sampled, number of clusters and size of largest cluster per month
 * `data_cluster_sizes_ch_2021_months.csv`
    number of clusters of each size in each month of 2021
-* `data_clusters_ch_processed.csv` processed 
-* `data_new_confirmed_cases_ch_processed.csv`
-* `data_r_e_ch_processed.csv`
-* `sequencing_probas_ch_2021_months.csv`
+* `data_clusters_ch_processed.csv` distribution of size of identical sequence clusters, clusters without a valid smapling date eliminated 
+* `data_new_confirmed_cases_ch_processed.csv` number of new confirmed cases, filtered to 2021
+* `data_r_e_ch_processed.csv` estimate of effective reproduction number on daily basis based on number of confirmed cases, filtered to 2021
+* `sequencing_probas_ch_2021_months.csv` probability of a confirmed case being sequenced on monthly basis during 2021
 
 #### Denmark
 
