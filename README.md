@@ -19,7 +19,7 @@ The simulation of identical sequence clusters as well as the models to estimate 
 The estRodis package can be found here: https://github.com/mwohlfender/estRodis_test
 
 ### C.2 Emma Hodcroft's sc2_k repository
-The structuring of sequence data into clusters of identical sequences was done by Emma Hodcroft. Her code can be found here: (ADD LINK TO EMMA'S sc2_k REPOSITORY)
+The structuring of sequence data into clusters of identical sequences was done by Emma Hodcroft. Her code can be found here: https://github.com/emmahodcroft/sc2_rk
 
 ### C.3 Name convention
 Whenever "model one" is mentioned in comments in the code, this refers to the standard model developed in the paper and "model two" refers to the alternative model described in the section "Sensitivity analysis" of the supplementary material.
@@ -64,7 +64,7 @@ The repository contains the following data files (see folder `data`):
 #### D.2.a Switzerland
 
 ##### raw
-* `Switzerland_cluster_distribution_dates_100whole.tsv` distribution of size of identical sequence clusters (obtained from (ADD LINK TO EMMA'S sc2_k REPOSITORY))
+* `Switzerland_cluster_distribution_dates_100whole.tsv` distribution of size of identical sequence clusters (obtained from https://github.com/emmahodcroft/sc2_rk)
 * `data_new_confirmed_cases_ch_raw.csv` number of new confirmed cases  (obtained from https://www.covid19.admin.ch/en/overview)
 * `data_r_e_ch_raw.csv` estimate of effective reproduction number on daily basis based on number of confirmed cases (obtained from https://github.com/covid-19-Re/dailyRe-Data)
 * `switzerland_date_only.csv` date of sampling of all sequences contained in identical sequence clusters used for the analysis
@@ -80,7 +80,7 @@ The repository contains the following data files (see folder `data`):
 #### D.2.b Denmark
 
 ##### raw
-* `Denmark_cluster_distribution_dates_100whole.tsv` distribution of size of identical sequence clusters (obtained from (ADD LINK TO EMMA'S sc2_k REPOSITORY))
+* `Denmark_cluster_distribution_dates_100whole.tsv` distribution of size of identical sequence clusters (obtained from https://github.com/emmahodcroft/sc2_rk)
 * `data_new_confirmed_cases_dk_raw.csv` number of new confirmed cases (obtained from https://experience.arcgis.com/experience/220fef27d07d438889d651cc2e00076c/page/Covid-19-Regionalt/)
 * `data_r_e_dk_raw.csv` estimate of effective reproduction number on daily basis based on number of confirmed cases (obtained from https://github.com/covid-19-Re/dailyRe-Data)
 * `denmark_date_only.csv` date of sampling of all sequences contained in identical sequence clusters used for the analysis
@@ -96,7 +96,7 @@ The repository contains the following data files (see folder `data`):
 #### D.2.c Germany
 
 ##### raw
-* `Germany_cluster_distribution_dates_100whole.tsv` distribution of size of identical sequence clusters (obtained from (ADD LINK TO EMMA'S sc2_k REPOSITORY))
+* `Germany_cluster_distribution_dates_100whole.tsv` distribution of size of identical sequence clusters (obtained from https://github.com/emmahodcroft/sc2_rk)
 * `data_new_confirmed_cases_de_raw.csv` number of new confirmed cases (obtained from https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Situationsberichte/COVID-19-Trends/COVID-19-Trends.html?__blob=publicationFile#/home)
 * `data_r_e_de_raw.csv` estimate of effective reproduction number on daily basis based on number of confirmed cases (obtained from https://github.com/covid-19-Re/dailyRe-Data)
 * `germany_date_only.csv` date of sampling of all sequences contained in identical sequence clusters used for the analysis
