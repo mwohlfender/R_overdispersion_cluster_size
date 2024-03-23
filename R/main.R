@@ -1,6 +1,8 @@
 
-# create functions needed to create plots of data and results
-source("R/functions/functions_create_plots.R", echo = FALSE)
+
+# remark: set values of `do_new_load_data`, `do_new_sim`, `do_new_ppc` in `setup.R`
+# to define which parts of the data processing shall be done from scratch again
+
 
 # preprocess data: clusters
 source("R/data_processing/01_dp_preprocess_data_clusters.R", echo = FALSE)
@@ -13,6 +15,15 @@ source("R/data_processing/03_dp_results_model_one.R", echo = FALSE)
 
 # process data: results of parameter estimations using model two
 source("R/data_processing/04_dp_results_model_two.R", echo = FALSE)
+
+# process data: reference estimate of effective reproduction number
+source("R/data_processing/05_dp_estimated_r_e.R", echo = FALSE)
+
+# process data: results of simulation study of model one
+source("R/data_processing/06_dp_sim_study_model_one.R", echo = FALSE)
+
+# process data: results of posterior predictive check of model one
+source("R/data_processing/07_dp_ppc_model_one.R", echo = FALSE)
 
 # create plots of prior distributions
 source("R/create_plots/01_plots_prior_distributions.R", echo = FALSE)
@@ -48,7 +59,7 @@ source("R/create_plots/10_plots_model_transmission_tree.R", echo = FALSE)
 source("R/create_plots/11_plots_sim_results_model_one.R", echo = FALSE)
 
 # create plots of results of posterior predictive check of model one
-source("R/posterior_predictive_check/12_plots_ppc_results_model_one.R", echo = FALSE)
+source("R/create_plots/12_plots_ppc_results_model_one.R", echo = FALSE)
 
 # create overview table of data: number of cases, sequences and clusters
 source("R/create_tables/01_ct_overview_data.R", echo = FALSE)

@@ -175,6 +175,8 @@ if (!(file.exists(path_data_new_confirmed_cases_dk_processed)) | do_new_load_dat
   file.rename(from = "data/denmark/raw/03_bekraeftede_tilfaelde_doede_indlagte_pr_dag_pr_koen.csv",
               to = path_data_new_confirmed_cases_dk_raw)
   
+  file.remove("data/denmark/raw/data_covid_ssi.zip")
+  
   # process new confirmed cases data from Denmark
   # filter to data of the whole of Switzerland of the year 2021 and group it by month
   data_new_confirmed_cases_dk <- read_delim(file = path_data_new_confirmed_cases_dk_raw,
