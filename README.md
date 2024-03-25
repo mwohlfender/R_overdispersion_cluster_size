@@ -160,11 +160,4 @@ stanfit files containing the results of the parameter estimation from simulated 
 ### D.4 plots
 Graphical and tabular representations of data, model and results of simulation study, parameter estimation and posterior predictive check both for Switzerland, Denmark and Germany individually and for all three countries together.
 
-### D.5 supplementary_material
-Markdown file and bibliography file of supplementary material
-
-
-
-
-
 
