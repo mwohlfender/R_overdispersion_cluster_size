@@ -29,13 +29,10 @@ data_cluster_sizes_de_2021_months <- read_csv(file = path_data_cluster_sizes_de_
 
 # process data ----
 
-# round elements of the columns "Nos/Nocc" and "Nocic/Nocc"
-data_cases_sequences_clusters_ch_2021_months <- data_cases_sequences_clusters_ch_2021_months_0 |> mutate(`Nos/Nocc` = round(`Nos/Nocc`, 4),
-                                                                                                         `Nocic/Nocc` = round(`Nocic/Nocc`, 4))
-data_cases_sequences_clusters_dk_2021_months <- data_cases_sequences_clusters_dk_2021_months_0 |> mutate(`Nos/Nocc` = round(`Nos/Nocc`, 4),
-                                                                                                         `Nocic/Nocc` = round(`Nocic/Nocc`, 4))
-data_cases_sequences_clusters_de_2021_months <- data_cases_sequences_clusters_de_2021_months_0 |> mutate(`Nos/Nocc` = round(`Nos/Nocc`, 4),
-                                                                                                         `Nocic/Nocc` = round(`Nocic/Nocc`, 4))
+# round elements of the columns "Nos/Nocc"
+data_cases_sequences_clusters_ch_2021_months <- data_cases_sequences_clusters_ch_2021_months_0 |> mutate(`Nos/Nocc` = round(`Nos/Nocc`, 4))
+data_cases_sequences_clusters_dk_2021_months <- data_cases_sequences_clusters_dk_2021_months_0 |> mutate(`Nos/Nocc` = round(`Nos/Nocc`, 4))
+data_cases_sequences_clusters_de_2021_months <- data_cases_sequences_clusters_de_2021_months_0 |> mutate(`Nos/Nocc` = round(`Nos/Nocc`, 4))
 
 
 
@@ -54,7 +51,7 @@ set_flextable_defaults(background.color = "white")
 # overview table of cases, sequences and clusters of Switzerland by month of 2021 
 table_cases_sequences_clusters_ch_2021_months <- flextable(data_cases_sequences_clusters_ch_2021_months)
 table_cases_sequences_clusters_ch_2021_months <- theme_vanilla(table_cases_sequences_clusters_ch_2021_months)
-table_cases_sequences_clusters_ch_2021_months <- width(table_cases_sequences_clusters_ch_2021_months, j = 1:8, width = c(0.85, 0.65, 0.65, 0.65, 0.65, 1.1, 1.1, 0.65), unit = "in")
+table_cases_sequences_clusters_ch_2021_months <- width(table_cases_sequences_clusters_ch_2021_months, j = 1:7, width = dim_pretty(table_cases_sequences_clusters_ch_2021_months)$widths * 6.3 / sum(dim_pretty(table_cases_sequences_clusters_ch_2021_months)$widths), unit = "in")
 
 flextable::save_as_image(x = table_cases_sequences_clusters_ch_2021_months, path = paste0("plots/switzerland/tables/", name_table_cases_sequences_clusters_ch_2021_months, ".png"))
 
@@ -101,7 +98,7 @@ flextable::save_as_image(x = table_cluster_sizes_intervals_ch_2021_months_percen
 # overview table of cases, sequences and clusters of Denmark by month of 2021 
 table_cases_sequences_clusters_dk_2021_months <- flextable(data_cases_sequences_clusters_dk_2021_months)
 table_cases_sequences_clusters_dk_2021_months <- theme_vanilla(table_cases_sequences_clusters_dk_2021_months)
-table_cases_sequences_clusters_dk_2021_months <- width(table_cases_sequences_clusters_dk_2021_months, j = 1:8, width = c(0.85, 0.65, 0.65, 0.65, 0.65, 1.1, 1.1, 0.65), unit = "in")
+table_cases_sequences_clusters_dk_2021_months <- width(table_cases_sequences_clusters_dk_2021_months, j = 1:7, width = dim_pretty(table_cases_sequences_clusters_dk_2021_months)$widths * 6.3 / sum(dim_pretty(table_cases_sequences_clusters_dk_2021_months)$widths), unit = "in")
 
 flextable::save_as_image(x = table_cases_sequences_clusters_dk_2021_months, path = paste0("plots/denmark/tables/", name_table_cases_sequences_clusters_dk_2021_months, ".png"))
 
@@ -149,7 +146,7 @@ flextable::save_as_image(x = table_cluster_sizes_intervals_dk_2021_months_percen
 # overview table of cases, sequences and clusters of Germany by month of 2021 
 table_cases_sequences_clusters_de_2021_months <- flextable(data_cases_sequences_clusters_de_2021_months)
 table_cases_sequences_clusters_de_2021_months <- theme_vanilla(table_cases_sequences_clusters_de_2021_months)
-table_cases_sequences_clusters_de_2021_months <- width(table_cases_sequences_clusters_de_2021_months, j = 1:8, width = c(0.85, 0.65, 0.65, 0.65, 0.65, 1.1, 1.1, 0.65), unit = "in")
+table_cases_sequences_clusters_de_2021_months <- width(table_cases_sequences_clusters_de_2021_months, j = 1:7, width = dim_pretty(table_cases_sequences_clusters_de_2021_months)$widths * 6.3 / sum(dim_pretty(table_cases_sequences_clusters_de_2021_months)$widths), unit = "in")
 
 flextable::save_as_image(x = table_cases_sequences_clusters_de_2021_months, path = paste0("plots/germany/tables/", name_table_cases_sequences_clusters_de_2021_months, ".png"))
 

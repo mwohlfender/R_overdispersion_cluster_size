@@ -204,7 +204,7 @@ data_new_confirmed_cases_dk <- read_csv(path_data_new_confirmed_cases_dk_process
 
 if (!(file.exists(path_data_new_confirmed_cases_de_processed)) | do_new_load_data) {
   
-  # read new confirmed cases data from Germany (https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Situationsberichte/COVID-19-Trends/COVID-19-Trends.html?__blob=publicationFile#/home)
+  # read new confirmed cases data from Germany (https://robert-koch-institut.github.io/COVID-19_7-Tage-Inzidenz_in_Deutschland/)
   data_new_confirmed_cases_de_0 <- read_csv("https://raw.githubusercontent.com/robert-koch-institut/COVID-19_7-Tage-Inzidenz_in_Deutschland/main/COVID-19-Faelle_7-Tage-Inzidenz_Deutschland.csv")
   
   # write data_new_confirmed_cases_de_0 to a csv file
@@ -234,8 +234,8 @@ data_new_confirmed_cases_de <- read_csv(path_data_new_confirmed_cases_de_process
 list_months <- c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
 
 # determine number of clusters, number of cases in clusters and maximal size of clusters of Switzerland for each month of 2021
-data_cases_sequences_clusters_ch_2021_months <- data.frame(matrix(data = 0, nrow = 12, ncol = 8))
-names(data_cases_sequences_clusters_ch_2021_months) <- c("month", "n_confirmed_cases", "n_sequences", "n_cases_in_clusters", "n_clusters", "seq_proba_n_sequences", "seq_proba_n_cases_in_clusters", "max_size_clusters")
+data_cases_sequences_clusters_ch_2021_months <- data.frame(matrix(data = 0, nrow = 12, ncol = 7))
+names(data_cases_sequences_clusters_ch_2021_months) <- c("month", "n_confirmed_cases", "n_sequences", "n_cases_in_clusters", "n_clusters", "seq_proba_n_sequences", "max_size_clusters")
 
 data_cases_sequences_clusters_ch_2021_months$n_sequences <- data_sequences_ch_dk_de_2021_months$n_sequences_ch
 
@@ -260,8 +260,6 @@ for (ii in 1:12) {
   
   data_cases_sequences_clusters_ch_2021_months$seq_proba_n_sequences[ii] <- data_cases_sequences_clusters_ch_2021_months$n_sequences[ii] / data_cases_sequences_clusters_ch_2021_months$n_confirmed_cases[ii]
   
-  data_cases_sequences_clusters_ch_2021_months$seq_proba_n_cases_in_clusters[ii] <- data_cases_sequences_clusters_ch_2021_months$n_cases_in_clusters[ii] / data_cases_sequences_clusters_ch_2021_months$n_confirmed_cases[ii]
-  
   data_cases_sequences_clusters_ch_2021_months$max_size_clusters[ii] <- max(clusters)
   
   data_cluster_sizes_ch_2021_month_ii <- as.data.frame(table(clusters)) %>% mutate(counts = as.numeric(as.character(counts))) %>% rename("size" = "counts", "frequency" = "Freq")
@@ -276,15 +274,14 @@ data_cases_sequences_clusters_ch_2021_months <- bind_rows(data_cases_sequences_c
                                                                                                                    n_cases_in_clusters = sum(data_cases_sequences_clusters_ch_2021_months$n_cases_in_clusters),
                                                                                                                    n_clusters = sum(data_cases_sequences_clusters_ch_2021_months$n_clusters),
                                                                                                                    seq_proba_n_sequences = sum(data_cases_sequences_clusters_ch_2021_months$n_sequences) / sum(data_cases_sequences_clusters_ch_2021_months$n_confirmed_cases),
-                                                                                                                   seq_proba_n_cases_in_clusters = sum(data_cases_sequences_clusters_ch_2021_months$n_cases_in_clusters) / sum(data_cases_sequences_clusters_ch_2021_months$n_confirmed_cases),
                                                                                                                    max_size_clusters = max(data_cases_sequences_clusters_ch_2021_months$max_size_clusters)))
 
-names(data_cases_sequences_clusters_ch_2021_months) <- c("Month", "Nocc", "Nos", "Nocic", "Noc", "Nos/Nocc", "Nocic/Nocc", "Solc")
+names(data_cases_sequences_clusters_ch_2021_months) <- c("Month", "Nocc", "Nos", "Nocic", "Noc", "Nos/Nocc", "Solc")
 
 
 # determine number of clusters, number of cases in clusters and maximal size of clusters of Denmark for each month of 2021
-data_cases_sequences_clusters_dk_2021_months <- data.frame(matrix(data = 0, nrow = 12, ncol = 8))
-names(data_cases_sequences_clusters_dk_2021_months) <- c("month", "n_confirmed_cases", "n_sequences", "n_cases_in_clusters", "n_clusters", "seq_proba_n_sequences", "seq_proba_n_cases_in_clusters", "max_size_clusters")
+data_cases_sequences_clusters_dk_2021_months <- data.frame(matrix(data = 0, nrow = 12, ncol = 7))
+names(data_cases_sequences_clusters_dk_2021_months) <- c("month", "n_confirmed_cases", "n_sequences", "n_cases_in_clusters", "n_clusters", "seq_proba_n_sequences", "max_size_clusters")
 
 data_cases_sequences_clusters_dk_2021_months$n_sequences <- data_sequences_ch_dk_de_2021_months$n_sequences_dk
 
@@ -309,8 +306,6 @@ for (ii in 1:12) {
   
   data_cases_sequences_clusters_dk_2021_months$seq_proba_n_sequences[ii] <- data_cases_sequences_clusters_dk_2021_months$n_sequences[ii] / data_cases_sequences_clusters_dk_2021_months$n_confirmed_cases[ii]
   
-  data_cases_sequences_clusters_dk_2021_months$seq_proba_n_cases_in_clusters[ii] <- data_cases_sequences_clusters_dk_2021_months$n_cases_in_clusters[ii] / data_cases_sequences_clusters_dk_2021_months$n_confirmed_cases[ii]
-  
   data_cases_sequences_clusters_dk_2021_months$max_size_clusters[ii] <- max(clusters)
   
   data_cluster_sizes_dk_2021_month_ii <- as.data.frame(table(clusters)) %>% mutate(counts = as.numeric(as.character(counts))) %>% rename("size" = "counts", "frequency" = "Freq")
@@ -325,15 +320,14 @@ data_cases_sequences_clusters_dk_2021_months <- bind_rows(data_cases_sequences_c
                                                                                                                    n_cases_in_clusters = sum(data_cases_sequences_clusters_dk_2021_months$n_cases_in_clusters),
                                                                                                                    n_clusters = sum(data_cases_sequences_clusters_dk_2021_months$n_clusters),
                                                                                                                    seq_proba_n_sequences = sum(data_cases_sequences_clusters_dk_2021_months$n_sequences) / sum(data_cases_sequences_clusters_dk_2021_months$n_confirmed_cases),
-                                                                                                                   seq_proba_n_cases_in_clusters = sum(data_cases_sequences_clusters_dk_2021_months$n_cases_in_clusters) / sum(data_cases_sequences_clusters_dk_2021_months$n_confirmed_cases),
                                                                                                                    max_size_clusters = max(data_cases_sequences_clusters_dk_2021_months$max_size_clusters)))
 
-names(data_cases_sequences_clusters_dk_2021_months) <- c("Month", "Nocc", "Nos", "Nocic", "Noc", "Nos/Nocc", "Nocic/Nocc", "Solc")
+names(data_cases_sequences_clusters_dk_2021_months) <- c("Month", "Nocc", "Nos", "Nocic", "Noc", "Nos/Nocc", "Solc")
 
 
 # determine number of clusters, number of cases in clusters and maximal size of clusters of Germany for each month of 2021
-data_cases_sequences_clusters_de_2021_months <- data.frame(matrix(data = 0, nrow = 12, ncol = 8))
-names(data_cases_sequences_clusters_de_2021_months) <- c("month", "n_confirmed_cases", "n_sequences", "n_cases_in_clusters", "n_clusters", "seq_proba_n_sequences", "seq_proba_n_cases_in_clusters", "max_size_clusters")
+data_cases_sequences_clusters_de_2021_months <- data.frame(matrix(data = 0, nrow = 12, ncol = 7))
+names(data_cases_sequences_clusters_de_2021_months) <- c("month", "n_confirmed_cases", "n_sequences", "n_cases_in_clusters", "n_clusters", "seq_proba_n_sequences", "max_size_clusters")
 
 data_cases_sequences_clusters_de_2021_months$n_sequences <- data_sequences_ch_dk_de_2021_months$n_sequences_de
 
@@ -358,8 +352,6 @@ for (ii in 1:12) {
   
   data_cases_sequences_clusters_de_2021_months$seq_proba_n_sequences[ii] <- data_cases_sequences_clusters_de_2021_months$n_sequences[ii] / data_cases_sequences_clusters_de_2021_months$n_confirmed_cases[ii]
   
-  data_cases_sequences_clusters_de_2021_months$seq_proba_n_cases_in_clusters[ii] <- data_cases_sequences_clusters_de_2021_months$n_cases_in_clusters[ii] / data_cases_sequences_clusters_de_2021_months$n_confirmed_cases[ii]
-  
   data_cases_sequences_clusters_de_2021_months$max_size_clusters[ii] <- max(clusters)
   
   data_cluster_sizes_de_2021_month_ii <- as.data.frame(table(clusters)) %>% mutate(counts = as.numeric(as.character(counts))) %>% rename("size" = "counts", "frequency" = "Freq")
@@ -374,10 +366,9 @@ data_cases_sequences_clusters_de_2021_months <- bind_rows(data_cases_sequences_c
                                                                                                                    n_cases_in_clusters = sum(data_cases_sequences_clusters_de_2021_months$n_cases_in_clusters),
                                                                                                                    n_clusters = sum(data_cases_sequences_clusters_de_2021_months$n_clusters),
                                                                                                                    seq_proba_n_sequences = sum(data_cases_sequences_clusters_de_2021_months$n_sequences) / sum(data_cases_sequences_clusters_de_2021_months$n_confirmed_cases),
-                                                                                                                   seq_proba_n_cases_in_clusters = sum(data_cases_sequences_clusters_de_2021_months$n_cases_in_clusters) / sum(data_cases_sequences_clusters_de_2021_months$n_confirmed_cases),
                                                                                                                    max_size_clusters = max(data_cases_sequences_clusters_de_2021_months$max_size_clusters)))
 
-names(data_cases_sequences_clusters_de_2021_months) <- c("Month", "Nocc", "Nos", "Nocic", "Noc", "Nos/Nocc", "Nocic/Nocc", "Solc")
+names(data_cases_sequences_clusters_de_2021_months) <- c("Month", "Nocc", "Nos", "Nocic", "Noc", "Nos/Nocc", "Solc")
 
 
 
