@@ -471,4 +471,4 @@ plot_grid_R_k_testing_proba <- plot_grid(plot_results_model_one_R_e_variants_all
 
 ggsave(plot = plot_grid_R_k_testing_proba,
        filename = "plots/paper/figure_param_estimates.pdf",
-       width = 7.3, height = 10.7, units = c("in"), bg = "white")
+       width = 7.3, height = 9.0, units = c("in"), bg = "white")

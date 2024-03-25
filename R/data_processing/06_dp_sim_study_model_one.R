@@ -12,24 +12,7 @@ data_sim_parameters_grid <- read_csv(path_data_sim_parameters_grid)
 
 # process data ----
 
-# determine range of parameters contained in `data_sim_parameters_grid`
-R_range <- sort(unique(data_sim_parameters_grid$R))
-k_range <- sort(unique(data_sim_parameters_grid$k))
-yearly_mutation_rate_range <- sort(unique(data_sim_parameters_grid$yearly_mutation_rate))
-mean_generation_interval_range <- sort(unique(data_sim_parameters_grid$mean_generation_interval))
-testing_proba_range <- sort(unique(data_sim_parameters_grid$testing_proba))
-sequencing_proba_range <- sort(unique(data_sim_parameters_grid$sequencing_proba))
-n_clusters_range <- sort(unique(data_sim_parameters_grid$n_clusters))
-max_cluster_size_range <- sort(unique(data_sim_parameters_grid$max_cluster_size))
-
-# determine number of simulated clusters
-n_clusters <- unique(data_sim_parameters_grid$n_clusters)[1]
-
-
-
 n_zeros <- ceiling(log(nrow(data_sim_parameters_grid),base=10))
-
-
 
 # read results of parameter estimations ----
 if (!(file.exists(path_results_sim_processed)) | do_new_sim) {

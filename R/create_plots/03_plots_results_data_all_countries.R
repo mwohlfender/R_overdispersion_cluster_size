@@ -268,5 +268,5 @@ plot_grid_clusters_seq_proba <- plot_grid(plot_violin_clusters_2021,
 
 ggsave(plot = plot_grid_clusters_seq_proba,
        filename = "plots/paper/figure_cluster_dist.pdf",
-       width = 7.3, height = 10.7, units = c("in"))
+       width = 7.3, height = 9, units = c("in"))
 

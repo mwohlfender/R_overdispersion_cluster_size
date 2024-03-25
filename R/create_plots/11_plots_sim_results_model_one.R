@@ -14,6 +14,16 @@ image_width_in <- 7.3
 # parameter grid for simulation study
 data_sim_parameters_grid <- read_csv(path_data_sim_parameters_grid)
 
+# determine range of parameters contained in `data_sim_parameters_grid`
+R_range <- sort(unique(data_sim_parameters_grid$R))
+k_range <- sort(unique(data_sim_parameters_grid$k))
+yearly_mutation_rate_range <- sort(unique(data_sim_parameters_grid$yearly_mutation_rate))
+mean_generation_interval_range <- sort(unique(data_sim_parameters_grid$mean_generation_interval))
+testing_proba_range <- sort(unique(data_sim_parameters_grid$testing_proba))
+sequencing_proba_range <- sort(unique(data_sim_parameters_grid$sequencing_proba))
+n_clusters_range <- sort(unique(data_sim_parameters_grid$n_clusters))
+max_cluster_size_range <- sort(unique(data_sim_parameters_grid$max_cluster_size))
+
 # results of parameter estimations
 results <- read_csv(path_results_sim_processed)
 
@@ -147,8 +157,8 @@ for (ii in 1:length(n_clusters_range)) {
     plot_raster_R_coverage <- ggplot(data = data_plot_completed_estimates_temp) +
       geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = R_in_ci)) +
       ggtitle("Effective reproduction number") +
-      xlab("Sequencing probability") +
-      ylab("Testing probability") +
+      xlab("sequencing probability") +
+      ylab("testing probability") +
       facet_grid(k~R, labeller = label_both) +
       scale_fill_viridis_c(name = "coverage") +
       theme_bw() +
@@ -221,8 +231,8 @@ for (ii in 1:length(n_clusters_range)) {
     plot_raster_testing_proba_coverage <- ggplot(data = data_plot_completed_estimates_temp) +
       geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = testing_proba_in_ci)) +
       ggtitle("Testing probability") +
-      xlab("Sequencing probability") +
-      ylab("Testing probability") +
+      xlab("sequencing probability") +
+      ylab("testing probability") +
       facet_grid(k~R, labeller = label_both) +
       scale_fill_viridis_c(name = "coverage") +
       theme_bw() +
@@ -285,6 +295,33 @@ for (ii in 1:length(n_clusters_range)) {
     ggsave(plot = plot_raster_R_k_testing_proba_rmse,
            filename = "plots/paper/figure_bayesian_validation.pdf",
            width = 7.3, height = 10.7, units = c("in"))
+    
+    # plot grid of `plot_raster_R_coverage`, `plot_raster_k_coverage` and `plot_raster_testing_proba_coverage`
+    
+    plot_raster_R_k_testing_proba_coverage <- plot_grid(plot_raster_R_coverage +
+                                                      theme(plot.margin = unit(c(0,0,0,0), "in")),
+                                                    plot_raster_k_coverage +
+                                                      theme(plot.margin = unit(c(0,0,0,0), "in")),
+                                                    plot_raster_testing_proba_coverage +
+                                                      theme(plot.margin = unit(c(0,0,0,0), "in")),
+                                                    labels = c("A", "B", "C"),
+                                                    nrow = 3)
+    
+    ggsave(plot = plot_raster_R_k_testing_proba_coverage,
+           filename = paste0("plots/simulation/plot_raster_R_k_testing_proba_coverage_", n_clusters_range[ii], "_", max_cluster_size_range[jj], ".png"),
+           width = 7.3, height = 10.7, units = c("in"))
+    
+    plot_raster_R_k_testing_proba_coverage_a <- plot_grid(plot_raster_R_coverage +
+                                                          theme(plot.margin = unit(c(0,0,0,0), "in")),
+                                                        plot_raster_k_coverage +
+                                                          theme(plot.margin = unit(c(0,0,0,0), "in")),
+                                                        labels = c("A", "B"),
+                                                        nrow = 2)
+    
+    plot_raster_R_k_testing_proba_coverage_b <- plot_grid(plot_raster_testing_proba_coverage +
+                                                            theme(plot.margin = unit(c(0,0,0,0), "in")),
+                                                          labels = c("C"),
+                                                          nrow = 1)
     
   }
   
