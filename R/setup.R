@@ -3,10 +3,10 @@
 # install packages ----
 
 # install stable version of estRodis package
-# devtools::install_github("mwohlfender/estRodis_test@v0.0.1-zeta", ref = "main", force = TRUE)
+# devtools::install_github("mwohlfender/estRodis@v0.0.1-zeta", ref = "main", force = TRUE)
 
 # install newest version of estRodis package
-# devtools::install_github("mwohlfender/estRodis_test", ref = "main", force = TRUE)
+# devtools::install_github("mwohlfender/estRodis", ref = "main", force = TRUE)
 
 
 
