@@ -294,7 +294,7 @@ for (ii in 1:length(n_clusters_range)) {
     
     ggsave(plot = plot_raster_R_k_testing_proba_rmse,
            filename = "plots/paper/figure_bayesian_validation.pdf",
-           width = 7.3, height = 10.7, units = c("in"))
+           width = 7.3, height = 9, units = c("in"))
     
     # plot grid of `plot_raster_R_coverage`, `plot_raster_k_coverage` and `plot_raster_testing_proba_coverage`
     
