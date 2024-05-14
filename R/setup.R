@@ -39,6 +39,20 @@ lapply(X = files, FUN = function(x) {source(paste0(path_script, x), echo = FALSE
 
 
 
+# indicate whether certain parts of the analysis shall be done from scratch again
+# (no stored intermediate results of data processing used)
+
+# load and process data 
+do_new_load_data <- FALSE
+
+# process results of simulation study
+do_new_sim <- FALSE
+
+# process results of posterior predictive check
+do_new_ppc <- FALSE
+
+
+
 # define paths ----
 
 # paths where raw identical sequence cluster data is stored
@@ -156,16 +170,3 @@ path_results_sim_raw <- "results/simulation/raw/parameter_estimates_model_one_si
 # path where processed results of simulation study of model 1  are stored
 path_results_sim_processed <- "results/simulation/processed/results_sim_model_one_processed.csv"
 
-
-
-# indicate whether certain parts of the analysis shall be done from scratch again
-# (no stored intermediate results of data processing used)
-
-# load and process data 
-do_new_load_data <- FALSE
-
-# process results of simulation study
-do_new_sim <- FALSE
-
-# process results of posterior predictive check
-do_new_ppc <- FALSE

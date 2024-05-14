@@ -230,14 +230,18 @@ ggsave(filename = "plots/all_countries/data/plot_results_sequencing_probability_
 
 # overview of cluster data ----
 plot_violin_clusters_2021 <- ggplot(data=data_all_countries_2021) +
-  geom_violin(aes(x=factor(month), y=size), fill="dodgerblue", alpha=.6) +
-  geom_point(data=summ_2021_mean9099_long, aes(x=factor(month), y=cluster_size, shape=factor(value, levels = c(unique(summ_2021_mean9099_long$value), "n"))), 
-             fill="firebrick2", size=2.0) +
+  # geom_violin(aes(x=factor(month), y=size), fill="dodgerblue", alpha=.6) +
+  geom_segment(data = summ_2021, aes(x = factor(month), xend = factor(month), y = 1, yend = max_c)) +
+  geom_point(data=summ_2021_mean9099_long,
+             aes(x=factor(month), y=cluster_size, shape=factor(value, levels = c("n", unique(summ_2021_mean9099_long$value)))), 
+             fill="firebrick2",
+             size=2.0,
+             show.legend = TRUE) +
   geom_text(data=summ_2021, aes(x=factor(month), y=0.75, label=paste0(num), angle=45), size=2.8) +
-  scale_shape_manual(name = "Cluster size:",
+  scale_shape_manual(name = NULL,
                      breaks = c("n", "mean_c", "perc90", "perc99"),
                      values = c(utf8ToInt("n"), 21, 23, 24),
-                     label = c("Number of clusters", "Mean cluster size", "90%-quantile", "99%-quantile"),
+                     labels = c("Number of clusters", "Mean cluster size", "90th percentile", "99th percentile"),
                      drop = FALSE) +
   scale_x_discrete(expand=expansion(c(0.10, 0.10)),
                    labels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")) +
@@ -248,9 +252,8 @@ plot_violin_clusters_2021 <- ggplot(data=data_all_countries_2021) +
   xlab("Month") +
   ylab("Cluster size") +
   theme_bw() +
-  theme(axis.text.x=element_text(angle=45, hjust=1)) +
-  theme(legend.position="bottom",
-        legend.title=element_blank()) +
+  theme(axis.text.x=element_text(angle=45, hjust=1),
+        legend.position="bottom") +
   guides(shape = guide_legend(override.aes = list(size = c(5,4,4,4)))) +
   facet_grid(cols = vars(factor(country, levels=c("CH", "DK", "DE"), labels=c("Switzerland", "Denmark", "Germany"))))
 

@@ -32,7 +32,7 @@ for (cc in 1:n_countries) {
       scale_color_manual(name = NULL,
                          breaks = c("col_data", "col_2_5", "col_97_5"),
                          values = c("dodgerblue2", "firebrick2", "springgreen2"),
-                         labels = c("Data", "simulation: 2.5% quantile", "simulation: 97.5% quantile")) +
+                         labels = c("Data", "simulation: 2.5% percentile", "simulation: 97.5% quantile")) +
       scale_fill_manual(name = NULL,
                         breaks = c("col_95_pred_int"),
                         values = c("skyblue"),

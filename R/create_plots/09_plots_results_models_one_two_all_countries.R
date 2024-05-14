@@ -37,7 +37,7 @@ color_scale_values_1 <- c("black", "springgreen3")
 color_scale_labels_1 <- c("Prior distribution", "Constant")
 
 color_scale_values_2 <- c("black", "springgreen3", "steelblue")
-color_scale_labels_2 <- c("Prior distribution", "Constant", "Reference")
+color_scale_labels_2 <- c("Prior distribution", "Constant", "External estimate")
 
 
 

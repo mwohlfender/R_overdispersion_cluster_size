@@ -28,7 +28,7 @@ color_scale_values_1 <- c("black")
 color_scale_labels_1 <- c("Estimate")
 
 color_scale_values_2 <- c("black", "steelblue")
-color_scale_labels_2 <- c("Estimate", "Reference")
+color_scale_labels_2 <- c("Estimate", "External estimate")
 
 
 
