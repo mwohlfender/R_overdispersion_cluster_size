@@ -16,7 +16,7 @@ The aim of this repository is to provide everything necessary to reproduce the s
 
 ### C.1 R package estRodis
 The simulation of identical sequence clusters as well as the models to estimate parameters from the sequence cluster size distribution are implemented as functions in an R-package, called estRodis.
-The estRodis package can be found here: https://github.com/mwohlfender/estRodis_test
+The estRodis package can be found here: [GitHub Martin Wohlfender: estRodis](https://github.com/mwohlfender/estRodis)
 
 ### C.2 Emma Hodcroft's sc2_k repository
 The structuring of sequence data into clusters of identical sequences was done by Emma Hodcroft. Her code can be found here: [GitHub Emma Hodcroft: sc2_rk_public](https://github.com/emmahodcroft/sc2_rk_public)
@@ -65,8 +65,8 @@ The repository contains the following data files (see folder `data`):
 
 ##### raw
 * `Switzerland_cluster_distribution_dates_100whole.tsv` distribution of size of identical sequence clusters (obtained from [GitHub Emma Hodcroft: sc2_rk_public](https://github.com/emmahodcroft/sc2_rk_public))
-* `data_new_confirmed_cases_ch_raw.csv` number of new confirmed cases  (obtained from https://www.covid19.admin.ch/en/overview)
-* `data_r_e_ch_raw.csv` estimate of effective reproduction number on daily basis based on number of confirmed cases (obtained from https://github.com/covid-19-Re/dailyRe-Data)
+* `data_new_confirmed_cases_ch_raw.csv` number of new confirmed cases  (obtained from [COVID-⁠19 Switzerland](https://www.covid19.admin.ch/en/overview))
+* `data_r_e_ch_raw.csv` estimate of effective reproduction number on daily basis based on number of confirmed cases (obtained from [GitHub covid-19-Re: dailyRe-Data](https://github.com/covid-19-Re/dailyRe-Data))
 * `switzerland_date_only.csv` date of sampling of all sequences contained in identical sequence clusters used for the analysis
 
 ##### processed
@@ -81,8 +81,8 @@ The repository contains the following data files (see folder `data`):
 
 ##### raw
 * `Denmark_cluster_distribution_dates_100whole.tsv` distribution of size of identical sequence clusters (obtained from [GitHub Emma Hodcroft: sc2_rk_public](https://github.com/emmahodcroft/sc2_rk_public))
-* `data_new_confirmed_cases_dk_raw.csv` number of new confirmed cases (obtained from https://experience.arcgis.com/experience/220fef27d07d438889d651cc2e00076c/page/Covid-19-Regionalt/)
-* `data_r_e_dk_raw.csv` estimate of effective reproduction number on daily basis based on number of confirmed cases (obtained from https://github.com/covid-19-Re/dailyRe-Data)
+* `data_new_confirmed_cases_dk_raw.csv` number of new confirmed cases (obtained from [Statens Serum Institut](https://experience.arcgis.com/experience/220fef27d07d438889d651cc2e00076c/page/Covid-19-Regionalt/))
+* `data_r_e_dk_raw.csv` estimate of effective reproduction number on daily basis based on number of confirmed cases (obtained from [GitHub covid-19-Re: dailyRe-Data](https://github.com/covid-19-Re/dailyRe-Data))
 * `denmark_date_only.csv` date of sampling of all sequences contained in identical sequence clusters used for the analysis
 
 ##### processed
@@ -98,7 +98,7 @@ The repository contains the following data files (see folder `data`):
 ##### raw
 * `Germany_cluster_distribution_dates_100whole.tsv` distribution of size of identical sequence clusters (obtained from [GitHub Emma Hodcroft: sc2_rk_public](https://github.com/emmahodcroft/sc2_rk_public))
 * `data_new_confirmed_cases_de_raw.csv` number of new confirmed cases (obtained from https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Situationsberichte/COVID-19-Trends/COVID-19-Trends.html?__blob=publicationFile#/home)
-* `data_r_e_de_raw.csv` estimate of effective reproduction number on daily basis based on number of confirmed cases (obtained from https://github.com/covid-19-Re/dailyRe-Data)
+* `data_r_e_de_raw.csv` estimate of effective reproduction number on daily basis based on number of confirmed cases (obtained from [GitHub covid-19-Re: dailyRe-Data](https://github.com/covid-19-Re/dailyRe-Data))
 * `germany_date_only.csv` date of sampling of all sequences contained in identical sequence clusters used for the analysis
 
 ##### processed
@@ -114,7 +114,7 @@ The repository contains the following data files (see folder `data`):
 ##### covariants
 
 ###### raw
-* `data_variants_shares_ch_dk_de_raw.csv` shares of SARS-CoV-2 variants (alpha, delta, omicron and other) among sequences on bi-weekly interval during 2021 (obtained from https://covariants.org/per-country?country=Germany&country=Denmark&country=Switzerland)
+* `data_variants_shares_ch_dk_de_raw.csv` shares of SARS-CoV-2 variants (alpha, delta, omicron and other) among sequences on bi-weekly interval during 2021 (obtained from [CoVariants](https://covariants.org/per-country?country=Germany&country=Denmark&country=Switzerland))
 
 ###### processed
 * `data_variants_shares_ch_dk_de_processed.csv` shares of SARS-CoV-2 variants (alpha, delta, omicron and other) among sequences on bi-weekly interval during 2021 and auxiliary variables needed for plotting
