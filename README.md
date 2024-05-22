@@ -97,7 +97,7 @@ The repository contains the following data files (see folder `data`):
 
 ##### raw
 * `Germany_cluster_distribution_dates_100whole.tsv` distribution of size of identical sequence clusters (obtained from [GitHub Emma Hodcroft: sc2_rk_public](https://github.com/emmahodcroft/sc2_rk_public))
-* `data_new_confirmed_cases_de_raw.csv` number of new confirmed cases (obtained from https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Situationsberichte/COVID-19-Trends/COVID-19-Trends.html?__blob=publicationFile#/home)
+* `data_new_confirmed_cases_de_raw.csv` number of new confirmed cases (obtained from [GitHub Robert Koch Institut: COVID-19_7-Tage-Inzidenz_in_Deutschland](https://github.com/robert-koch-institut/COVID-19_7-Tage-Inzidenz_in_Deutschland))
 * `data_r_e_de_raw.csv` estimate of effective reproduction number on daily basis based on number of confirmed cases (obtained from [GitHub covid-19-Re: dailyRe-Data](https://github.com/covid-19-Re/dailyRe-Data))
 * `germany_date_only.csv` date of sampling of all sequences contained in identical sequence clusters used for the analysis
 
