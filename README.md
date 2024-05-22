@@ -6,7 +6,7 @@ The aim of this repository is to provide everything necessary to reproduce the s
 
 ## (B) How to run
 * The whole R code is structured in an R-project (`R_overdispersion_cluster_size.Rproj`).
-* Before running any other R file, the file `setup.R` (contained in folder `R`) needs to be run. In this file, all paths to data and results files are defined (with respect to the path `R_overdispersion_cluster_size.Rproj`).
+* Before running any other R file, the file `setup.R` (contained in folder `R`) needs to be run. In this file, all paths to data and results files are defined (with respect to the path of `R_overdispersion_cluster_size.Rproj`).
 * R files are grouped by topic (data processing, creating plots, ...).
 * Running the file `main.R` (contained in folder `R`) calls all R scripts necessary to redo the processing of data and results as well as the creation of plots and tables. Data and result files need to be stored at the paths defined in `setup.R`.
 * Parameter estimation, both from simulated data and from data from Switzerland, Denmark and Germany, has been run on the high performance computing cluster of the University of Bern, UBELIX.
