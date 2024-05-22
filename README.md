@@ -64,7 +64,7 @@ The repository contains the following data files (see folder `data`):
 #### D.2.a Switzerland
 
 ##### raw
-* `Switzerland_cluster_distribution_dates_100whole.tsv` distribution of size of identical sequence clusters (obtained from https://github.com/emmahodcroft/sc2_rk)
+* `Switzerland_cluster_distribution_dates_100whole.tsv` distribution of size of identical sequence clusters (obtained from [GitHub Emma Hodcroft: sc2_rk_public](https://github.com/emmahodcroft/sc2_rk_public))
 * `data_new_confirmed_cases_ch_raw.csv` number of new confirmed cases  (obtained from https://www.covid19.admin.ch/en/overview)
 * `data_r_e_ch_raw.csv` estimate of effective reproduction number on daily basis based on number of confirmed cases (obtained from https://github.com/covid-19-Re/dailyRe-Data)
 * `switzerland_date_only.csv` date of sampling of all sequences contained in identical sequence clusters used for the analysis
