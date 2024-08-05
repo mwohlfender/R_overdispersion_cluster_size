@@ -458,7 +458,9 @@ plot_results_model_one_detection_probability_variants_all_countries_with_title <
 ggsave(filename = "plots/all_countries/model_one/plot_results_model_one_detection_probability_variants_with_title.png",
        plot = plot_results_model_one_detection_probability_variants_all_countries_with_title, width = image_width_in, height = image_width_in / ratio_width_height, units = "in")
 
-
+# plot_results_model_one_R_e_variants_all_countries_2$layers[[54]]$aes_params$size <- 0.75
+# plot_results_model_one_k_variants_all_countries$layers[[49]]$aes_params$size <- 0.75
+# plot_results_model_one_testing_probability_variants_all_countries$layers[[53]]$aes_params$size <- 0.75
 
 # grid: effective reproduction number, dispersion parameter and testing probability
 plot_grid_R_k_testing_proba <- plot_grid(plot_results_model_one_R_e_variants_all_countries_2 +
@@ -472,3 +474,7 @@ plot_grid_R_k_testing_proba <- plot_grid(plot_results_model_one_R_e_variants_all
 ggsave(plot = plot_grid_R_k_testing_proba,
        filename = "plots/paper/figure_param_estimates.pdf",
        width = 7.3, height = 9.0, units = c("in"), bg = "white")
+
+
+
+
