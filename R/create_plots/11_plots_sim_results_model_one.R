@@ -60,7 +60,7 @@ data_results <- data_results_0 %>%
 data_results_failed <- data_results_0  %>%
   filter(t_total > 0) %>%
   filter(n_divergent_transitions >= 1 | max_Rhat > 1.05 | min_Rhat < 0.95) 
- 
+
 summary_results <- tibble(total = nrow(data_results_0),
                           success = nrow(data_results),
                           failed = nrow(data_results_failed),
@@ -82,6 +82,9 @@ data_plots <- data_plots %>%
   mutate(rmse_R = -1,
          rmse_k = -1,
          rmse_testing_proba = -1,
+         cvrmse_R = -1,
+         cvrmse_k = -1,
+         cvrmse_testing_proba = -1,
          R_in_ci = 0,
          k_in_ci = 0,
          testing_proba_in_ci = 0,
@@ -101,9 +104,12 @@ for (ii in 1:nrow(data_plots)) {
   
   if (nrow(data_results_filtered) >= 1) {
     
-    data_plots$rmse_R[ii] <- Metrics::rmse(data_results_filtered$R_estimate, data_results_filtered$R) 
-    data_plots$rmse_k[ii] <- Metrics::rmse(data_results_filtered$k_estimate, data_results_filtered$k)
-    data_plots$rmse_testing_proba[ii] <- Metrics::rmse(data_results_filtered$testing_proba_estimate, data_results_filtered$testing_proba) 
+    data_plots$rmse_R[ii] <- Metrics::rmse(actual = data_results_filtered$R, predicted = data_results_filtered$R_estimate) 
+    data_plots$rmse_k[ii] <- Metrics::rmse(actual = data_results_filtered$k, predicted = data_results_filtered$k_estimate)
+    data_plots$rmse_testing_proba[ii] <- Metrics::rmse(actual = data_results_filtered$testing_proba, predicted = data_results_filtered$testing_proba_estimate) 
+    data_plots$cv_R[ii] <- 100 * data_plots$rmse_R[ii] / mean(data_results_filtered$R)
+    data_plots$cv_k[ii] <- 100 * data_plots$rmse_k[ii] / mean(data_results_filtered$k)
+    data_plots$cv_testing_proba[ii] <- 100 * data_plots$rmse_testing_proba[ii] / mean(data_results_filtered$testing_proba)
     data_plots$R_in_ci[ii] <- sum(data_results_filtered$R_in_ci) / nrow(data_results_filtered)
     data_plots$k_in_ci[ii] <- sum(data_results_filtered$k_in_ci) / nrow(data_results_filtered)
     data_plots$testing_proba_in_ci[ii] <- sum(data_results_filtered$testing_proba_in_ci) / nrow(data_results_filtered)
@@ -150,6 +156,24 @@ for (ii in 1:length(n_clusters_range)) {
            filename = paste0("plots/simulation/plot_raster_R_rmse_", n_clusters_range[ii], "_", max_cluster_size_range[jj], ".png"),
            width = image_width_in, height = image_width_in/ratio_width_height, units = c("in"))
     
+    # facet grid of raster plots of coefficient of variance of estimate of R
+    # local axes: sequencing probability and testing probability
+    # global axes: R and k
+    
+    plot_raster_R_cv <- ggplot(data = data_plot_completed_estimates_temp) +
+      geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = cv_R)) +
+      ggtitle("Effective reproduction number") +
+      xlab("sequencing probability") +
+      ylab("testing probability") +
+      facet_grid(k~R, labeller = label_both) +
+      scale_fill_viridis_c(name = "CV") +
+      theme_bw() +
+      theme(legend.position="bottom")
+    
+    ggsave(plot = plot_raster_R_cv,
+           filename = paste0("plots/simulation/plot_raster_R_cv_", n_clusters_range[ii], "_", max_cluster_size_range[jj], ".png"),
+           width = image_width_in, height = image_width_in/ratio_width_height, units = c("in"))
+    
     # facet grid of raster plots of coverage of true value of R by estimated credible intervals
     # local axes: sequencing probability and testing probability
     # global axes: R and k
@@ -179,13 +203,33 @@ for (ii in 1:length(n_clusters_range)) {
       xlab("sequencing probability") +
       ylab("testing probability") +
       facet_grid(k~R, labeller = label_both) +
-      # scale_fill_viridis_c(name = "RMSE (k)")
+      # scale_fill_viridis_c(name = "RMSE")
       scale_fill_viridis_c(name = expression(paste(log[10], ~ "(RMSE)"))) +
       theme_bw() +
       theme(legend.position="bottom")
     
     ggsave(plot = plot_raster_k_rmse,
            filename = paste0("plots/simulation/plot_raster_k_rmse_", n_clusters_range[ii], "_", max_cluster_size_range[jj], ".png"),
+           width = image_width_in, height = image_width_in/ratio_width_height, units = c("in"))
+    
+    # facet grid of raster plots of coefficient of variance of estimate of k
+    # local axes: sequencing probability and testing probability
+    # global axes: R and k
+    
+    plot_raster_k_cv <- ggplot(data = data_plot_completed_estimates_temp) +
+      # geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = cv_k)) +
+      geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = log(cv_k, base = 10))) +
+      ggtitle("Dispersion parameter") +
+      xlab("sequencing probability") +
+      ylab("testing probability") +
+      facet_grid(k~R, labeller = label_both) +
+      # scale_fill_viridis_c(name = "CV") +
+      scale_fill_viridis_c(name = expression(paste(log[10], ~ "(CV)"))) +
+      theme_bw() +
+      theme(legend.position="bottom")
+    
+    ggsave(plot = plot_raster_k_cv,
+           filename = paste0("plots/simulation/plot_raster_k_cv_", n_clusters_range[ii], "_", max_cluster_size_range[jj], ".png"),
            width = image_width_in, height = image_width_in/ratio_width_height, units = c("in"))
     
     # facet grid of raster plots of coverage of true value of R by estimated credible intervals
@@ -222,6 +266,26 @@ for (ii in 1:length(n_clusters_range)) {
     
     ggsave(plot = plot_raster_testing_proba_rmse,
            filename = paste0("plots/simulation/plot_raster_testing_proba_rmse_", n_clusters_range[ii], "_", max_cluster_size_range[jj], ".png"),
+           width = image_width_in, height = image_width_in/ratio_width_height, units = c("in"))
+    
+    # facet grid of raster plots of coefficient of variance of estimate of testing probability
+    # local axes: sequencing probability and testing probability
+    # global axes: R and k
+    
+    plot_raster_testing_proba_cv <- ggplot(data = data_plot_completed_estimates_temp) +
+      # geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = cv_testing_proba)) +
+      geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = log(cv_testing_proba, base = 10))) +
+      ggtitle("Testing probability") +
+      xlab("sequencing probability") +
+      ylab("testing probability") +
+      facet_grid(k~R, labeller = label_both) +
+      # scale_fill_viridis_c(name = "CV") +
+      scale_fill_viridis_c(name = expression(paste(log[10], ~ "(CV)"))) +
+      theme_bw() +
+      theme(legend.position="bottom")
+    
+    ggsave(plot = plot_raster_testing_proba_cv,
+           filename = paste0("plots/simulation/plot_raster_testing_proba_cv_", n_clusters_range[ii], "_", max_cluster_size_range[jj], ".png"),
            width = image_width_in, height = image_width_in/ratio_width_height, units = c("in"))
     
     # facet grid of raster plots of coverage of true value of testing probability by estimated credible intervals
@@ -296,27 +360,44 @@ for (ii in 1:length(n_clusters_range)) {
            filename = "plots/paper/figure_bayesian_validation.pdf",
            width = 7.3, height = 9, units = c("in"))
     
+    plot_raster_R_k_testing_proba_cv <- plot_grid(plot_raster_R_cv +
+                                                    theme(plot.margin = unit(c(0,0,0,0), "in")),
+                                                  plot_raster_k_cv +
+                                                    theme(plot.margin = unit(c(0,0,0,0), "in")),
+                                                  plot_raster_testing_proba_cv +
+                                                    theme(plot.margin = unit(c(0,0,0,0), "in")),
+                                                  labels = c("A", "B", "C"),
+                                                  nrow = 3)
+    
+    ggsave(plot = plot_raster_R_k_testing_proba_cv,
+           filename = paste0("plots/simulation/plot_raster_R_k_testing_proba_cv_", n_clusters_range[ii], "_", max_cluster_size_range[jj], ".png"),
+           width = 7.3, height = 10.7, units = c("in"))
+    
+    ggsave(plot = plot_raster_R_k_testing_proba_cv,
+           filename = "plots/paper/figure_bayesian_validation_cv.pdf",
+           width = 7.3, height = 9, units = c("in"))
+    
     # plot grid of `plot_raster_R_coverage`, `plot_raster_k_coverage` and `plot_raster_testing_proba_coverage`
     
     plot_raster_R_k_testing_proba_coverage <- plot_grid(plot_raster_R_coverage +
-                                                      theme(plot.margin = unit(c(0,0,0,0), "in")),
-                                                    plot_raster_k_coverage +
-                                                      theme(plot.margin = unit(c(0,0,0,0), "in")),
-                                                    plot_raster_testing_proba_coverage +
-                                                      theme(plot.margin = unit(c(0,0,0,0), "in")),
-                                                    labels = c("A", "B", "C"),
-                                                    nrow = 3)
+                                                          theme(plot.margin = unit(c(0,0,0,0), "in")),
+                                                        plot_raster_k_coverage +
+                                                          theme(plot.margin = unit(c(0,0,0,0), "in")),
+                                                        plot_raster_testing_proba_coverage +
+                                                          theme(plot.margin = unit(c(0,0,0,0), "in")),
+                                                        labels = c("A", "B", "C"),
+                                                        nrow = 3)
     
     ggsave(plot = plot_raster_R_k_testing_proba_coverage,
            filename = paste0("plots/simulation/plot_raster_R_k_testing_proba_coverage_", n_clusters_range[ii], "_", max_cluster_size_range[jj], ".png"),
            width = 7.3, height = 10.7, units = c("in"))
     
     plot_raster_R_k_testing_proba_coverage_a <- plot_grid(plot_raster_R_coverage +
-                                                          theme(plot.margin = unit(c(0,0,0,0), "in")),
-                                                        plot_raster_k_coverage +
-                                                          theme(plot.margin = unit(c(0,0,0,0), "in")),
-                                                        labels = c("A", "B"),
-                                                        nrow = 2)
+                                                            theme(plot.margin = unit(c(0,0,0,0), "in")),
+                                                          plot_raster_k_coverage +
+                                                            theme(plot.margin = unit(c(0,0,0,0), "in")),
+                                                          labels = c("A", "B"),
+                                                          nrow = 2)
     
     plot_raster_R_k_testing_proba_coverage_b <- plot_grid(plot_raster_testing_proba_coverage +
                                                             theme(plot.margin = unit(c(0,0,0,0), "in")),

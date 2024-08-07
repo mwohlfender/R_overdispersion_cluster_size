@@ -72,7 +72,7 @@ results_parameter_estimation <- estRodis_estimate_parameters_two(clusters_size =
                                                                  cores = 4,
                                                                  thin = 1,
                                                                  control = list(adapt_delta = 0.99),
-                                                                 init = lapply(1:4, FUN = function(x) estRodis_init_params_model_one()),
+                                                                 init = lapply(1:4, FUN = function(x) estRodis_init_params_model_two()),
                                                                  sample_file = paste0("results/parameter_estimates_model_two_denmark_", month_0, "_sample"),
                                                                  diagnostic_file = paste0("results/parameter_estimates_model_two_denmark_", month_0, "_dia"))
 

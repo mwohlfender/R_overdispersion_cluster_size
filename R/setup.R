@@ -60,6 +60,7 @@ do_new_ppc <- FALSE
 path_data_clusters_ch_raw <- "data/switzerland/raw/Switzerland_cluster_distribution_dates_100whole.tsv"
 path_data_clusters_dk_raw <- "data/denmark/raw/Denmark_cluster_distribution_dates_100whole.tsv"
 path_data_clusters_de_raw <- "data/germany/raw/Germany_cluster_distribution_dates_100whole.tsv"
+path_data_clusters_nz_raw <- "data/new_zealand/raw/df_cluster_by_period_NZ.rds"
 
 # paths where processed identical sequence cluster data is stored 
 path_data_clusters_ch_processed <- "data/switzerland/processed/data_clusters_ch_processed.csv"
@@ -123,25 +124,29 @@ path_data_cluster_sizes_de_2021_months <- "data/germany/processed/data_cluster_s
 path_sequencing_probas_ch_2021_months <- "data/switzerland/processed/sequencing_probas_ch_2021_months.csv"
 path_sequencing_probas_dk_2021_months <- "data/denmark/processed/sequencing_probas_dk_2021_months.csv"
 path_sequencing_probas_de_2021_months <- "data/germany/processed/sequencing_probas_de_2021_months.csv"
-
+path_sequencing_probas_nz_periods <- "data/new_zealand/raw/df_prop_sequenced_per_period.rds"
 
 
 # paths where results of parameter estimations of model 1 (prior distribution for testing probability) are stored
-path_results_model_one_ch <-  "results/switzerland/parameter_estimations/model_one/parameter_estimates_model_one_switzerland_"
-path_results_model_one_dk <-  "results/denmark/parameter_estimations/model_one/parameter_estimates_model_one_denmark_"
-path_results_model_one_de <-  "results/germany/parameter_estimations/model_one/parameter_estimates_model_one_germany_"
+path_results_model_one_ch <- "results/switzerland/parameter_estimations/model_one/parameter_estimates_model_one_switzerland_"
+path_results_model_one_dk <- "results/denmark/parameter_estimations/model_one/parameter_estimates_model_one_denmark_"
+path_results_model_one_de <- "results/germany/parameter_estimations/model_one/parameter_estimates_model_one_germany_"
+path_results_model_one_nz <- "results/new_zealand/parameter_estimations/model_one/parameter_estimates_model_one_new_zealand_"
 
 # path where overview of results of parameter estimations of model 1 (prior distribution for testing probability) will be stored
 path_results_model_one_ch_dk_de_processed <- "results/all_countries/parameter_estimations/model_one/results_model_one_ch_dk_de_2021_months.csv"
+path_results_model_one_nz_periods_processed <- "results/new_zealand/parameter_estimations/model_one/results_model_one_nz_periods.csv"
 
 
 # paths where results of parameter estimations of model 2 (constant value for testing probability) are stored
 path_results_model_two_ch <- "results/switzerland/parameter_estimations/model_two/parameter_estimates_model_two_switzerland_"
 path_results_model_two_dk <- "results/denmark/parameter_estimations/model_two/parameter_estimates_model_two_denmark_"
 path_results_model_two_de <- "results/germany/parameter_estimations/model_two/parameter_estimates_model_two_germany_"
+path_results_model_two_nz <- "results/new_zealand/parameter_estimations/model_two/parameter_estimates_model_two_new_zealand_"
 
 # path where overview of results of parameter estimations of model 2 (constant value for testing probability) will be stored
 path_results_model_two_ch_dk_de_processed <- "results/all_countries/parameter_estimations/model_two/results_model_two_ch_dk_de_2021_months.csv"
+path_results_model_two_nz_periods_processed <- "results/new_zealand/parameter_estimations/model_two/results_model_two_nz_periods.csv"
 
 
 

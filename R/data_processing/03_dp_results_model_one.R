@@ -404,17 +404,19 @@ names(results_model_one_ch_dk_de_2021_months) <- c("month", "country", "sequenci
                                                    "testing_proba_estimate", "testing_proba_lower_cred_int", "testing_proba_upper_cred_int", "testing_proba_Rhat",
                                                    "detection_proba_estimate", "detection_proba_lower_cred_int", "detection_proba_upper_cred_int", "detection_proba_Rhat")
 
-results_model_one_ch_dk_de_2021_months <- results_model_one_ch_dk_de_2021_months |> mutate(month = rep(x=1:12, times=3),
-                                                                                           country = rep(x=c("Switzerland", "Denmark", "Germany"), each=12),
-                                                                                           sequencing_proba = c(sequencing_probas_ch_2021_months_0 |> pull("seq_proba_ch"), 
-                                                                                                                sequencing_probas_dk_2021_months_0 |> pull("seq_proba_dk"), 
-                                                                                                                sequencing_probas_de_2021_months_0 |> pull("seq_proba_de")))
+results_model_one_ch_dk_de_2021_months <- results_model_one_ch_dk_de_2021_months %>%
+  mutate(month = rep(x=1:12, times=3),
+         country = rep(x=c("Switzerland", "Denmark", "Germany"), each=12),
+         sequencing_proba = c(sequencing_probas_ch_2021_months_0 %>% pull("seq_proba_ch"), 
+                              sequencing_probas_dk_2021_months_0 %>% pull("seq_proba_dk"), 
+                              sequencing_probas_de_2021_months_0 %>% pull("seq_proba_de")))
 
 results_model_one_n_divergent <- data.frame(matrix(data = 0, nrow = 36, ncol = 3))
 names(results_model_one_n_divergent) <- c("month", "country", "n_divergent")
 
-results_model_one_n_divergent <- results_model_one_n_divergent |> mutate(month = rep(x=1:12, times=3),
-                                                                         country = rep(x=c("Switzerland", "Denmark", "Germany"), each=12))
+results_model_one_n_divergent <- results_model_one_n_divergent %>%
+  mutate(month = rep(x=1:12, times=3),
+         country = rep(x=c("Switzerland", "Denmark", "Germany"), each=12))
 
 
 for(ii in 1:12) {
@@ -1156,13 +1158,13 @@ summary_results_model_one_2021_detection_proba_over_all <- bind_rows(summary_res
 # the mutation probability and the detection probability ----
 
 # Re
-Re_estimate_model_one_ch_2021_min <- min(results_model_one_ch_dk_de_2021_months |> filter(country == "Switzerland") |> dplyr::select(R_estimate))
-Re_estimate_model_one_dk_2021_min <- min(results_model_one_ch_dk_de_2021_months |> filter(country == "Denmark") |> dplyr::select(R_estimate))
-Re_estimate_model_one_de_2021_min <- min(results_model_one_ch_dk_de_2021_months |> filter(country == "Germany") |> dplyr::select(R_estimate))
+Re_estimate_model_one_ch_2021_min <- min(results_model_one_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(R_estimate))
+Re_estimate_model_one_dk_2021_min <- min(results_model_one_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(R_estimate))
+Re_estimate_model_one_de_2021_min <- min(results_model_one_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(R_estimate))
 
-Re_estimate_model_one_ch_2021_max <- max(results_model_one_ch_dk_de_2021_months |> filter(country == "Switzerland") |> dplyr::select(R_estimate))
-Re_estimate_model_one_dk_2021_max <- max(results_model_one_ch_dk_de_2021_months |> filter(country == "Denmark") |> dplyr::select(R_estimate))
-Re_estimate_model_one_de_2021_max <- max(results_model_one_ch_dk_de_2021_months |> filter(country == "Germany") |> dplyr::select(R_estimate))
+Re_estimate_model_one_ch_2021_max <- max(results_model_one_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(R_estimate))
+Re_estimate_model_one_dk_2021_max <- max(results_model_one_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(R_estimate))
+Re_estimate_model_one_de_2021_max <- max(results_model_one_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(R_estimate))
 
 Re_n_na_Rhat_model_one_2021_ch <- sum(is.na(results_model_one_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(R_Rhat)))
 Re_n_na_Rhat_model_one_2021_dk <- sum(is.na(results_model_one_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(R_Rhat)))
@@ -1188,13 +1190,13 @@ summary_results_model_one_2021_R <- summary_results_model_one_2021_R_over_all %>
 
 
 # k
-k_estimate_model_one_ch_2021_min <- min(results_model_one_ch_dk_de_2021_months |> filter(country == "Switzerland") |> dplyr::select(k_estimate))
-k_estimate_model_one_dk_2021_min <- min(results_model_one_ch_dk_de_2021_months |> filter(country == "Denmark") |> dplyr::select(k_estimate))
-k_estimate_model_one_de_2021_min <- min(results_model_one_ch_dk_de_2021_months |> filter(country == "Germany") |> dplyr::select(k_estimate))
+k_estimate_model_one_ch_2021_min <- min(results_model_one_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(k_estimate))
+k_estimate_model_one_dk_2021_min <- min(results_model_one_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(k_estimate))
+k_estimate_model_one_de_2021_min <- min(results_model_one_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(k_estimate))
 
-k_estimate_model_one_ch_2021_max <- max(results_model_one_ch_dk_de_2021_months |> filter(country == "Switzerland") |> dplyr::select(k_estimate))
-k_estimate_model_one_dk_2021_max <- max(results_model_one_ch_dk_de_2021_months |> filter(country == "Denmark") |> dplyr::select(k_estimate))
-k_estimate_model_one_de_2021_max <- max(results_model_one_ch_dk_de_2021_months |> filter(country == "Germany") |> dplyr::select(k_estimate))
+k_estimate_model_one_ch_2021_max <- max(results_model_one_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(k_estimate))
+k_estimate_model_one_dk_2021_max <- max(results_model_one_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(k_estimate))
+k_estimate_model_one_de_2021_max <- max(results_model_one_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(k_estimate))
 
 k_n_na_Rhat_model_one_2021_ch <- sum(is.na(results_model_one_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(k_Rhat)))
 k_n_na_Rhat_model_one_2021_dk <- sum(is.na(results_model_one_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(k_Rhat)))
@@ -1220,13 +1222,13 @@ summary_results_model_one_2021_k <- summary_results_model_one_2021_k_over_all %>
 
 
 # number of yearly mutations
-number_yearly_mutations_estimate_model_one_ch_2021_min <- min(results_model_one_ch_dk_de_2021_months |> filter(country == "Switzerland") |> dplyr::select(number_yearly_mutations_estimate))
-number_yearly_mutations_estimate_model_one_dk_2021_min <- min(results_model_one_ch_dk_de_2021_months |> filter(country == "Denmark") |> dplyr::select(number_yearly_mutations_estimate))
-number_yearly_mutations_estimate_model_one_de_2021_min <- min(results_model_one_ch_dk_de_2021_months |> filter(country == "Germany") |> dplyr::select(number_yearly_mutations_estimate))
+number_yearly_mutations_estimate_model_one_ch_2021_min <- min(results_model_one_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(number_yearly_mutations_estimate))
+number_yearly_mutations_estimate_model_one_dk_2021_min <- min(results_model_one_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(number_yearly_mutations_estimate))
+number_yearly_mutations_estimate_model_one_de_2021_min <- min(results_model_one_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(number_yearly_mutations_estimate))
 
-number_yearly_mutations_estimate_model_one_ch_2021_max <- max(results_model_one_ch_dk_de_2021_months |> filter(country == "Switzerland") |> dplyr::select(number_yearly_mutations_estimate))
-number_yearly_mutations_estimate_model_one_dk_2021_max <- max(results_model_one_ch_dk_de_2021_months |> filter(country == "Denmark") |> dplyr::select(number_yearly_mutations_estimate))
-number_yearly_mutations_estimate_model_one_de_2021_max <- max(results_model_one_ch_dk_de_2021_months |> filter(country == "Germany") |> dplyr::select(number_yearly_mutations_estimate))
+number_yearly_mutations_estimate_model_one_ch_2021_max <- max(results_model_one_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(number_yearly_mutations_estimate))
+number_yearly_mutations_estimate_model_one_dk_2021_max <- max(results_model_one_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(number_yearly_mutations_estimate))
+number_yearly_mutations_estimate_model_one_de_2021_max <- max(results_model_one_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(number_yearly_mutations_estimate))
 
 number_yearly_mutations_n_na_Rhat_model_one_2021_ch <- sum(is.na(results_model_one_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(number_yearly_mutations_Rhat)))
 number_yearly_mutations_n_na_Rhat_model_one_2021_dk <- sum(is.na(results_model_one_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(number_yearly_mutations_Rhat)))
@@ -1262,13 +1264,13 @@ summary_results_model_one_2021_number_yearly_mutations <- summary_results_model_
 
 
 # testing probability
-testing_proba_estimate_model_one_ch_2021_min <- min(results_model_one_ch_dk_de_2021_months |> filter(country == "Switzerland") |> dplyr::select(testing_proba_estimate))
-testing_proba_estimate_model_one_dk_2021_min <- min(results_model_one_ch_dk_de_2021_months |> filter(country == "Denmark") |> dplyr::select(testing_proba_estimate))
-testing_proba_estimate_model_one_de_2021_min <- min(results_model_one_ch_dk_de_2021_months |> filter(country == "Germany") |> dplyr::select(testing_proba_estimate))
+testing_proba_estimate_model_one_ch_2021_min <- min(results_model_one_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(testing_proba_estimate))
+testing_proba_estimate_model_one_dk_2021_min <- min(results_model_one_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(testing_proba_estimate))
+testing_proba_estimate_model_one_de_2021_min <- min(results_model_one_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(testing_proba_estimate))
 
-testing_proba_estimate_model_one_ch_2021_max <- max(results_model_one_ch_dk_de_2021_months |> filter(country == "Switzerland") |> dplyr::select(testing_proba_estimate))
-testing_proba_estimate_model_one_dk_2021_max <- max(results_model_one_ch_dk_de_2021_months |> filter(country == "Denmark") |> dplyr::select(testing_proba_estimate))
-testing_proba_estimate_model_one_de_2021_max <- max(results_model_one_ch_dk_de_2021_months |> filter(country == "Germany") |> dplyr::select(testing_proba_estimate))
+testing_proba_estimate_model_one_ch_2021_max <- max(results_model_one_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(testing_proba_estimate))
+testing_proba_estimate_model_one_dk_2021_max <- max(results_model_one_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(testing_proba_estimate))
+testing_proba_estimate_model_one_de_2021_max <- max(results_model_one_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(testing_proba_estimate))
 
 testing_proba_n_na_Rhat_model_one_2021_ch <- sum(is.na(results_model_one_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(testing_proba_Rhat)))
 testing_proba_n_na_Rhat_model_one_2021_dk <- sum(is.na(results_model_one_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(testing_proba_Rhat)))
@@ -1304,13 +1306,13 @@ summary_results_model_one_2021_testing_proba <- summary_results_model_one_2021_t
 
 
 # mutation probability
-mutation_proba_estimate_model_one_ch_2021_min <- min(results_model_one_ch_dk_de_2021_months |> filter(country == "Switzerland") |> dplyr::select(mutation_proba_estimate))
-mutation_proba_estimate_model_one_dk_2021_min <- min(results_model_one_ch_dk_de_2021_months |> filter(country == "Denmark") |> dplyr::select(mutation_proba_estimate))
-mutation_proba_estimate_model_one_de_2021_min <- min(results_model_one_ch_dk_de_2021_months |> filter(country == "Germany") |> dplyr::select(mutation_proba_estimate))
+mutation_proba_estimate_model_one_ch_2021_min <- min(results_model_one_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(mutation_proba_estimate))
+mutation_proba_estimate_model_one_dk_2021_min <- min(results_model_one_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(mutation_proba_estimate))
+mutation_proba_estimate_model_one_de_2021_min <- min(results_model_one_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(mutation_proba_estimate))
 
-mutation_proba_estimate_model_one_ch_2021_max <- max(results_model_one_ch_dk_de_2021_months |> filter(country == "Switzerland") |> dplyr::select(mutation_proba_estimate))
-mutation_proba_estimate_model_one_dk_2021_max <- max(results_model_one_ch_dk_de_2021_months |> filter(country == "Denmark") |> dplyr::select(mutation_proba_estimate))
-mutation_proba_estimate_model_one_de_2021_max <- max(results_model_one_ch_dk_de_2021_months |> filter(country == "Germany") |> dplyr::select(mutation_proba_estimate))
+mutation_proba_estimate_model_one_ch_2021_max <- max(results_model_one_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(mutation_proba_estimate))
+mutation_proba_estimate_model_one_dk_2021_max <- max(results_model_one_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(mutation_proba_estimate))
+mutation_proba_estimate_model_one_de_2021_max <- max(results_model_one_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(mutation_proba_estimate))
 
 mutation_proba_n_na_Rhat_model_one_2021_ch <- sum(is.na(results_model_one_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(mutation_proba_Rhat)))
 mutation_proba_n_na_Rhat_model_one_2021_dk <- sum(is.na(results_model_one_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(mutation_proba_Rhat)))
@@ -1346,13 +1348,13 @@ summary_results_model_one_2021_mutation_proba <- summary_results_model_one_2021_
 
 
 # detection probability
-detection_proba_estimate_model_one_ch_2021_min <- min(results_model_one_ch_dk_de_2021_months |> filter(country == "Switzerland") |> dplyr::select(detection_proba_estimate))
-detection_proba_estimate_model_one_dk_2021_min <- min(results_model_one_ch_dk_de_2021_months |> filter(country == "Denmark") |> dplyr::select(detection_proba_estimate))
-detection_proba_estimate_model_one_de_2021_min <- min(results_model_one_ch_dk_de_2021_months |> filter(country == "Germany") |> dplyr::select(detection_proba_estimate))
+detection_proba_estimate_model_one_ch_2021_min <- min(results_model_one_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(detection_proba_estimate))
+detection_proba_estimate_model_one_dk_2021_min <- min(results_model_one_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(detection_proba_estimate))
+detection_proba_estimate_model_one_de_2021_min <- min(results_model_one_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(detection_proba_estimate))
 
-detection_proba_estimate_model_one_ch_2021_max <- max(results_model_one_ch_dk_de_2021_months |> filter(country == "Switzerland") |> dplyr::select(detection_proba_estimate))
-detection_proba_estimate_model_one_dk_2021_max <- max(results_model_one_ch_dk_de_2021_months |> filter(country == "Denmark") |> dplyr::select(detection_proba_estimate))
-detection_proba_estimate_model_one_de_2021_max <- max(results_model_one_ch_dk_de_2021_months |> filter(country == "Germany") |> dplyr::select(detection_proba_estimate))
+detection_proba_estimate_model_one_ch_2021_max <- max(results_model_one_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(detection_proba_estimate))
+detection_proba_estimate_model_one_dk_2021_max <- max(results_model_one_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(detection_proba_estimate))
+detection_proba_estimate_model_one_de_2021_max <- max(results_model_one_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(detection_proba_estimate))
 
 detection_proba_n_na_Rhat_model_one_2021_ch <- sum(is.na(results_model_one_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(detection_proba_Rhat)))
 detection_proba_n_na_Rhat_model_one_2021_dk <- sum(is.na(results_model_one_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(detection_proba_Rhat)))
