@@ -7,7 +7,7 @@
 
 # install newest version of estRodis package
 # devtools::install_github("mwohlfender/estRodis", ref = "main", force = TRUE)
-
+# devtools::install_github(repo = "mwohlfender/estRodis", ref = "revisions", force = TRUE)
 
 
 # load libraries ----
@@ -24,6 +24,7 @@ library(rstan)
 library(tidyverse)
 library(tidygraph)
 library(viridis)
+library(stats)
 
 library(estRodis)
 
@@ -133,7 +134,7 @@ path_results_model_one_dk <- "results/denmark/parameter_estimations/model_one/pa
 path_results_model_one_de <- "results/germany/parameter_estimations/model_one/parameter_estimates_model_one_germany_"
 path_results_model_one_nz <- "results/new_zealand/parameter_estimations/model_one/parameter_estimates_model_one_new_zealand_"
 
-# path where overview of results of parameter estimations of model 1 (prior distribution for testing probability) will be stored
+# paths where overview of results of parameter estimations of model 1 (prior distribution for testing probability) will be stored
 path_results_model_one_ch_dk_de_processed <- "results/all_countries/parameter_estimations/model_one/results_model_one_ch_dk_de_2021_months.csv"
 path_results_model_one_nz_periods_processed <- "results/new_zealand/parameter_estimations/model_one/results_model_one_nz_periods.csv"
 
@@ -144,9 +145,61 @@ path_results_model_two_dk <- "results/denmark/parameter_estimations/model_two/pa
 path_results_model_two_de <- "results/germany/parameter_estimations/model_two/parameter_estimates_model_two_germany_"
 path_results_model_two_nz <- "results/new_zealand/parameter_estimations/model_two/parameter_estimates_model_two_new_zealand_"
 
-# path where overview of results of parameter estimations of model 2 (constant value for testing probability) will be stored
+# paths where overview of results of parameter estimations of model 2 (constant value for testing probability) will be stored
 path_results_model_two_ch_dk_de_processed <- "results/all_countries/parameter_estimations/model_two/results_model_two_ch_dk_de_2021_months.csv"
 path_results_model_two_nz_periods_processed <- "results/new_zealand/parameter_estimations/model_two/results_model_two_nz_periods.csv"
+
+
+# paths where results of parameter estimations of model 3
+# (prior distributions for R, k and testing probability and constant value for mutation probability) are stored
+path_results_model_three_ch <- "results/switzerland/parameter_estimations/model_three/parameter_estimates_model_three_switzerland_"
+path_results_model_three_dk <- "results/denmark/parameter_estimations/model_three/parameter_estimates_model_three_denmark_"
+path_results_model_three_de <- "results/germany/parameter_estimations/model_three/parameter_estimates_model_three_germany_"
+path_results_model_three_nz <- "results/new_zealand/parameter_estimations/model_three/parameter_estimates_model_three_new_zealand_"
+
+# paths where overview of results of parameter estimations of model 3
+# (prior distributions for R, k and testing probability and constant value for mutation probability) will be stored
+path_results_model_three_ch_dk_de_processed <- "results/all_countries/parameter_estimations/model_three/results_model_three_ch_dk_de_2021_months.csv"
+path_results_model_three_nz_periods_processed <- "results/new_zealand/parameter_estimations/model_three/results_model_three_nz_periods.csv"
+
+
+# path where results of parameter estimations of model 4
+# (prior distributions for R and k and constant values for mutation probability and testing probability) are stored
+path_results_model_four_ch <- "results/switzerland/parameter_estimations/model_four/parameter_estimates_model_four_switzerland_"
+path_results_model_four_dk <- "results/denmark/parameter_estimations/model_four/parameter_estimates_model_four_denmark_"
+path_results_model_four_de <- "results/germany/parameter_estimations/model_four/parameter_estimates_model_four_germany_"
+path_results_model_four_nz <- "results/new_zealand/parameter_estimations/model_four/parameter_estimates_model_four_new_zealand_"
+
+# paths where overview of results of parameter estimations of model 4
+# (prior distributions for R and k and constant values for mutation probability and testing probability) will be stored
+path_results_model_four_ch_dk_de_processed <- "results/all_countries/parameter_estimations/model_four/results_model_four_ch_dk_de_2021_months.csv"
+path_results_model_four_nz_periods_processed <- "results/new_zealand/parameter_estimations/model_four/results_model_four_nz_periods.csv"
+
+
+# paths where results of parameter estimations of model 5
+# (prior distributions for R, k, mutation probability and testing probability) are stored
+path_results_model_five_ch <- "results/switzerland/parameter_estimations/model_five/parameter_estimates_model_five_switzerland_"
+path_results_model_five_dk <- "results/denmark/parameter_estimations/model_five/parameter_estimates_model_five_denmark_"
+path_results_model_five_de <- "results/germany/parameter_estimations/model_five/parameter_estimates_model_five_germany_"
+path_results_model_five_nz <- "results/new_zealand/parameter_estimations/model_five/parameter_estimates_model_five_new_zealand_"
+
+# path where overview of results of parameter estimations of model 5
+# (prior distributions for R, k, mutation probability and testing probability) will be stored
+path_results_model_five_ch_dk_de_processed <- "results/all_countries/parameter_estimations/model_five/results_model_five_ch_dk_de_2021_months.csv"
+path_results_model_five_nz_periods_processed <- "results/new_zealand/parameter_estimations/model_five/results_model_five_nz_periods.csv"
+
+
+# path where results of parameter estimations of model 6
+# (prior distributions for R, k and mutation probability and constant value for testing probability) are stored
+path_results_model_six_ch <- "results/switzerland/parameter_estimations/model_six/parameter_estimates_model_six_switzerland_"
+path_results_model_six_dk <- "results/denmark/parameter_estimations/model_six/parameter_estimates_model_six_denmark_"
+path_results_model_six_de <- "results/germany/parameter_estimations/model_six/parameter_estimates_model_six_germany_"
+path_results_model_six_nz <- "results/new_zealand/parameter_estimations/model_six/parameter_estimates_model_six_new_zealand_"
+
+# path where overview of results of parameter estimations of model 6
+# (prior distributions for R, k and mutation probability and constant value for testing probability) will be stored
+path_results_model_six_ch_dk_de_processed <- "results/all_countries/parameter_estimations/model_six/results_model_six_ch_dk_de_2021_months.csv"
+path_results_model_six_nz_periods_processed <- "results/new_zealand/parameter_estimations/model_six/results_model_six_nz_periods.csv"
 
 
 
