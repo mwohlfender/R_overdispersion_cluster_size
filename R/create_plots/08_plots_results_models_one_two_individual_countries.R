@@ -227,7 +227,7 @@ for (ii in 1:length(list_countries)) {
                                                                  plot_color_scale_values = color_scale_values_1,
                                                                  plot_color_scale_labels = color_scale_labels_1,
                                                                  scale_y_from = 0,
-                                                                 scale_y_to = 0.9,
+                                                                 scale_y_to = 0.8,
                                                                  scale_y_by = 0.1,
                                                                  add_line_at_one = FALSE,
                                                                  label_y = "Estimated dispersion parameter")
@@ -253,7 +253,7 @@ for (ii in 1:length(list_countries)) {
                                                                                    plot_color_scale_values = color_scale_values_1,
                                                                                    plot_color_scale_labels = color_scale_labels_1,
                                                                                    scale_y_from = 0,
-                                                                                   scale_y_to = 0.9,
+                                                                                   scale_y_to = 0.8,
                                                                                    scale_y_by = 0.1,
                                                                                    add_line_at_one = FALSE,
                                                                                    label_y = "Estimated dispersion parameter")

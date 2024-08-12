@@ -804,3 +804,21 @@ results_model_four_checks_de <- results_model_four_checks_ch_dk_de %>% filter(co
 # 
 
 
+# remove variables from environment
+remove(results_model_four_ch_2021_01, results_model_four_ch_2021_02, results_model_four_ch_2021_03, 
+       results_model_four_ch_2021_04, results_model_four_ch_2021_05, results_model_four_ch_2021_06,
+       results_model_four_ch_2021_07, results_model_four_ch_2021_08, results_model_four_ch_2021_09,
+       results_model_four_ch_2021_10, results_model_four_ch_2021_11, results_model_four_ch_2021_12)
+
+remove(results_model_four_dk_2021_01, results_model_four_dk_2021_02, results_model_four_dk_2021_03,
+       results_model_four_dk_2021_04, results_model_four_dk_2021_05, results_model_four_dk_2021_06,
+       results_model_four_dk_2021_07, results_model_four_dk_2021_08, results_model_four_dk_2021_09, 
+       results_model_four_dk_2021_10, results_model_four_dk_2021_11, results_model_four_dk_2021_12)
+
+remove(results_model_four_de_2021_01, results_model_four_de_2021_02, results_model_four_de_2021_03,
+       results_model_four_de_2021_04, results_model_four_de_2021_05, results_model_four_de_2021_06,
+       results_model_four_de_2021_07, results_model_four_de_2021_08, results_model_four_de_2021_09, 
+       results_model_four_de_2021_10, results_model_four_de_2021_11, results_model_four_de_2021_12)
+
+remove(list_results_model_four_ch_2021, list_results_model_four_dk_2021, list_results_model_four_de_2021)
+

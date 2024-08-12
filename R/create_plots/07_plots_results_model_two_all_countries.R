@@ -215,7 +215,7 @@ plot_results_model_two_k_all_countries <- create_plot_result_all_countries(data_
                                                                            plot_color_scale_values = color_scale_values_1, 
                                                                            plot_color_scale_labels = color_scale_labels_1,
                                                                            scale_y_from = 0,
-                                                                           scale_y_to = 0.9,
+                                                                           scale_y_to = 0.8,
                                                                            scale_y_by = 0.1,
                                                                            add_line_at_one = FALSE,
                                                                            label_y = "Estimated dispersion parameter")
@@ -240,7 +240,7 @@ plot_results_model_two_k_variants_all_countries <- create_plot_result_variants_a
                                                                                              plot_color_scale_values = color_scale_values_1, 
                                                                                              plot_color_scale_labels = color_scale_labels_1,
                                                                                              scale_y_from = 0,
-                                                                                             scale_y_to = 0.9,
+                                                                                             scale_y_to = 0.8,
                                                                                              scale_y_by = 0.1,
                                                                                              add_line_at_one = FALSE,
                                                                                              label_y = "Estimated dispersion parameter")

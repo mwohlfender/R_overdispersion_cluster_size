@@ -218,7 +218,7 @@ plot_results_model_four_k_all_countries <- create_plot_result_all_countries(data
                                                                             plot_color_scale_values = color_scale_values_1, 
                                                                             plot_color_scale_labels = color_scale_labels_1,
                                                                             scale_y_from = 0,
-                                                                            scale_y_to = 0.9,
+                                                                            scale_y_to = 0.8,
                                                                             scale_y_by = 0.1,
                                                                             add_line_at_one = FALSE,
                                                                             label_y = "Estimated dispersion parameter")
@@ -243,7 +243,7 @@ plot_results_model_four_k_variants_all_countries <- create_plot_result_variants_
                                                                                               plot_color_scale_values = color_scale_values_1, 
                                                                                               plot_color_scale_labels = color_scale_labels_1,
                                                                                               scale_y_from = 0,
-                                                                                              scale_y_to = 0.9,
+                                                                                              scale_y_to = 0.8,
                                                                                               scale_y_by = 0.1,
                                                                                               add_line_at_one = FALSE,
                                                                                               label_y = "Estimated dispersion parameter")
@@ -419,21 +419,36 @@ ggsave(filename = "plots/all_countries/model_four/plot_results_model_four_detect
 
 
 
-# plot_results_model_three_R_e_variants_all_countries_2$layers[[54]]$aes_params$size <- 0.75
-# plot_results_model_three_k_variants_all_countries$layers[[49]]$aes_params$size <- 0.75
-# plot_results_model_three_testing_probability_variants_all_countries$layers[[53]]$aes_params$size <- 0.75
+# grid: effective reproduction number, dispersion parameter and testing probability ----
+legend_methods <- get_legend(plot_results_model_four_R_e_variants_all_countries_2 + guides(fill = "none"))
+legend_variants <- get_legend(plot_results_model_four_R_e_variants_all_countries_2 + guides(color = "none"))
 
-# grid: effective reproduction number, dispersion parameter and testing probability
 plot_grid_R_k_testing_proba_model_four <- plot_grid(plot_results_model_four_R_e_variants_all_countries_2 +
-                                                      guides(fill = "none"),
+                                                      guides(color = "none",
+                                                             fill = "none") +
+                                                      theme(axis.title.x = element_text(size = 10),
+                                                            axis.title.y = element_text(size = 10),
+                                                            axis.text.x = element_text(angle = 45, hjust = 1, size = 8)),
+                                                    as_ggplot(legend_methods),
                                                     plot_results_model_four_k_variants_all_countries +
-                                                      guides(fill = "none"),
-                                                    plot_results_model_four_testing_probability_variants_all_countries,
-                                                    labels = c("A", "B", "C"),
-                                                    nrow = 3)
+                                                      guides(fill = "none") +
+                                                      theme(axis.title.x = element_text(size = 10),
+                                                            axis.title.y = element_text(size = 10),
+                                                            axis.text.x = element_text(angle = 45, hjust = 1, size = 8)),
+                                                    plot_results_model_four_testing_probability_variants_all_countries +
+                                                      guides(fill = "none") +
+                                                      theme(axis.title.x = element_text(size = 10),
+                                                            axis.title.y = element_text(size = 10),
+                                                            axis.text.x = element_text(angle = 45, hjust = 1, size = 8)),
+                                                    as_ggplot(legend_variants),
+                                                    labels = c("A", "", "B", "C", ""),
+                                                    rel_heights = c(1, 0.15, 1, 1, 0.15),
+                                                    nrow = 5)
 
 ggsave(plot = plot_grid_R_k_testing_proba_model_four,
-       filename = "plots/paper/figure_param_estimates_model_four.pdf",
+       filename = "plots/all_countries/model_four/figure_param_estimates_model_four.pdf",
        width = 7.3, height = 9.0, units = c("in"), bg = "white")
+
+
 
 
