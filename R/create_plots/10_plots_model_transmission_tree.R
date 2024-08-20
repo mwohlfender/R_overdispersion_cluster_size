@@ -53,7 +53,7 @@ edges_plot_R_g <- edges_plot_R_g %>% mutate(in_same_cluster = as.numeric(from_va
 
 
 
-# first version of plot: without mutation and without case-detection ----
+# first version of plot: without mutation and without detection ----
 plot_R_g <- ggraph(graph=graph_R_g, layout="tree") + 
   geom_edge_link(data=edges_plot_R_g, mapping=aes(x=x_from, y=y_from, xend=x_to, yend=y_to, edge_colour=factor(variant_transmitted), edge_linetype=factor(in_same_cluster), edge_width=factor(in_same_cluster))) +
   scale_edge_color_manual(name="Identical sequence cluster",
@@ -88,7 +88,7 @@ ggsave(filename=paste0("plots/branching_process/plot_R_g.png"),
 
 
 
-# second version of plot: with mutation and without case-detection ----
+# second version of plot: with mutation and without detection ----
 plot_R_g_mutation <- ggraph(graph=graph_R_g, layout="tree") + 
   geom_edge_link(data=edges_plot_R_g, mapping=aes(x=x_from, y=y_from, xend=x_to, yend=y_to, edge_colour=factor(variant_transmitted), edge_linetype=factor(in_same_cluster), edge_width=factor(in_same_cluster))) +
   scale_edge_color_manual(name="Identical sequence cluster",
@@ -139,7 +139,7 @@ ggsave(filename=paste0("plots/branching_process/plot_R_g_mutation.png"),
 
 
 
-# third version of plot: without mutation and with case-detection ----
+# third version of plot: without mutation and with detection ----
 plot_R_g_detection <- ggraph(graph=graph_R_g, layout="tree") + 
   geom_edge_link(data=edges_plot_R_g, mapping=aes(x=x_from, y=y_from, xend=x_to, yend=y_to, edge_colour=factor(variant_transmitted), edge_linetype=factor(in_same_cluster), edge_width=factor(in_same_cluster))) +
   scale_edge_color_manual(name="Identical sequence cluster",
@@ -162,7 +162,7 @@ plot_R_g_detection <- ggraph(graph=graph_R_g, layout="tree") +
   scale_color_manual(name="Identical sequence cluster:",
                      values=colors_plot_R_g,
                      labels=LETTERS[seq(from=1, to=length(colors_plot_R_g))]) +
-  scale_shape_manual(name="Case-detection:",
+  scale_shape_manual(name="Detection:",
                      breaks=c("1", "0"),
                      values=c(19, 21),
                      labels=c("Case observed", "Case not observed")) +
@@ -179,7 +179,7 @@ ggsave(filename=paste0("plots/branching_process/plot_R_g_detection.png"),
 
 
 
-# fourth version of plot: with mutation and with case-detection ----
+# fourth version of plot: with mutation and with detection ----
 plot_R_g_mutation_detection <- ggraph(graph=graph_R_g, layout="tree") + 
   geom_edge_link(data=edges_plot_R_g, mapping=aes(x=x_from, y=y_from, xend=x_to, yend=y_to, edge_colour=factor(variant_transmitted), edge_linetype=factor(in_same_cluster), edge_width=factor(in_same_cluster))) +
   scale_edge_color_manual(name="Identical sequence cluster",
@@ -236,7 +236,7 @@ ggsave(filename=paste0("plots/branching_process/plot_R_g_mutation_detection.png"
 
 
 
-# fifth version of plot: with mutation and with case-detection ----
+# fifth version of plot: with mutation, with detection and with cluster size ----
 plot_R_g_mutation_detection_cluster_size <- ggraph(graph=graph_R_g, layout="tree") + 
   geom_edge_link(data=edges_plot_R_g, mapping=aes(x=x_from, y=y_from, xend=x_to, yend=y_to, edge_colour=factor(variant_transmitted), edge_linetype=factor(in_same_cluster), edge_width=factor(in_same_cluster))) +
   scale_edge_color_manual(name="Identical sequence cluster",
@@ -302,7 +302,51 @@ ggsave(filename=paste0("plots/paper/figure_cluster_simulation.pdf"),
 
 
 
+# sixth version of plot: without mutation, with detection and with cluster size ----
+plot_R_g_detection_cluster_size <- ggraph(graph=graph_R_g, layout="tree") + 
+  geom_edge_link(data=edges_plot_R_g, mapping=aes(x=x_from, y=y_from, xend=x_to, yend=y_to, edge_colour=factor(variant_transmitted), edge_linetype=factor(in_same_cluster), edge_width=factor(in_same_cluster))) +
+  scale_edge_color_manual(name="Identical sequence cluster",
+                          values=colors_plot_R_g,
+                          labels=LETTERS[seq(from = 1, to = length(unique(edges_plot_R_g$variant_transmitted)))],
+                          guide="none") +
+  scale_discrete_manual(aesthetics=c("edge_width"),
+                        name="Transmission",
+                        values=c("0"=0.5, "1"=1),
+                        labels=c("Not within same cluster", "Within same cluster"),
+                        limits=c("1", "0"),
+                        guide="none") +
+  scale_discrete_manual(aesthetics = c("edge_linetype"),
+                        name="Transmission:",
+                        values=c("1"="solid", "0"="dashed"),
+                        labels=c("Within same cluster", "Not within same cluster"),
+                        limits=c("1", "0")) +
+  geom_node_point(data=create_layout(graph_R_g, layout="tree"),
+                  mapping=aes(x=x, y=y, color=factor(current_variant), shape=factor(detection)), size=5.5, fill="white", stroke=1.25) +
+  scale_color_manual(name="Identical sequence cluster:",
+                     values=colors_plot_R_g,
+                     labels=LETTERS[seq(from=1, to=length(colors_plot_R_g))]) +
+  scale_shape_manual(name="Detection:",
+                     breaks=c("1", "0"),
+                     values=c(19, 21),
+                     labels=c("Case observed", "Case not observed")) +
+  annotate("text", x = -2.4, y = 2.125, label = "2", color = colors_plot_R_g[1], size = 5) +
+  annotate("text", x = 2.5, y = 1, label = "2", color = colors_plot_R_g[2], size = 5) +
+  annotate("text", x = -1.75, y = 0.5, label = "3", color = colors_plot_R_g[3], size = 5) +
+  annotate("text", x = -3.25, y = 0.15, label = "1", color = colors_plot_R_g[4], size = 5) +
+  annotate("text", x = 0.75, y = 0.15, label = "0", color = colors_plot_R_g[5], size = 5) +
+  theme(panel.background=element_rect(fill="white", colour="black")) +
+  theme(legend.position="bottom",
+        legend.box="vertical",
+        legend.margin=margin(t=0, r=0, b=0, l=0, unit="cm"),
+        legend.key=element_blank()) +
+  guides(colour=guide_legend(order=1),
+         edge_linetype=guide_legend(order=2))
 
+ggsave(filename=paste0("plots/branching_process/plot_R_g_detection_cluster_size.png"),
+       plot=plot_R_g_detection_cluster_size, width=image_width_in, height = image_width_in/ratio_width_height, units="in")
+
+ggsave(filename=paste0("plots/paper/figure_cluster_simulation_revised.pdf"),
+       plot=plot_R_g_detection_cluster_size, width=image_width_in, height = image_width_in/ratio_width_height, units="in")
 
 
 

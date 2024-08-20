@@ -37,5 +37,16 @@ source("R/addenda/04_model_five/cp_results_models_one_five_ch_dk_de.R", echo = F
 # create plots of parameter estimations for Switzerland, Denmark and Germany using models one and six
 source("R/addenda/05_model_six/cp_results_models_one_six_ch_dk_de.R", echo = FALSE)
 
+# create overview table of results of parameter estimation with model three
+source("R/addenda/02_model_three/ct_results_model_three.R", echo = FALSE)
+
+# create overview table of results of parameter estimation with model four
+source("R/addenda/03_model_four/ct_results_model_four.R", echo = FALSE)
+
+# create overview table of results of parameter estimation with model five
+source("R/addenda/04_model_five/ct_results_model_five.R", echo = FALSE)
+
+# create overview table of results of parameter estimation with model six
+source("R/addenda/05_model_six/ct_results_model_six.R", echo = FALSE)
 
 

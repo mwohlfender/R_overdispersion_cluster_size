@@ -142,6 +142,6 @@ plot_grid_prior_distributions_a <- plot_grid(plotlist = list(plot_prior_R + them
                                              rel_heights = c(1, 1, 1, 1),
                                              labels = c("A", "B", "C", "D"))
 
-ggsave(plot = plot_grid_prior_distributions, filename = "plots/prior_distributions/grid_prior_distributions_a.png", width = 6, height = 6, units = c("in"))
+ggsave(plot = plot_grid_prior_distributions_a, filename = "plots/prior_distributions/grid_prior_distributions_a.png", width = 6, height = 6, units = c("in"))
 
 

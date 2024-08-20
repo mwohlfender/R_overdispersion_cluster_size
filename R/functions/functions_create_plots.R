@@ -101,6 +101,7 @@ create_plot_result <- function(data_plot_results, data_plot_other_estimates = NU
     ylab(label_y) +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 45, hjust = 1),
+          legend.text=element_markdown(),
           legend.position = "bottom",
           legend.box = "horizontal",
           legend.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = "cm"),
@@ -180,6 +181,7 @@ create_plot_result_variants <- function(data_plot_results, data_plot_variants, d
     ylab(label_y) +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 45, hjust = 1),
+          legend.text=element_markdown(),
           legend.position = "bottom",
           legend.box = "vertical",
           legend.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = "cm"),
@@ -240,6 +242,7 @@ create_plot_result_all_countries <- function(data_plot_results, data_plot_other_
     ylab(label_y) +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 45, hjust = 1),
+          legend.text=element_markdown(),
           legend.position = "bottom",
           legend.box = "horizontal",
           legend.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = "cm"),
@@ -320,6 +323,7 @@ create_plot_result_variants_all_countries <- function(data_plot_results, data_pl
     ylab(label_y) +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 45, hjust = 1),
+          legend.text=element_markdown(),
           legend.position = "bottom",
           legend.box = "vertical",
           legend.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = "cm"),

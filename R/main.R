@@ -61,6 +61,9 @@ source("R/create_plots/11_plots_sim_results_model_one.R", echo = FALSE)
 # create plots of results of posterior predictive check of model one
 source("R/create_plots/12_plots_ppc_results_model_one.R", echo = FALSE)
 
+# create plot of results of simulation study of model one
+source("R/addenda/06_simulation_study/cp_sim_study_model_one_v2.R", echo = FALSE)
+
 # create overview table of data: number of cases, sequences and clusters
 source("R/create_tables/01_ct_overview_data.R", echo = FALSE)
 

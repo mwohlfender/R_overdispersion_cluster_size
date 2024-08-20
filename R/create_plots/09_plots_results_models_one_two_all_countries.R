@@ -35,11 +35,27 @@ results_model_two_ch_dk_de_2021_months <- results_model_two_ch_dk_de_2021_months
 
 data_results <- rbind(results_model_one_ch_dk_de_2021_months, results_model_two_ch_dk_de_2021_months)
 
+
 color_scale_values_1 <- c("black", "springgreen3")
-color_scale_labels_1 <- c("Prior distribution", "Constant")
+
+# color_scale_text_colors_1 <- c("black", "black")
+# color_scale_labels_1_0 <- c("Prior distribution", "Constant")
+
+color_scale_text_colors_1 <- c("blue", "blue")
+color_scale_labels_1_0 <- c("Original model", "Modified model")
+
+color_scale_labels_1 <- paste("<span style='color:", color_scale_text_colors_1, "'>", color_scale_labels_1_0, "</span>")
+
 
 color_scale_values_2 <- c("black", "springgreen3", "steelblue")
-color_scale_labels_2 <- c("Prior distribution", "Constant", "External estimate")
+
+# color_scale_text_colors_2 <- c("black", "black", "black")
+# color_scale_labels_2_0 <- c("Prior distribution", "Constant", "External estimate")
+
+color_scale_text_colors_2 <- c("blue", "blue", "black")
+color_scale_labels_2_0 <- c("Original model", "Modified model", "External estimate")
+
+color_scale_labels_2 <- paste("<span style='color:", color_scale_text_colors_2, "'>", color_scale_labels_2_0, "</span>")
 
 
 

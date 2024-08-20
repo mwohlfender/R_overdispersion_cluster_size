@@ -33,10 +33,10 @@ results_model_five_ch_dk_de_2021_months <- results_model_five_ch_dk_de_2021_mont
 data_results <- rbind(results_model_one_ch_dk_de_2021_months, results_model_five_ch_dk_de_2021_months)
 
 color_scale_values_1 <- c("black", "springgreen3")
-color_scale_labels_1 <- c("Yearly number of mutations", "Transmission pair data")
+color_scale_labels_1 <- c("Original model", "Modified model")
 
 color_scale_values_2 <- c("black", "springgreen3", "steelblue")
-color_scale_labels_2 <- c("Yearly number of mutations", "Transmission pair data", "External estimate")
+color_scale_labels_2 <- c("Original model", "Modified model", "External estimate")
 
 
 

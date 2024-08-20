@@ -29,6 +29,20 @@ results <- read_csv(path_results_sim_processed)
 
 
 
+# define color transform for coefficient of variation ----
+
+fun_transform_color_cv <- function(x) {
+  return(log(x, base = 10))
+  # return(x^(1/3))
+}
+
+fun_inv_transform_color_cv <- function(x) {
+  return(10^x)
+  # return(ifelse(x<0, 0, x^3))
+}
+
+
+
 # process data ----
 
 # `results:` add column `t_total` (sum of columns `t_w_max` and `t_s_max`)
@@ -82,9 +96,9 @@ data_plots <- data_plots %>%
   mutate(rmse_R = -1,
          rmse_k = -1,
          rmse_testing_proba = -1,
-         cvrmse_R = -1,
-         cvrmse_k = -1,
-         cvrmse_testing_proba = -1,
+         cv_R = -1,
+         cv_k = -1,
+         cv_testing_proba = -1,
          R_in_ci = 0,
          k_in_ci = 0,
          testing_proba_in_ci = 0,
@@ -160,13 +174,26 @@ for (ii in 1:length(n_clusters_range)) {
     # local axes: sequencing probability and testing probability
     # global axes: R and k
     
+    # plot_raster_R_cv <- ggplot(data = data_plot_completed_estimates_temp) +
+    #   geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = cv_R)) +
+    #   ggtitle("Effective reproduction number") +
+    #   xlab("sequencing probability") +
+    #   ylab("testing probability") +
+    #   facet_grid(k~R, labeller = label_both) +
+    #   scale_fill_viridis_c(name = "CV") +
+    #   theme_bw() +
+    #   theme(legend.position="bottom")
+    
     plot_raster_R_cv <- ggplot(data = data_plot_completed_estimates_temp) +
       geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = cv_R)) +
       ggtitle("Effective reproduction number") +
       xlab("sequencing probability") +
       ylab("testing probability") +
       facet_grid(k~R, labeller = label_both) +
-      scale_fill_viridis_c(name = "CV") +
+      scale_fill_viridis_c(name = "CV",
+                           breaks = c(1, 10, 100),
+                           limits = c(0.3, 900),
+                           transform = scales::trans_new("transform_color_cv", fun_transform_color_cv, fun_inv_transform_color_cv)) +
       theme_bw() +
       theme(legend.position="bottom")
     
@@ -184,7 +211,9 @@ for (ii in 1:length(n_clusters_range)) {
       xlab("sequencing probability") +
       ylab("testing probability") +
       facet_grid(k~R, labeller = label_both) +
-      scale_fill_viridis_c(name = "coverage") +
+      scale_fill_viridis_c(name = "coverage",
+                           breaks = c(0, 0.25, 0.5, 0.75, 1),
+                           limits = c(0, 1)) +
       theme_bw() +
       theme(legend.position="bottom")
     
@@ -216,15 +245,29 @@ for (ii in 1:length(n_clusters_range)) {
     # local axes: sequencing probability and testing probability
     # global axes: R and k
     
+    # plot_raster_k_cv <- ggplot(data = data_plot_completed_estimates_temp) +
+    #   geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = cv_k)) +
+    #   # geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = log(cv_k, base = 10))) +
+    #   ggtitle("Dispersion parameter") +
+    #   xlab("sequencing probability") +
+    #   ylab("testing probability") +
+    #   facet_grid(k~R, labeller = label_both) +
+    #   # scale_fill_viridis_c(name = "CV") +
+    #   scale_fill_viridis_c(name = "CV", trans = "log") +
+    #   # scale_fill_viridis_c(name = expression(paste(log[10], ~ "(CV)"))) +
+    #   theme_bw() +
+    #   theme(legend.position="bottom")
+    
     plot_raster_k_cv <- ggplot(data = data_plot_completed_estimates_temp) +
-      # geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = cv_k)) +
-      geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = log(cv_k, base = 10))) +
+      geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = cv_k)) +
       ggtitle("Dispersion parameter") +
       xlab("sequencing probability") +
       ylab("testing probability") +
       facet_grid(k~R, labeller = label_both) +
-      # scale_fill_viridis_c(name = "CV") +
-      scale_fill_viridis_c(name = expression(paste(log[10], ~ "(CV)"))) +
+      scale_fill_viridis_c(name = "CV",
+                           breaks = c(1, 10, 100),
+                           limits = c(0.3, 900),
+                           transform = scales::trans_new("transform_color_cv", fun_transform_color_cv, fun_inv_transform_color_cv)) +
       theme_bw() +
       theme(legend.position="bottom")
     
@@ -242,7 +285,9 @@ for (ii in 1:length(n_clusters_range)) {
       xlab("sequencing probability") +
       ylab("testing probability") +
       facet_grid(k~R, labeller = label_both) +
-      scale_fill_viridis_c(name = "coverage") +
+      scale_fill_viridis_c(name = "coverage",
+                           breaks = c(0, 0.25, 0.5, 0.75, 1),
+                           limits = c(0, 1)) +
       theme_bw() +
       theme(legend.position="bottom")
     
@@ -272,15 +317,28 @@ for (ii in 1:length(n_clusters_range)) {
     # local axes: sequencing probability and testing probability
     # global axes: R and k
     
+    # plot_raster_testing_proba_cv <- ggplot(data = data_plot_completed_estimates_temp) +
+    #   # geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = cv_testing_proba)) +
+    #   geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = log(cv_testing_proba, base = 10))) +
+    #   ggtitle("Testing probability") +
+    #   xlab("sequencing probability") +
+    #   ylab("testing probability") +
+    #   facet_grid(k~R, labeller = label_both) +
+    #   # scale_fill_viridis_c(name = "CV") +
+    #   scale_fill_viridis_c(name = expression(paste(log[10], ~ "(CV)"))) +
+    #   theme_bw() +
+    #   theme(legend.position="bottom")
+    
     plot_raster_testing_proba_cv <- ggplot(data = data_plot_completed_estimates_temp) +
-      # geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = cv_testing_proba)) +
-      geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = log(cv_testing_proba, base = 10))) +
+      geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = cv_testing_proba)) +
       ggtitle("Testing probability") +
       xlab("sequencing probability") +
       ylab("testing probability") +
       facet_grid(k~R, labeller = label_both) +
-      # scale_fill_viridis_c(name = "CV") +
-      scale_fill_viridis_c(name = expression(paste(log[10], ~ "(CV)"))) +
+      scale_fill_viridis_c(name = "CV",
+                           breaks = c(1, 10, 100),
+                           limits = c(0.3, 900),
+                           transform = scales::trans_new("transform_color_cv", fun_transform_color_cv, fun_inv_transform_color_cv)) +
       theme_bw() +
       theme(legend.position="bottom")
     
@@ -298,7 +356,9 @@ for (ii in 1:length(n_clusters_range)) {
       xlab("sequencing probability") +
       ylab("testing probability") +
       facet_grid(k~R, labeller = label_both) +
-      scale_fill_viridis_c(name = "coverage") +
+      scale_fill_viridis_c(name = "coverage",
+                           breaks = c(0, 0.25, 0.5, 0.75, 1),
+                           limits = c(0, 1)) +
       theme_bw() +
       theme(legend.position="bottom")
     
@@ -350,6 +410,7 @@ for (ii in 1:length(n_clusters_range)) {
                                                     plot_raster_testing_proba_rmse +
                                                       theme(plot.margin = unit(c(0,0,0,0), "in")),
                                                     labels = c("A", "B", "C"),
+                                                    rel_heights = c(1, 1, 1, 0.15),
                                                     nrow = 3)
     
     ggsave(plot = plot_raster_R_k_testing_proba_rmse,
@@ -360,14 +421,22 @@ for (ii in 1:length(n_clusters_range)) {
            filename = "plots/paper/figure_bayesian_validation.pdf",
            width = 7.3, height = 9, units = c("in"))
     
+    # plot grid of `plot_raster_R_cv`, `plot_raster_k_cv` and `plot_raster_testing_proba_cv`
+    legend_cv <- get_legend(plot_raster_R_cv)
+    
     plot_raster_R_k_testing_proba_cv <- plot_grid(plot_raster_R_cv +
-                                                    theme(plot.margin = unit(c(0,0,0,0), "in")),
+                                                    guides(fill = "none") +
+                                                    theme(plot.margin = unit(c(0,0,0.1,0), "in")),
                                                   plot_raster_k_cv +
-                                                    theme(plot.margin = unit(c(0,0,0,0), "in")),
+                                                    guides(fill = "none") +
+                                                    theme(plot.margin = unit(c(0,0,0.1,0), "in")),
                                                   plot_raster_testing_proba_cv +
-                                                    theme(plot.margin = unit(c(0,0,0,0), "in")),
-                                                  labels = c("A", "B", "C"),
-                                                  nrow = 3)
+                                                    guides(fill = "none") +
+                                                    theme(plot.margin = unit(c(0,0,0.1,0), "in")),
+                                                  as_ggplot(legend_cv),
+                                                  labels = c("A", "B", "C", ""),
+                                                  rel_heights = c(1, 1, 1, 0.15),
+                                                  nrow = 4)
     
     ggsave(plot = plot_raster_R_k_testing_proba_cv,
            filename = paste0("plots/simulation/plot_raster_R_k_testing_proba_cv_", n_clusters_range[ii], "_", max_cluster_size_range[jj], ".png"),
@@ -378,32 +447,26 @@ for (ii in 1:length(n_clusters_range)) {
            width = 7.3, height = 9, units = c("in"))
     
     # plot grid of `plot_raster_R_coverage`, `plot_raster_k_coverage` and `plot_raster_testing_proba_coverage`
+    legend_coverage <- get_legend(plot_raster_R_coverage)
     
     plot_raster_R_k_testing_proba_coverage <- plot_grid(plot_raster_R_coverage +
+                                                          guides(fill = "none") +
                                                           theme(plot.margin = unit(c(0,0,0,0), "in")),
                                                         plot_raster_k_coverage +
+                                                          guides(fill = "none") +
                                                           theme(plot.margin = unit(c(0,0,0,0), "in")),
                                                         plot_raster_testing_proba_coverage +
+                                                          guides(fill = "none") +
                                                           theme(plot.margin = unit(c(0,0,0,0), "in")),
-                                                        labels = c("A", "B", "C"),
-                                                        nrow = 3)
+                                                        as_ggplot(legend_coverage),
+                                                        labels = c("A", "B", "C", ""),
+                                                        rel_heights = c(1, 1, 1, 0.15),
+                                                        nrow = 4)
     
     ggsave(plot = plot_raster_R_k_testing_proba_coverage,
            filename = paste0("plots/simulation/plot_raster_R_k_testing_proba_coverage_", n_clusters_range[ii], "_", max_cluster_size_range[jj], ".png"),
            width = 7.3, height = 10.7, units = c("in"))
-    
-    plot_raster_R_k_testing_proba_coverage_a <- plot_grid(plot_raster_R_coverage +
-                                                            theme(plot.margin = unit(c(0,0,0,0), "in")),
-                                                          plot_raster_k_coverage +
-                                                            theme(plot.margin = unit(c(0,0,0,0), "in")),
-                                                          labels = c("A", "B"),
-                                                          nrow = 2)
-    
-    plot_raster_R_k_testing_proba_coverage_b <- plot_grid(plot_raster_testing_proba_coverage +
-                                                            theme(plot.margin = unit(c(0,0,0,0), "in")),
-                                                          labels = c("C"),
-                                                          nrow = 1)
-    
+
   }
   
 }
@@ -412,5 +475,6 @@ for (ii in 1:length(n_clusters_range)) {
 # print summary of results
 # how many estimated were successful, how many not
 print(summary_results)
+
 
 

@@ -12,7 +12,7 @@ data_sim_parameters_grid <- read_csv(path_data_sim_parameters_grid)
 
 # process data ----
 
-n_zeros <- ceiling(log(nrow(data_sim_parameters_grid),base=10))
+n_zeros <- ceiling(log(nrow(data_sim_parameters_grid), base=10))
 
 # read results of parameter estimations ----
 if (!(file.exists(path_results_sim_processed)) | do_new_sim) {

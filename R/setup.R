@@ -16,12 +16,14 @@ library(cowplot)
 library(flextable)
 library(ggraph)
 library(ggpubr)
+library(ggtext)
 library(lubridate)
 library(Metrics)
 library(paletteer)
 library(patchwork)
 library(rjson)
 library(rstan)
+library(scales)
 library(tidyverse)
 library(tidygraph)
 library(viridis)
@@ -226,6 +228,7 @@ path_param_est_indices <- "data/simulation/indices_estimation.txt"
 # path where parameter estimation results of simulation study of model 1 are stored
 path_results_sim_raw <- "results/simulation/raw/parameter_estimates_model_one_sim_"
 
-# path where processed results of simulation study of model 1  are stored
+# paths where processed results of simulation study of model 1  are stored
 path_results_sim_processed <- "results/simulation/processed/results_sim_model_one_processed.csv"
+path_results_sim_processed_v2 <- "results/simulation/processed/results_sim_model_one_processed_v2.csv"
 
