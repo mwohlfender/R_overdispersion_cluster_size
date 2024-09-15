@@ -159,12 +159,14 @@ for (ii in 1:length(n_clusters_range)) {
     plot_raster_R_rmse <- ggplot(data = data_plot_completed_estimates_temp) +
       geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = rmse_R)) +
       ggtitle("Effective reproduction number") +
-      xlab("sequencing probability") +
-      ylab("testing probability") +
+      xlab("Sequencing probability") +
+      ylab("Testing probability") +
       facet_grid(k~R, labeller = label_both) +
       scale_fill_viridis_c(name = "RMSE") +
       theme_bw() +
-      theme(legend.position="bottom")
+      theme(legend.position="bottom",
+            axis.text.x = element_text(color="black"),
+            axis.text.y = element_text(color="black"))
     
     ggsave(plot = plot_raster_R_rmse,
            filename = paste0("plots/simulation/plot_raster_R_rmse_", n_clusters_range[ii], "_", max_cluster_size_range[jj], ".png"),
@@ -177,8 +179,8 @@ for (ii in 1:length(n_clusters_range)) {
     # plot_raster_R_cv <- ggplot(data = data_plot_completed_estimates_temp) +
     #   geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = cv_R)) +
     #   ggtitle("Effective reproduction number") +
-    #   xlab("sequencing probability") +
-    #   ylab("testing probability") +
+    #   xlab("Sequencing probability") +
+    #   ylab("Testing probability") +
     #   facet_grid(k~R, labeller = label_both) +
     #   scale_fill_viridis_c(name = "CV") +
     #   theme_bw() +
@@ -187,15 +189,17 @@ for (ii in 1:length(n_clusters_range)) {
     plot_raster_R_cv <- ggplot(data = data_plot_completed_estimates_temp) +
       geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = cv_R)) +
       ggtitle("Effective reproduction number") +
-      xlab("sequencing probability") +
-      ylab("testing probability") +
+      xlab("Sequencing probability") +
+      ylab("Testing probability") +
       facet_grid(k~R, labeller = label_both) +
       scale_fill_viridis_c(name = "CV",
                            breaks = c(1, 10, 100),
                            limits = c(0.3, 900),
                            transform = scales::trans_new("transform_color_cv", fun_transform_color_cv, fun_inv_transform_color_cv)) +
       theme_bw() +
-      theme(legend.position="bottom")
+      theme(legend.position="bottom",
+            axis.text.x = element_text(color="black"),
+            axis.text.y = element_text(color="black"))
     
     ggsave(plot = plot_raster_R_cv,
            filename = paste0("plots/simulation/plot_raster_R_cv_", n_clusters_range[ii], "_", max_cluster_size_range[jj], ".png"),
@@ -208,14 +212,16 @@ for (ii in 1:length(n_clusters_range)) {
     plot_raster_R_coverage <- ggplot(data = data_plot_completed_estimates_temp) +
       geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = R_in_ci)) +
       ggtitle("Effective reproduction number") +
-      xlab("sequencing probability") +
-      ylab("testing probability") +
+      xlab("Sequencing probability") +
+      ylab("Testing probability") +
       facet_grid(k~R, labeller = label_both) +
-      scale_fill_viridis_c(name = "coverage",
+      scale_fill_viridis_c(name = "Coverage",
                            breaks = c(0, 0.25, 0.5, 0.75, 1),
                            limits = c(0, 1)) +
       theme_bw() +
-      theme(legend.position="bottom")
+      theme(legend.position="bottom",
+            axis.text.x = element_text(color="black"),
+            axis.text.y = element_text(color="black"))
     
     ggsave(plot = plot_raster_R_coverage,
            filename = paste0("plots/simulation/plot_raster_R_coverage_", n_clusters_range[ii], "_", max_cluster_size_range[jj], ".png"),
@@ -229,13 +235,15 @@ for (ii in 1:length(n_clusters_range)) {
       # geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = rmse_k)) +
       geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = log(rmse_k, base = 10))) +
       ggtitle("Dispersion parameter") +
-      xlab("sequencing probability") +
-      ylab("testing probability") +
+      xlab("Sequencing probability") +
+      ylab("Testing probability") +
       facet_grid(k~R, labeller = label_both) +
       # scale_fill_viridis_c(name = "RMSE")
       scale_fill_viridis_c(name = expression(paste(log[10], ~ "(RMSE)"))) +
       theme_bw() +
-      theme(legend.position="bottom")
+      theme(legend.position="bottom",
+            axis.text.x = element_text(color="black"),
+            axis.text.y = element_text(color="black"))
     
     ggsave(plot = plot_raster_k_rmse,
            filename = paste0("plots/simulation/plot_raster_k_rmse_", n_clusters_range[ii], "_", max_cluster_size_range[jj], ".png"),
@@ -249,8 +257,8 @@ for (ii in 1:length(n_clusters_range)) {
     #   geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = cv_k)) +
     #   # geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = log(cv_k, base = 10))) +
     #   ggtitle("Dispersion parameter") +
-    #   xlab("sequencing probability") +
-    #   ylab("testing probability") +
+    #   xlab("Sequencing probability") +
+    #   ylab("Testing probability") +
     #   facet_grid(k~R, labeller = label_both) +
     #   # scale_fill_viridis_c(name = "CV") +
     #   scale_fill_viridis_c(name = "CV", trans = "log") +
@@ -261,15 +269,17 @@ for (ii in 1:length(n_clusters_range)) {
     plot_raster_k_cv <- ggplot(data = data_plot_completed_estimates_temp) +
       geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = cv_k)) +
       ggtitle("Dispersion parameter") +
-      xlab("sequencing probability") +
-      ylab("testing probability") +
+      xlab("Sequencing probability") +
+      ylab("Testing probability") +
       facet_grid(k~R, labeller = label_both) +
       scale_fill_viridis_c(name = "CV",
                            breaks = c(1, 10, 100),
                            limits = c(0.3, 900),
                            transform = scales::trans_new("transform_color_cv", fun_transform_color_cv, fun_inv_transform_color_cv)) +
       theme_bw() +
-      theme(legend.position="bottom")
+      theme(legend.position="bottom",
+            axis.text.x = element_text(color="black"),
+            axis.text.y = element_text(color="black"))
     
     ggsave(plot = plot_raster_k_cv,
            filename = paste0("plots/simulation/plot_raster_k_cv_", n_clusters_range[ii], "_", max_cluster_size_range[jj], ".png"),
@@ -282,14 +292,16 @@ for (ii in 1:length(n_clusters_range)) {
     plot_raster_k_coverage <- ggplot(data = data_plot_completed_estimates_temp) +
       geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = k_in_ci)) +
       ggtitle("Dispersion parameter") +
-      xlab("sequencing probability") +
-      ylab("testing probability") +
+      xlab("Sequencing probability") +
+      ylab("Testing probability") +
       facet_grid(k~R, labeller = label_both) +
-      scale_fill_viridis_c(name = "coverage",
+      scale_fill_viridis_c(name = "Coverage",
                            breaks = c(0, 0.25, 0.5, 0.75, 1),
                            limits = c(0, 1)) +
       theme_bw() +
-      theme(legend.position="bottom")
+      theme(legend.position="bottom",
+            axis.text.x = element_text(color="black"),
+            axis.text.y = element_text(color="black"))
     
     ggsave(plot = plot_raster_k_coverage,
            filename = paste0("plots/simulation/plot_raster_k_coverage_", n_clusters_range[ii], "_", max_cluster_size_range[jj], ".png"),
@@ -302,12 +314,14 @@ for (ii in 1:length(n_clusters_range)) {
     plot_raster_testing_proba_rmse <- ggplot(data = data_plot_completed_estimates_temp) +
       geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = rmse_testing_proba)) +
       ggtitle("Testing probability") +
-      xlab("sequencing probability") +
-      ylab("testing probability") +
+      xlab("Sequencing probability") +
+      ylab("Testing probability") +
       facet_grid(k~R, labeller = label_both) +
       scale_fill_viridis_c(name = "RMSE") +
       theme_bw() +
-      theme(legend.position="bottom")
+      theme(legend.position="bottom",
+            axis.text.x = element_text(color="black"),
+            axis.text.y = element_text(color="black"))
     
     ggsave(plot = plot_raster_testing_proba_rmse,
            filename = paste0("plots/simulation/plot_raster_testing_proba_rmse_", n_clusters_range[ii], "_", max_cluster_size_range[jj], ".png"),
@@ -321,8 +335,8 @@ for (ii in 1:length(n_clusters_range)) {
     #   # geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = cv_testing_proba)) +
     #   geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = log(cv_testing_proba, base = 10))) +
     #   ggtitle("Testing probability") +
-    #   xlab("sequencing probability") +
-    #   ylab("testing probability") +
+    #   xlab("Sequencing probability") +
+    #   ylab("Testing probability") +
     #   facet_grid(k~R, labeller = label_both) +
     #   # scale_fill_viridis_c(name = "CV") +
     #   scale_fill_viridis_c(name = expression(paste(log[10], ~ "(CV)"))) +
@@ -332,15 +346,17 @@ for (ii in 1:length(n_clusters_range)) {
     plot_raster_testing_proba_cv <- ggplot(data = data_plot_completed_estimates_temp) +
       geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = cv_testing_proba)) +
       ggtitle("Testing probability") +
-      xlab("sequencing probability") +
-      ylab("testing probability") +
+      xlab("Sequencing probability") +
+      ylab("Testing probability") +
       facet_grid(k~R, labeller = label_both) +
       scale_fill_viridis_c(name = "CV",
                            breaks = c(1, 10, 100),
                            limits = c(0.3, 900),
                            transform = scales::trans_new("transform_color_cv", fun_transform_color_cv, fun_inv_transform_color_cv)) +
       theme_bw() +
-      theme(legend.position="bottom")
+      theme(legend.position="bottom",
+            axis.text.x = element_text(color="black"),
+            axis.text.y = element_text(color="black"))
     
     ggsave(plot = plot_raster_testing_proba_cv,
            filename = paste0("plots/simulation/plot_raster_testing_proba_cv_", n_clusters_range[ii], "_", max_cluster_size_range[jj], ".png"),
@@ -353,14 +369,16 @@ for (ii in 1:length(n_clusters_range)) {
     plot_raster_testing_proba_coverage <- ggplot(data = data_plot_completed_estimates_temp) +
       geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = testing_proba_in_ci)) +
       ggtitle("Testing probability") +
-      xlab("sequencing probability") +
-      ylab("testing probability") +
+      xlab("Sequencing probability") +
+      ylab("Testing probability") +
       facet_grid(k~R, labeller = label_both) +
-      scale_fill_viridis_c(name = "coverage",
+      scale_fill_viridis_c(name = "Coverage",
                            breaks = c(0, 0.25, 0.5, 0.75, 1),
                            limits = c(0, 1)) +
       theme_bw() +
-      theme(legend.position="bottom")
+      theme(legend.position="bottom",
+            axis.text.x = element_text(color="black"),
+            axis.text.y = element_text(color="black"))
     
     ggsave(plot = plot_raster_testing_proba_coverage,
            filename = paste0("plots/simulation/plot_raster_testing_proba_coverage_", n_clusters_range[ii], "_", max_cluster_size_range[jj], ".png"),
@@ -373,12 +391,14 @@ for (ii in 1:length(n_clusters_range)) {
     plot_raster_n_estimates <- ggplot(data = data_plot_all_estimates_temp) +
       geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = n_estimates/n_runs_per_param_combination)) +
       ggtitle("Number of estimates") +
-      xlab("sequencing probability") +
-      ylab("testing probability") +
+      xlab("Sequencing probability") +
+      ylab("Testing probability") +
       facet_grid(k~R, labeller = label_both) +
       scale_fill_viridis_c(name = "successful estimates") +
       theme_bw() +
-      theme(legend.position="bottom")
+      theme(legend.position="bottom",
+            axis.text.x = element_text(color="black"),
+            axis.text.y = element_text(color="black"))
     
     ggsave(plot = plot_raster_n_estimates,
            filename = paste0("plots/simulation/plot_raster_n_estimates_", n_clusters_range[ii], "_", max_cluster_size_range[jj], ".png"),
@@ -391,11 +411,14 @@ for (ii in 1:length(n_clusters_range)) {
     plot_raster_run_time <- ggplot(data = data_plot_completed_estimates_temp) +
       geom_raster(aes(x = factor(sequencing_proba), y = factor(testing_proba), fill = mean_t_total)) +
       ggtitle("Run time") +
-      xlab("sequencing probability") +
-      ylab("testing probability") +
+      xlab("Sequencing probability") +
+      ylab("Testing probability") +
       facet_grid(k~R, labeller = label_both) +
       scale_fill_viridis_c(name = "run time") +
-      theme_bw()
+      theme_bw() +
+      theme(legend.position="bottom",
+            axis.text.x = element_text(color="black"),
+            axis.text.y = element_text(color="black"))
     
     ggsave(plot = plot_raster_run_time,
            filename = paste0("plots/simulation/plot_raster_run_time_", n_clusters_range[ii], "_", max_cluster_size_range[jj], ".png"),
@@ -404,11 +427,17 @@ for (ii in 1:length(n_clusters_range)) {
     # plot grid of `plot_raster_R_rmse`, `plot_raster_k_rmse` and `plot_raster_testing_proba_rmse`
     
     plot_raster_R_k_testing_proba_rmse <- plot_grid(plot_raster_R_rmse +
-                                                      theme(plot.margin = unit(c(0,0,0,0), "in")),
+                                                      theme(axis.text=element_text(size=7, color="black"),
+                                                            legend.text=element_text(size=7),
+                                                            plot.margin = unit(c(0,0,0,0), "in")),
                                                     plot_raster_k_rmse +
-                                                      theme(plot.margin = unit(c(0,0,0,0), "in")),
+                                                      theme(axis.text=element_text(size=7, color="black"),
+                                                            legend.text=element_text(size=7),
+                                                            plot.margin = unit(c(0,0,0,0), "in")),
                                                     plot_raster_testing_proba_rmse +
-                                                      theme(plot.margin = unit(c(0,0,0,0), "in")),
+                                                      theme(axis.text=element_text(size=7, color="black"),
+                                                            legend.text=element_text(size=7),
+                                                            plot.margin = unit(c(0,0,0,0), "in")),
                                                     labels = c("A", "B", "C"),
                                                     rel_heights = c(1, 1, 1, 0.15),
                                                     nrow = 3)

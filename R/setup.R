@@ -14,20 +14,21 @@
 library(colorspace)
 library(cowplot)
 library(flextable)
-library(ggraph)
 library(ggpubr)
+library(ggraph)
 library(ggtext)
 library(lubridate)
 library(Metrics)
+library(officer)
 library(paletteer)
 library(patchwork)
 library(rjson)
 library(rstan)
 library(scales)
+library(stats)
 library(tidyverse)
 library(tidygraph)
 library(viridis)
-library(stats)
 
 library(estRodis)
 
@@ -40,7 +41,6 @@ ls("package:estRodis")
 path_script <- "R/functions/"
 files <- dir(path = path_script)
 lapply(X = files, FUN = function(x) {source(paste0(path_script, x), echo = FALSE)})
-
 
 
 # indicate whether certain parts of the analysis shall be done from scratch again
@@ -124,7 +124,16 @@ path_data_cluster_sizes_dk_2021_months <- "data/denmark/processed/data_cluster_s
 path_data_cluster_sizes_de_2021_months <- "data/germany/processed/data_cluster_sizes_de_2021_months.csv"
 
 
-# paths where the estimated monthly sequencing probabilities of Switzerland, Denmark and Germany during 2021 are stored
+# path where estimated mutation probabilities of different diseases are stored
+path_mutation_probas_diseases <- "data/different_diseases/raw/df_p_trans_before_mut_with_uncertainty.rds"
+
+
+# path where estimated mutation probabilities of New Zealand between April 2020 and July 2021 are stored
+path_mutation_probas_sarscov2_pre_omicron <- "data/new_zealand/raw/mutation_probas_sarscov2_pre_omicron.rds"
+path_mutation_probas_sarscov2_omicron <- "data/new_zealand/raw/mutation_probas_sarscov2_omicron.rds"
+
+
+# paths where the estimated monthly sequencing probabilities of Switzerland, Denmark and Germany during 2021 and of New Zealand between April 2020 and July 2021 are stored
 path_sequencing_probas_ch_2021_months <- "data/switzerland/processed/sequencing_probas_ch_2021_months.csv"
 path_sequencing_probas_dk_2021_months <- "data/denmark/processed/sequencing_probas_dk_2021_months.csv"
 path_sequencing_probas_de_2021_months <- "data/germany/processed/sequencing_probas_de_2021_months.csv"
@@ -217,6 +226,13 @@ path_results_post_pred_model_one_de_raw <- "results/germany/posterior_predictive
 
 # path where processed results of posterior predictive check of model 1 are stored
 path_results_post_pred_model_one_ch_dk_de_processed <- "results/all_countries/posterior_predictive_check/model_one/results_ppc_model_one_ch_dk_de.csv"
+
+
+
+# paths where results of second posterior predictive check of model 1 are stored
+path_results_goodness_fit_mean_model_one_ch_dk_de <- "results/all_countries/goodness_fit/model_one/results_goodness_fit_mean_model_one_ch_dk_de.csv"
+path_results_goodness_fit_low_model_one_ch_dk_de <- "results/all_countries/goodness_fit/model_one/results_goodness_fit_low_model_one_ch_dk_de.csv"
+path_results_goodness_fit_high_model_one_ch_dk_de <- "results/all_countries/goodness_fit/model_one/results_goodness_fit_high_model_one_ch_dk_de.csv"
 
 
 

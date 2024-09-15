@@ -16,7 +16,7 @@ nodes_plot_R_g <- data.frame(node_key = c(1,2,3,4,5,6,7,8,9,10,11,12,13,14),
                              variant_received = c(0,0,0,0,0,3,5,5,5,5,5,5,3,3),
                              variant_after_mutation = c(1:14),
                              current_variant = c(0,0,3,0,5,3,5,8,5,5,5,12,3,3),
-                             detection = c(1,1,0,0,1,1,0,1,0,1,1,0,0,1))
+                             detection = c(1,0,1,1,0,1,1,1,1,0,1,0,0,0))
 
 
 # define set of edges
@@ -329,16 +329,18 @@ plot_R_g_detection_cluster_size <- ggraph(graph=graph_R_g, layout="tree") +
                      breaks=c("1", "0"),
                      values=c(19, 21),
                      labels=c("Case observed", "Case not observed")) +
-  annotate("text", x = -2.4, y = 2.125, label = "2", color = colors_plot_R_g[1], size = 5) +
-  annotate("text", x = 2.5, y = 1, label = "2", color = colors_plot_R_g[2], size = 5) +
-  annotate("text", x = -1.75, y = 0.5, label = "3", color = colors_plot_R_g[3], size = 5) +
-  annotate("text", x = -3.25, y = 0.15, label = "1", color = colors_plot_R_g[4], size = 5) +
-  annotate("text", x = 0.75, y = 0.15, label = "0", color = colors_plot_R_g[5], size = 5) +
+  annotate("text", x = -2.5, y = 2.125, label = "2", color = colors_plot_R_g[1], size = 6) +
+  annotate("text", x = 2.6, y = 1, label = "2", color = colors_plot_R_g[2], size = 6) +
+  annotate("text", x = -1.75, y = 0.5, label = "3", color = colors_plot_R_g[3], size = 6) +
+  annotate("text", x = -3.25, y = 0.25, label = "1", color = colors_plot_R_g[4], size = 6) +
+  annotate("text", x = 0.75, y = 0.25, label = "0", color = colors_plot_R_g[5], size = 6) +
   theme(panel.background=element_rect(fill="white", colour="black")) +
   theme(legend.position="bottom",
         legend.box="vertical",
         legend.margin=margin(t=0, r=0, b=0, l=0, unit="cm"),
-        legend.key=element_blank()) +
+        legend.key=element_blank(),
+        legend.title=element_text(size=11),
+        legend.text=element_text(size=11)) +
   guides(colour=guide_legend(order=1),
          edge_linetype=guide_legend(order=2))
 

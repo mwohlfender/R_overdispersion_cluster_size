@@ -23,17 +23,17 @@ data_clusters_0_de <- read_delim(file = path_data_clusters_de_raw, delim = "\t")
 # `data_clusters_0_ch:`
 # (a) filter to clusters who have at least one valid date
 # (b) filter to clusters with finite value in column `counts`
-data_clusters_ch <- data_clusters_0_ch |> filter(!(invalidDates == counts) & is.finite(counts))
+data_clusters_ch <- data_clusters_0_ch %>% filter(!(invalidDates == counts) & is.finite(counts))
 
 # `data_clusters_0_dk:`
 # (a) filter to clusters who have at least one valid date
 # (b) filter to clusters with finite value in column `counts`
-data_clusters_dk <- data_clusters_0_dk |> filter(!(invalidDates == counts) & is.finite(counts))
+data_clusters_dk <- data_clusters_0_dk %>% filter(!(invalidDates == counts) & is.finite(counts))
 
 # `data_clusters_0_de:`
 # (a) filter to clusters who have at least one valid date
 # (b) filter to clusters with finite value in column `counts`
-data_clusters_de <- data_clusters_0_de |> filter(!(invalidDates == counts) & is.finite(counts))
+data_clusters_de <- data_clusters_0_de %>% filter(!(invalidDates == counts) & is.finite(counts))
 
 
 

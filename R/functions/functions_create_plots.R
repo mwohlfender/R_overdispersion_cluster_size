@@ -100,7 +100,10 @@ create_plot_result <- function(data_plot_results, data_plot_other_estimates = NU
     xlab("Time") +
     ylab(label_y) +
     theme_bw() +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1),
+    theme(axis.text.x = element_text(angle = 45, color="black", hjust = 1),
+          axis.text.y = element_text(color="black"),
+          axis.title.x = element_text(color = "black"),
+          axis.title.y = element_text(color = "black"),
           legend.text=element_markdown(),
           legend.position = "bottom",
           legend.box = "horizontal",
@@ -180,7 +183,10 @@ create_plot_result_variants <- function(data_plot_results, data_plot_variants, d
     xlab("Time") +
     ylab(label_y) +
     theme_bw() +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1),
+    theme(axis.text.x = element_text(angle = 45, color="black", hjust = 1),
+          axis.text.y = element_text(color="black"),
+          axis.title.x = element_text(color = "black", size = 10),
+          axis.title.y = element_text(color = "black", size = 10),
           legend.text=element_markdown(),
           legend.position = "bottom",
           legend.box = "vertical",
@@ -241,7 +247,10 @@ create_plot_result_all_countries <- function(data_plot_results, data_plot_other_
     xlab("Time") +
     ylab(label_y) +
     theme_bw() +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1),
+    theme(axis.text.x = element_text(angle = 45, color="black", hjust = 1),
+          axis.text.y = element_text(color="black"),
+          axis.title.x = element_text(color = "black", size = 10),
+          axis.title.y = element_text(color = "black", size = 10),
           legend.text=element_markdown(),
           legend.position = "bottom",
           legend.box = "horizontal",
@@ -322,7 +331,10 @@ create_plot_result_variants_all_countries <- function(data_plot_results, data_pl
     xlab("Time") +
     ylab(label_y) +
     theme_bw() +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1),
+    theme(axis.text.x = element_text(angle = 45, color="black", hjust = 1),
+          axis.text.y = element_text(color="black"),
+          axis.title.x = element_text(color = "black", size = 10),
+          axis.title.y = element_text(color = "black", size = 10),
           legend.text=element_markdown(),
           legend.position = "bottom",
           legend.box = "vertical",

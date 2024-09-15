@@ -69,13 +69,15 @@ for (ii in 1:length(n_clusters_range)) {
                     width  = 0.02) +
       geom_hline(aes(yintercept = R), linetype = "dotted") + 
       ggtitle("Effective reproduction number") +
-      scale_x_continuous(name = "testing probability", limits = c(0, 1), breaks = c(0, 0.1, 0.2, 0.4, 0.6, 0.8, 1)) +
-      scale_y_continuous(name = NULL, limits = c(0, 1.5), breaks = c(0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5)) +
-      scale_colour_viridis_d(name = "sequencing probability") +
+      scale_x_continuous(name = "Testing probability", limits = c(0, 1), breaks = c(0, 0.1, 0.2, 0.4, 0.6, 0.8, 1)) +
+      scale_y_continuous(name = expression(paste("Estimated", ~ R[e])), limits = c(0, 1.5), breaks = c(0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5)) +
+      scale_colour_viridis_d(name = "Sequencing probability") +
       facet_grid(k~R, labeller = label_both) + 
       theme_bw() +
       theme(legend.position = "bottom",
-            legend.box = "horizontal")
+            legend.box = "horizontal",
+            axis.text.x = element_text(color="black"),
+            axis.text.y = element_text(color="black"))
     
     
     # plot k ----
@@ -89,13 +91,15 @@ for (ii in 1:length(n_clusters_range)) {
                     width  = 0.02) +
       geom_hline(aes(yintercept = k), linetype = "dotted") +
       ggtitle("Dispersion parameter") +
-      scale_x_continuous(name = "testing probability", limits = c(0, 1), breaks = c(0, 0.1, 0.2, 0.4, 0.6, 0.8, 1)) +
-      scale_y_continuous(name = NULL, limits = c(0, 3.2), breaks = c(0.1, 0.5, 1, 2, 3)) +
-      scale_colour_viridis_d(name = "sequencing probability") +
+      scale_x_continuous(name = "Testing probability", limits = c(0, 1), breaks = c(0, 0.1, 0.2, 0.4, 0.6, 0.8, 1)) +
+      scale_y_continuous(name = "Estimated dispersion parameter", limits = c(0, 3.2), breaks = c(0.1, 0.5, 1, 2, 3)) +
+      scale_colour_viridis_d(name = "Sequencing probability") +
       facet_grid(k~R, labeller = label_both) + 
       theme_bw() +
       theme(legend.position = "bottom",
-            legend.box = "horizontal")
+            legend.box = "horizontal",
+            axis.text.x = element_text(color="black"),
+            axis.text.y = element_text(color="black"))
     
     
     # plot testing probability ----
@@ -110,13 +114,15 @@ for (ii in 1:length(n_clusters_range)) {
                     width  = 0.02) +
       create_h_lines_testing_proba(values_testing_proba = testing_proba_range, width = 0.045) +
       ggtitle("Testing probability") +
-      scale_x_continuous(name = "testing probability", limits = c(0, 1), breaks = c(0, 0.1, 0.2, 0.4, 0.6, 0.8, 1)) +
-      scale_y_continuous(name = NULL, limits = c(0, 1), breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1)) +
-      scale_colour_viridis_d(name = "sequencing probability") +
+      scale_x_continuous(name = "Testing probability", limits = c(0, 1), breaks = c(0, 0.1, 0.2, 0.4, 0.6, 0.8, 1)) +
+      scale_y_continuous(name = "Estimated testing probability", limits = c(0, 1), breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1)) +
+      scale_colour_viridis_d(name = "Sequencing probability") +
       facet_grid(k~R, labeller = label_both) + 
       theme_bw() +
       theme(legend.position = "bottom",
-            legend.box = "horizontal")
+            legend.box = "horizontal",
+            axis.text.x = element_text(color="black"),
+            axis.text.y = element_text(color="black"))
     
     
     # plot grid ----
@@ -127,18 +133,18 @@ for (ii in 1:length(n_clusters_range)) {
     plot_grid_sim_pooled_R_k_testing_proba <- plot_grid(plot_sim_pooled_R +
                                                           guides(color = "none") +
                                                           theme(plot.margin = unit(c(0,0,0.1,0.1), "in"),
-                                                                axis.text.x = element_text(size = 6),
-                                                                axis.text.y = element_text(size = 6)),
+                                                                axis.text.x = element_text(size = 6, color="black"),
+                                                                axis.text.y = element_text(size = 6, color="black")),
                                                         plot_sim_pooled_k +
                                                           guides(color = "none") +
                                                           theme(plot.margin = unit(c(0,0,0.1,0.1), "in"),
-                                                                axis.text.x = element_text(size = 6),
-                                                                axis.text.y = element_text(size = 6)),
+                                                                axis.text.x = element_text(size = 6, color="black"),
+                                                                axis.text.y = element_text(size = 6, color="black")),
                                                         plot_sim_pooled_testing_proba +
                                                           guides(color = "none") +
                                                           theme(plot.margin = unit(c(0,0,0.1,0.1), "in"),
-                                                                axis.text.x = element_text(size = 6),
-                                                                axis.text.y = element_text(size = 6)),
+                                                                axis.text.x = element_text(size = 6, color="black"),
+                                                                axis.text.y = element_text(size = 6, color="black")),
                                                         as_ggplot(legend_sequencing_proba),
                                                         labels = c("A", "B", "C", ""),
                                                         rel_heights = c(1, 1, 1, 0.1),

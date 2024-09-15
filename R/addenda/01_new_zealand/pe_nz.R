@@ -1,14 +1,5 @@
 
 
-# read mutation probability
-data_mut_proba_0 <- readRDS("R/addenda/df_p_trans_before_mut_with_uncertainty.rds") 
-
-data_mut_proba_pre_omicron <- data_mut_proba_0 %>% 
-  filter(pathogen %in% c("SARS-CoV-2 (pre-Omicron)"))
-
-data_mut_proba_omicron <- data_mut_proba_0 %>% 
-  filter(pathogen %in% c("SARS-CoV-2 (Omicron)")) 
-
 
 # read data from new zealand ----
 data_nz_0 <- readRDS(path_data_clusters_nz_raw)
@@ -30,6 +21,9 @@ data_nz_complete <- data_nz_0 %>%
 # `data_nz`:
 # determine unique values of the column `period` and sort them
 periods_nz <- sort(unique(data_nz %>% pull(period)))
+
+# read mutation probability
+data_mut_proba_pre_omicron <- readRDS(path_mutation_probas_sarscov2_pre_omicron)
 
 # read sequencing probabilities from new zealand
 sequencing_probas_nz_periods_0 <- readRDS(path_sequencing_probas_nz_periods)

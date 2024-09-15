@@ -437,6 +437,8 @@ ggsave(plot = plot_grid_R_k_testing_proba_model_five,
        filename = "plots/all_countries/model_five/figure_param_estimates_model_five.pdf",
        width = 7.3, height = 9.0, units = c("in"), bg = "white")
 
-
+ggsave(plot = plot_grid_R_k_testing_proba_model_five,
+       filename = "plots/paper/figure_param_estimates.pdf",
+       width = 7.3, height = 9.0, units = c("in"), bg = "white")
 
 

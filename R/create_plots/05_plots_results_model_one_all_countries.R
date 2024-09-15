@@ -467,31 +467,30 @@ legend_variants <- get_legend(plot_results_model_one_R_e_variants_all_countries_
 plot_grid_R_k_testing_proba <- plot_grid(plot_results_model_one_R_e_variants_all_countries_2 +
                                            guides(color = "none",
                                                   fill = "none") +
-                                           theme(axis.title.x = element_text(size = 10),
-                                                 axis.title.y = element_text(size = 10),
-                                                 axis.text.x = element_text(angle = 45, hjust = 1, size = 8)),
+                                           theme(axis.title.x = element_text(color = "black", size = 10),
+                                                 axis.title.y = element_text(color = "black", size = 10,),
+                                                 axis.text.x = element_text(angle = 45, color = "black", hjust = 1, size = 8),
+                                                 axis.text.y = element_text(color = "black", size = 8)),
                                          as_ggplot(legend_methods),
                                          plot_results_model_one_k_variants_all_countries +
                                            guides(fill = "none") +
-                                           theme(axis.title.x = element_text(size = 10),
-                                                 axis.title.y = element_text(size = 10),
-                                                 axis.text.x = element_text(angle = 45, hjust = 1, size = 8)),
+                                           theme(axis.title.x = element_text(color = "black", size = 10),
+                                                 axis.title.y = element_text(color = "black", size = 10),
+                                                 axis.text.x = element_text(angle = 45, hjust = 1, size = 8),
+                                                 axis.text.y = element_text(color = "black", size = 8)),
                                          plot_results_model_one_testing_probability_variants_all_countries +
                                            guides(fill = "none") +
-                                           theme(axis.title.x = element_text(size = 10),
-                                                 axis.title.y = element_text(size = 10),
-                                                 axis.text.x = element_text(angle = 45, hjust = 1, size = 8)),
+                                           theme(axis.title.x = element_text(color = "black", size = 10),
+                                                 axis.title.y = element_text(color = "black", size = 10),
+                                                 axis.text.x = element_text(angle = 45, hjust = 1, size = 8),
+                                                 axis.text.y = element_text(color = "black", size = 8)),
                                          as_ggplot(legend_variants),
                                          labels = c("A", "", "B", "C", ""),
                                          rel_heights = c(1, 0.15, 1, 1, 0.15),
                                          nrow = 5)
 
 ggsave(plot = plot_grid_R_k_testing_proba,
-       filename = "plots/paper/figure_param_estimates.pdf",
+       filename = "plots/all_countries/model_one/figure_param_estimates.pdf",
        width = 7.3, height = 9.0, units = c("in"), bg = "white")
-
-# ggsave(plot = plot_grid_R_k_testing_proba,
-#        filename = "plots/all_countries/model_one/figure_param_estimates.pdf",
-#        width = 7.3, height = 9.0, units = c("in"), bg = "white")
 
 
