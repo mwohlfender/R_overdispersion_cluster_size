@@ -16,7 +16,7 @@ create_h_lines_testing_proba <- function(values_testing_proba, width) {
   
   for (ii in values_testing_proba) {
     
-    list_hlines <- append(list_hlines, geom_segment(x = ii-width, y = ii, xend = ii+width, yend = ii, linetype = "dotted"))
+    list_hlines <- append(list_hlines, geom_segment(x = ii-width, y = ii, xend = ii+width, yend = ii, linetype = "solid", linewidth = 0.35))
     
   }
   
@@ -44,7 +44,7 @@ max_cluster_size_range <- sort(unique(data_sim_parameters_grid$max_cluster_size)
 results <- read_csv(path_results_sim_processed_v2)
 
 
-width_offset <- 0.0225
+width_offset <- 0.035
 
 results$cord_x_testing_proba <- results$testing_proba +
   width_offset * rescale(x = match(x = results$sequencing_proba, table = sequencing_proba_range) - (length(sequencing_proba_range)+1)/2, to = c(-1,1))
@@ -63,14 +63,20 @@ for (ii in 1:length(n_clusters_range)) {
       filter(R_estimate != 0)
     
     plot_sim_pooled_R <- ggplot(data = data_plot_R) +
-      geom_point(aes(x = cord_x_testing_proba, y = R_estimate, color = as.factor(sequencing_proba))) +
+      # geom_hline(aes(yintercept = R), linetype = "dashed") +
+      geom_segment(aes(x = 0, xend = 1, y = R, yend = R), linetype = "solid", linewidth = 0.35) +
+      geom_point(aes(x = cord_x_testing_proba, y = R_estimate, color = as.factor(sequencing_proba)), size = 0.6) +
       geom_errorbar(mapping = aes(x = cord_x_testing_proba, y = R_estimate, ymin = R_lower_cred_int, ymax = R_upper_cred_int, color = as.factor(sequencing_proba)),
-                    linewidth = 0.5,
+                    linewidth = 0.3,
                     width  = 0.02) +
-      geom_hline(aes(yintercept = R), linetype = "dotted") + 
       ggtitle("Effective reproduction number") +
-      scale_x_continuous(name = "Testing probability", limits = c(0, 1), breaks = c(0, 0.1, 0.2, 0.4, 0.6, 0.8, 1)) +
-      scale_y_continuous(name = expression(paste("Estimated", ~ R[e])), limits = c(0, 1.5), breaks = c(0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5)) +
+      scale_x_continuous(name = "Testing probability",
+                         limits = c(0, 1),
+                         breaks = c(0, 0.1, 0.2, 0.4, 0.6, 0.8, 1),
+                         labels = c("0", "0.1", "0.2", "0.4", "0.6", "0.8", "1")) +
+      scale_y_continuous(name = expression(paste("Estimated", ~ R[e])),
+                         limits = c(0.2, 1.4),
+                         breaks = c(0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5)) +
       scale_colour_viridis_d(name = "Sequencing probability") +
       facet_grid(k~R, labeller = label_both) + 
       theme_bw() +
@@ -79,20 +85,32 @@ for (ii in 1:length(n_clusters_range)) {
             axis.text.x = element_text(color="black"),
             axis.text.y = element_text(color="black"))
     
+    # ggsave(plot = plot_sim_pooled_R, filename = "C:/Users/mw22f082/Documents_MW/projects/genomic_trees/_submission/supplementary_material/test.pdf")
+    
     
     # plot k ----
     data_plot_k <- results %>%
       filter(k_estimate != 0)
     
     plot_sim_pooled_k <- ggplot(data = data_plot_k) +
-      geom_point(aes(x = cord_x_testing_proba, y = k_estimate, color = as.factor(sequencing_proba))) +
+      # geom_hline(aes(yintercept = k), linetype = "dashed") +
+      geom_segment(aes(x = 0, xend = 1, y = k, yend = k), linetype = "solid", linewidth = 0.35) +
+      geom_point(aes(x = cord_x_testing_proba, y = k_estimate, color = as.factor(sequencing_proba)), size = 0.6) +
       geom_errorbar(mapping = aes(x = cord_x_testing_proba, y = k_estimate, ymin = k_lower_cred_int, ymax = k_upper_cred_int, color = as.factor(sequencing_proba)),
-                    linewidth = 0.5,
+                    linewidth = 0.3,
                     width  = 0.02) +
-      geom_hline(aes(yintercept = k), linetype = "dotted") +
       ggtitle("Dispersion parameter") +
-      scale_x_continuous(name = "Testing probability", limits = c(0, 1), breaks = c(0, 0.1, 0.2, 0.4, 0.6, 0.8, 1)) +
-      scale_y_continuous(name = "Estimated dispersion parameter", limits = c(0, 3.2), breaks = c(0.1, 0.5, 1, 2, 3)) +
+      scale_x_continuous(name = "Testing probability",
+                         limits = c(0, 1),
+                         breaks = c(0, 0.1, 0.2, 0.4, 0.6, 0.8, 1),
+                         labels = c("0", "0.1", "0.2", "0.4", "0.6", "0.8", "1")) +
+      # scale_y_continuous(name = "Estimated dispersion parameter",
+      #                    limits = c(0, 3.2),
+      #                    breaks = c(0.1, 0.5, 1, 2, 3)) +
+      scale_y_continuous(name = "Estimated dispersion parameter",
+                         limits = c(0.05, 3.2),
+                         breaks = c(0.1, 0.3, 0.5, 1, 2, 3),
+                         trans='log') +
       scale_colour_viridis_d(name = "Sequencing probability") +
       facet_grid(k~R, labeller = label_both) + 
       theme_bw() +
@@ -107,15 +125,21 @@ for (ii in 1:length(n_clusters_range)) {
       filter(testing_proba_estimate != 0)
     
     plot_sim_pooled_testing_proba <- ggplot(data = data_plot_testing_proba) +
-      geom_point(aes(x = cord_x_testing_proba, y = testing_proba_estimate, color = as.factor(sequencing_proba))) +
+      create_h_lines_testing_proba(values_testing_proba = testing_proba_range, width = 1.6 * width_offset) +
+      geom_point(aes(x = cord_x_testing_proba, y = testing_proba_estimate, color = as.factor(sequencing_proba)), size = 0.6) +
       geom_errorbar(mapping = aes(x = cord_x_testing_proba, y = testing_proba_estimate,
                                   ymin = testing_proba_lower_cred_int, ymax = testing_proba_upper_cred_int, color = as.factor(sequencing_proba)),
-                    linewidth = 0.5,
+                    linewidth = 0.3,
                     width  = 0.02) +
-      create_h_lines_testing_proba(values_testing_proba = testing_proba_range, width = 0.045) +
       ggtitle("Testing probability") +
-      scale_x_continuous(name = "Testing probability", limits = c(0, 1), breaks = c(0, 0.1, 0.2, 0.4, 0.6, 0.8, 1)) +
-      scale_y_continuous(name = "Estimated testing probability", limits = c(0, 1), breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1)) +
+      scale_x_continuous(name = "Testing probability",
+                         limits = c(0, 1),
+                         breaks = c(0, 0.1, 0.2, 0.4, 0.6, 0.8, 1),
+                         labels = c("0", "0.1", "0.2", "0.4", "0.6", "0.8", "1")) +
+      scale_y_continuous(name = "Estimated testing probability",
+                         limits = c(0, 1),
+                         breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1),
+                         labels = c("0", "0.2", "0.4", "0.6", "0.8", "1")) +
       scale_colour_viridis_d(name = "Sequencing probability") +
       facet_grid(k~R, labeller = label_both) + 
       theme_bw() +
@@ -133,18 +157,18 @@ for (ii in 1:length(n_clusters_range)) {
     plot_grid_sim_pooled_R_k_testing_proba <- plot_grid(plot_sim_pooled_R +
                                                           guides(color = "none") +
                                                           theme(plot.margin = unit(c(0,0,0.1,0.1), "in"),
-                                                                axis.text.x = element_text(size = 6, color="black"),
-                                                                axis.text.y = element_text(size = 6, color="black")),
+                                                                axis.text.x = element_text(size = 4.5, color="black"),
+                                                                axis.text.y = element_text(size = 4.5, color="black")),
                                                         plot_sim_pooled_k +
                                                           guides(color = "none") +
                                                           theme(plot.margin = unit(c(0,0,0.1,0.1), "in"),
-                                                                axis.text.x = element_text(size = 6, color="black"),
-                                                                axis.text.y = element_text(size = 6, color="black")),
+                                                                axis.text.x = element_text(size = 4.5, color="black"),
+                                                                axis.text.y = element_text(size = 4.5, color="black")),
                                                         plot_sim_pooled_testing_proba +
                                                           guides(color = "none") +
                                                           theme(plot.margin = unit(c(0,0,0.1,0.1), "in"),
-                                                                axis.text.x = element_text(size = 6, color="black"),
-                                                                axis.text.y = element_text(size = 6, color="black")),
+                                                                axis.text.x = element_text(size = 4.5, color="black"),
+                                                                axis.text.y = element_text(size = 4.5, color="black")),
                                                         as_ggplot(legend_sequencing_proba),
                                                         labels = c("A", "B", "C", ""),
                                                         rel_heights = c(1, 1, 1, 0.1),
@@ -153,6 +177,10 @@ for (ii in 1:length(n_clusters_range)) {
     ggsave(plot = plot_grid_sim_pooled_R_k_testing_proba,
            filename = paste0("plots/simulation/plot_raster_R_k_testing_proba_", n_clusters_range[ii], "_", max_cluster_size_range[jj], "_v2.pdf"),
            width = 7.3, height = 9.0, units = c("in"), bg = "white")
+    
+    ggsave(plot = plot_grid_sim_pooled_R_k_testing_proba,
+           filename = "plots/paper/figure_bayesian_validation_new.pdf",
+           width = 7.3, height = 9, units = c("in"))
 
   }
   

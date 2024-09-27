@@ -71,7 +71,3 @@ source("R/create_tables/02_ct_results_model_one.R", echo = FALSE)
 source("R/create_tables/03_ct_results_model_two.R", echo = FALSE)
 
 
-
-
-
-

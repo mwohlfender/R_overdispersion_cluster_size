@@ -13,7 +13,7 @@ data_distribution_mean_ch_dk_de_2021_months <- read_csv(file = path_results_good
 data_distribution_low_ch_dk_de_2021_months <- read_csv(file = path_results_goodness_fit_low_model_one_ch_dk_de)
 data_distribution_high_ch_dk_de_2021_months <- read_csv(file = path_results_goodness_fit_high_model_one_ch_dk_de)
 
-N_plot <- 100
+N_plot <- 30
 
 
 # Switzerland ----
@@ -35,7 +35,7 @@ plot_goodness_fit_ch <- ggplot() +
               aes(x=size, ymin=probability_low, ymax=probability_high, fill="col_95_pred_int"), alpha=0.6) +
   geom_line(data = data_distribution_mean_ch_2021_months_plot,
             aes(x = size, y = probability, group = month, color = "col_mean"), linewidth = 1) +
-  geom_point(data = data_cluster_sizes_ch_2021_months_plot,
+  geom_point(data = data_cluster_sizes_ch_2021_months_plot, size = 1,
              aes(x = size, y = percentage, color = "col_data")) +
   scale_color_manual(name = NULL,
                      breaks = c("col_data", "col_mean"),
@@ -89,7 +89,7 @@ plot_goodness_fit_dk <- ggplot() +
               aes(x=size, ymin=probability_low, ymax=probability_high, fill="col_95_pred_int"), alpha=0.6) +
   geom_line(data = data_distribution_mean_dk_2021_months_plot,
             aes(x = size, y = probability, group = month, color = "col_mean"), linewidth = 1) +
-  geom_point(data = data_cluster_sizes_dk_2021_months_plot,
+  geom_point(data = data_cluster_sizes_dk_2021_months_plot, size = 1,
              aes(x = size, y = percentage, color = "col_data")) +
   scale_color_manual(name = NULL,
                      breaks = c("col_data", "col_mean"),
@@ -143,7 +143,7 @@ plot_goodness_fit_de <- ggplot() +
               aes(x=size, ymin=probability_low, ymax=probability_high, fill="col_95_pred_int"), alpha=0.6) +
   geom_line(data = data_distribution_mean_de_2021_months_plot,
             aes(x = size, y = probability, group = month, color = "col_mean"), linewidth = 1) +
-  geom_point(data = data_cluster_sizes_de_2021_months_plot,
+  geom_point(data = data_cluster_sizes_de_2021_months_plot, size = 1,
              aes(x = size, y = percentage, color = "col_data")) +
   scale_color_manual(name = NULL,
                      breaks = c("col_data", "col_mean"),

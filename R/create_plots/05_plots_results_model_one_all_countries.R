@@ -490,7 +490,7 @@ plot_grid_R_k_testing_proba <- plot_grid(plot_results_model_one_R_e_variants_all
                                          nrow = 5)
 
 ggsave(plot = plot_grid_R_k_testing_proba,
-       filename = "plots/all_countries/model_one/figure_param_estimates.pdf",
+       filename = "plots/all_countries/model_one/figure_param_estimates_model_one.pdf",
        width = 7.3, height = 9.0, units = c("in"), bg = "white")
 
 

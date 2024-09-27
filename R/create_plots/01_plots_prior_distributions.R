@@ -145,3 +145,15 @@ plot_grid_prior_distributions_a <- plot_grid(plotlist = list(plot_prior_R + them
 ggsave(plot = plot_grid_prior_distributions_a, filename = "plots/prior_distributions/grid_prior_distributions_a.png", width = 6, height = 6, units = c("in"))
 
 
+plot_grid_prior_distributions_all <- plot_grid(plotlist = list(plot_prior_R + theme(plot.margin = margin(10, 10, 0, 10)), 
+                                                               plot_prior_k + theme(plot.margin = margin(10, 10, 0, 10)), 
+                                                               plot_prior_p_mut + theme(plot.margin = margin(10, 10, 0, 10)),
+                                                               plot_prior_mut_rate + theme(plot.margin = margin(10, 10, 0, 10)), 
+                                                               plot_prior_p_test + theme(plot.margin = margin(10, 10, 10, 10))),
+                                               nrow = 3,
+                                               rel_widths = c(1, 1, 1, 1, 1),
+                                               rel_heights = c(1, 1, 1, 1, 1),
+                                               labels = c("A", "B", "C", "D", "E"))
+
+ggsave(plot = plot_grid_prior_distributions_all, filename = "plots/prior_distributions/grid_prior_distributions_all.png", width = 6, height = 6, units = c("in"))
+
