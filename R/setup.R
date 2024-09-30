@@ -55,7 +55,7 @@ custom_round = function(x, accuracy) {return(ceiling(x / accuracy) * accuracy)}
 do_new_load_data <- FALSE
 
 # process results of simulation study
-do_new_sim <- FALSE
+do_new_sim <- TRUE
 
 # process results of posterior predictive check
 do_new_ppc <- FALSE
@@ -272,11 +272,11 @@ path_results_sim_raw_model_one <- "results/simulation/model_one/raw/parameter_es
 path_results_sim_raw_model_five <- "results/simulation/model_five/raw/parameter_estimates_model_five_sim_"
 
 # paths where processed results of simulation study of model 1 are stored
-path_results_sim_processed_model_one_v1 <- "results/simulation/processed/results_sim_model_one_processed_v1.csv"
-path_results_sim_processed_model_one_v2 <- "results/simulation/processed/results_sim_model_one_processed_v2.csv"
+path_results_sim_processed_model_one_v1 <- "results/simulation/model_one/processed/results_sim_model_one_processed_v1.csv"
+path_results_sim_processed_model_one_v2 <- "results/simulation/model_one/processed/results_sim_model_one_processed_v2.csv"
 
 # paths where processed results of simulation study of model 1 are stored
-path_results_sim_processed_model_five_v1 <- "results/simulation/processed/results_sim_model_five_processed_v1.csv"
-path_results_sim_processed_model_five_v2 <- "results/simulation/processed/results_sim_model_five_processed_v2.csv"
+path_results_sim_processed_model_five_v1 <- "results/simulation/model_five/processed/results_sim_model_five_processed_v1.csv"
+path_results_sim_processed_model_five_v2 <- "results/simulation/model_five/processed/results_sim_model_five_processed_v2.csv"
 
 

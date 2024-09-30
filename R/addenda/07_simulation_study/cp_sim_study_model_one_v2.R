@@ -41,16 +41,16 @@ n_clusters_range <- sort(unique(data_sim_parameters_grid_model_one$n_clusters))
 max_cluster_size_range <- sort(unique(data_sim_parameters_grid_model_one$max_cluster_size))
 
 # results of parameter estimations
-results <- read_csv(path_results_sim_processed_model_one_v2)
+results_v2 <- read_csv(path_results_sim_processed_model_one_v2)
 
 
 width_offset <- 0.035
 
-results$cord_x_testing_proba <- results$testing_proba +
-  width_offset * rescale(x = match(x = results$sequencing_proba, table = sequencing_proba_range) - (length(sequencing_proba_range)+1)/2, to = c(-1,1))
+results_v2$cord_x_testing_proba <- results_v2$testing_proba +
+  width_offset * rescale(x = match(x = results_v2$sequencing_proba, table = sequencing_proba_range) - (length(sequencing_proba_range)+1)/2, to = c(-1,1))
 
-results$cord_x_sequencing_proba <- results$sequencing_proba +
-  width_offset * rescale(x = match(x = results$testing_proba, table = testing_proba_range) - (length(testing_proba_range)+1)/2, to = c(-1,1))
+results_v2$cord_x_sequencing_proba <- results_v2$sequencing_proba +
+  width_offset * rescale(x = match(x = results_v2$testing_proba, table = testing_proba_range) - (length(testing_proba_range)+1)/2, to = c(-1,1))
 
 
 # create plots ----
@@ -59,7 +59,7 @@ for (ii in 1:length(n_clusters_range)) {
   for (jj in 1:length(max_cluster_size_range)) {
     
     # plot R ----
-    data_plot_R <- results %>%
+    data_plot_R <- results_v2 %>%
       filter(R_estimate != 0)
     
     plot_sim_pooled_R <- ggplot(data = data_plot_R) +
@@ -87,7 +87,7 @@ for (ii in 1:length(n_clusters_range)) {
     
     
     # plot k ----
-    data_plot_k <- results %>%
+    data_plot_k <- results_v2 %>%
       filter(k_estimate != 0)
     
     plot_sim_pooled_k <- ggplot(data = data_plot_k) +
@@ -119,7 +119,7 @@ for (ii in 1:length(n_clusters_range)) {
     
     
     # plot testing probability ----
-    data_plot_testing_proba <- results %>%
+    data_plot_testing_proba <- results_v2 %>%
       filter(testing_proba_estimate != 0)
     
     plot_sim_pooled_testing_proba <- ggplot(data = data_plot_testing_proba) +
