@@ -74,6 +74,6 @@ source("R/addenda/06_create_plots_models/cp_results_models_five_six_ch_dk_de.R",
 source("R/addenda/07_simulation_study/cp_sim_study_model_one_v2.R", echo = FALSE)
 
 # create plots of goodness of fit of model one
-source("R/addenda/08_goodness_of_fit/cp_goodness_of_fit.R", echo = FALSE)
+source("R/addenda/08_goodness_of_fit/cp_goodness_of_fit_model_five.R", echo = FALSE)
 
 

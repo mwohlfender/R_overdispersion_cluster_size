@@ -12,20 +12,20 @@ image_width_in <- 7.3
 # read data ----
 
 # parameter grid for simulation study
-data_sim_parameters_grid <- read_csv(path_data_sim_parameters_grid)
+data_sim_parameters_grid_model_one <- read_csv(path_data_sim_parameters_grid_model_one)
 
-# determine range of parameters contained in `data_sim_parameters_grid`
-R_range <- sort(unique(data_sim_parameters_grid$R))
-k_range <- sort(unique(data_sim_parameters_grid$k))
-yearly_mutation_rate_range <- sort(unique(data_sim_parameters_grid$yearly_mutation_rate))
-mean_generation_interval_range <- sort(unique(data_sim_parameters_grid$mean_generation_interval))
-testing_proba_range <- sort(unique(data_sim_parameters_grid$testing_proba))
-sequencing_proba_range <- sort(unique(data_sim_parameters_grid$sequencing_proba))
-n_clusters_range <- sort(unique(data_sim_parameters_grid$n_clusters))
-max_cluster_size_range <- sort(unique(data_sim_parameters_grid$max_cluster_size))
+# determine range of parameters contained in `data_sim_parameters_grid_model_one`
+R_range <- sort(unique(data_sim_parameters_grid_model_one$R))
+k_range <- sort(unique(data_sim_parameters_grid_model_one$k))
+yearly_mutation_rate_range <- sort(unique(data_sim_parameters_grid_model_one$yearly_mutation_rate))
+mean_generation_interval_range <- sort(unique(data_sim_parameters_grid_model_one$mean_generation_interval))
+testing_proba_range <- sort(unique(data_sim_parameters_grid_model_one$testing_proba))
+sequencing_proba_range <- sort(unique(data_sim_parameters_grid_model_one$sequencing_proba))
+n_clusters_range <- sort(unique(data_sim_parameters_grid_model_one$n_clusters))
+max_cluster_size_range <- sort(unique(data_sim_parameters_grid_model_one$max_cluster_size))
 
 # results of parameter estimations
-results <- read_csv(path_results_sim_processed)
+results <- read_csv(path_results_sim_processed_model_one_v1)
 
 
 
@@ -49,7 +49,7 @@ fun_inv_transform_color_cv <- function(x) {
 results <- results %>% mutate(t_total = t_w_max + t_s_max)
 
 # bind together the data frames `grid_parameters` and `results`
-data_results_0 <- cbind(data_sim_parameters_grid, results)
+data_results_0 <- cbind(data_sim_parameters_grid_model_one, results)
 
 # `data_results_0`:
 # (a) filter to rows were a result was obtained (t_total > 0)
@@ -90,7 +90,7 @@ data_plots <- expand.grid(R = R_range,
                           n_clusters = n_clusters_range,
                           max_cluster_size = max_cluster_size_range)
 
-n_runs_per_param_combination <- nrow(data_sim_parameters_grid) / nrow(data_plots)
+n_runs_per_param_combination <- nrow(data_sim_parameters_grid_model_one) / nrow(data_plots)
 
 data_plots <- data_plots %>%
   mutate(rmse_R = -1,

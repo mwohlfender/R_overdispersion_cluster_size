@@ -28,20 +28,20 @@ create_h_lines_testing_proba <- function(values_testing_proba, width) {
 # read data ----
 
 # parameter grid for simulation study
-data_sim_parameters_grid <- read_csv(path_data_sim_parameters_grid)
+data_sim_parameters_grid_model_one <- read_csv(path_data_sim_parameters_grid_model_one)
 
-# determine range of parameters contained in `data_sim_parameters_grid`
-R_range <- sort(unique(data_sim_parameters_grid$R))
-k_range <- sort(unique(data_sim_parameters_grid$k))
-yearly_mutation_rate_range <- sort(unique(data_sim_parameters_grid$yearly_mutation_rate))
-mean_generation_interval_range <- sort(unique(data_sim_parameters_grid$mean_generation_interval))
-testing_proba_range <- sort(unique(data_sim_parameters_grid$testing_proba))
-sequencing_proba_range <- sort(unique(data_sim_parameters_grid$sequencing_proba))
-n_clusters_range <- sort(unique(data_sim_parameters_grid$n_clusters))
-max_cluster_size_range <- sort(unique(data_sim_parameters_grid$max_cluster_size))
+# determine range of parameters contained in `data_sim_parameters_grid_model_one`
+R_range <- sort(unique(data_sim_parameters_grid_model_one$R))
+k_range <- sort(unique(data_sim_parameters_grid_model_one$k))
+yearly_mutation_rate_range <- sort(unique(data_sim_parameters_grid_model_one$yearly_mutation_rate))
+mean_generation_interval_range <- sort(unique(data_sim_parameters_grid_model_one$mean_generation_interval))
+testing_proba_range <- sort(unique(data_sim_parameters_grid_model_one$testing_proba))
+sequencing_proba_range <- sort(unique(data_sim_parameters_grid_model_one$sequencing_proba))
+n_clusters_range <- sort(unique(data_sim_parameters_grid_model_one$n_clusters))
+max_cluster_size_range <- sort(unique(data_sim_parameters_grid_model_one$max_cluster_size))
 
 # results of parameter estimations
-results <- read_csv(path_results_sim_processed_v2)
+results <- read_csv(path_results_sim_processed_model_one_v2)
 
 
 width_offset <- 0.035
@@ -84,8 +84,6 @@ for (ii in 1:length(n_clusters_range)) {
             legend.box = "horizontal",
             axis.text.x = element_text(color="black"),
             axis.text.y = element_text(color="black"))
-    
-    # ggsave(plot = plot_sim_pooled_R, filename = "C:/Users/mw22f082/Documents_MW/projects/genomic_trees/_submission/supplementary_material/test.pdf")
     
     
     # plot k ----
@@ -175,11 +173,11 @@ for (ii in 1:length(n_clusters_range)) {
                                                         nrow = 4)
     
     ggsave(plot = plot_grid_sim_pooled_R_k_testing_proba,
-           filename = paste0("plots/simulation/plot_raster_R_k_testing_proba_", n_clusters_range[ii], "_", max_cluster_size_range[jj], "_v2.pdf"),
+           filename = paste0("plots/simulation/plot_raster_sim_model_one_R_k_testing_proba_", n_clusters_range[ii], "_", max_cluster_size_range[jj], "_v2.pdf"),
            width = 7.3, height = 9.0, units = c("in"), bg = "white")
     
     ggsave(plot = plot_grid_sim_pooled_R_k_testing_proba,
-           filename = "plots/paper/figure_bayesian_validation_new.pdf",
+           filename = "plots/paper/figure_bayesian_validation_model_one_new.pdf",
            width = 7.3, height = 9, units = c("in"))
 
   }

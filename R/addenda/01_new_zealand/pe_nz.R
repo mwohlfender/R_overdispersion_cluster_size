@@ -1,7 +1,7 @@
 
 
 
-# read data from new zealand ----
+# read cluster data from new zealand ----
 data_nz_0 <- readRDS(path_data_clusters_nz_raw)
 
 # `data_nz_0`:
@@ -39,6 +39,7 @@ sequencing_proba_nz <- sum(sequencing_probas_nz_periods_0 %>% pull(n_sequences))
 list_mutation_proba <- sort(1- c(data_mut_proba_pre_omicron$p_trans_before_mut,
                                  data_mut_proba_pre_omicron$lower_p_trans_before_mut,
                                  data_mut_proba_pre_omicron$upper_p_trans_before_mut))
+
 list_testing_proba <- c(0.5, 0.8, 1.0)
 
 # 

@@ -201,7 +201,7 @@ create_plot_result_variants <- function(data_plot_results, data_plot_variants, d
 
 
 
-create_plot_result_all_countries <- function(data_plot_results, data_plot_other_estimates = NULL, data_estimate, data_lower_cred_int, data_upper_cred_int, plot_color_scale_values, plot_color_scale_labels, scale_y_from, scale_y_to, scale_y_by, add_line_at_one, label_y) {
+create_plot_result_multiple_countries <- function(data_plot_results, data_plot_other_estimates = NULL, data_estimate, data_lower_cred_int, data_upper_cred_int, plot_color_scale_values, plot_color_scale_labels, scale_y_from, scale_y_to, scale_y_by, add_line_at_one, label_y) {
   
   plot_result <- ggplot() +
     { if (!(is.null(data_plot_other_estimates)))
@@ -266,7 +266,7 @@ create_plot_result_all_countries <- function(data_plot_results, data_plot_other_
 
 
 
-create_plot_result_variants_all_countries <- function(data_plot_results, data_plot_variants, data_plot_other_estimates = NULL, data_estimate, data_lower_cred_int, data_upper_cred_int, plot_color_scale_values, plot_color_scale_labels, scale_y_from, scale_y_to, scale_y_by, add_line_at_one, label_y) {
+create_plot_result_variants_multiple_countries <- function(data_plot_results, data_plot_variants, data_plot_other_estimates = NULL, data_estimate, data_lower_cred_int, data_upper_cred_int, plot_color_scale_values, plot_color_scale_labels, scale_y_from, scale_y_to, scale_y_by, add_line_at_one, label_y) {
   
   plot_result_variants <- ggplot() +
     geom_area(data = data_plot_variants, mapping = aes(x = months_start_time_float, y = scale_y_to, fill = "col4", group = country)) +

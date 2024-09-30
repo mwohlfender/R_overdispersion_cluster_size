@@ -57,7 +57,7 @@ for (cc in 1:n_countries) {
 # whole year 2021 ----
 
 # Switzerland ----
-plot_comparison_clusters_ch_quantile_facet <- ggplot(data = results_post_pred |> filter(country=="switzerland")) +
+plot_comparison_clusters_ch_model_one_quantile_facet <- ggplot(data = results_post_pred |> filter(country=="switzerland")) +
   geom_ribbon(aes(x=size, ymin=quantile_2_5, ymax=quantile_97_5, fill="col_95_pred_int"), alpha=0.6) +
   geom_line(aes(x=size, y=frequency_data, colour="col_data"), linewidth=0.25) +  
   scale_color_manual(name = NULL,
@@ -82,18 +82,18 @@ plot_comparison_clusters_ch_quantile_facet <- ggplot(data = results_post_pred |>
                                       "5" = "May", "6" = "June", "7" = "July", "8" = "August",
                                       "9" = "September", "10" = "October", "11" = "November", "12" = "December")))
 
-# ggsave(filename="plots/switzerland/posterior_predictive_check/model_one/plot_ppc_model_one_switzerland.png", plot=plot_comparison_clusters_ch_quantile_facet, width=7, units="in")
+# ggsave(filename="plots/switzerland/posterior_predictive_check/model_one/plot_ppc_model_one_switzerland.png", plot=plot_comparison_clusters_ch_model_one_quantile_facet, width=7, units="in")
 
 
-plot_comparison_clusters_ch_quantile_facet_with_title <- plot_comparison_clusters_ch_quantile_facet +
+plot_comparison_clusters_ch_model_one_quantile_facet_with_title <- plot_comparison_clusters_ch_model_one_quantile_facet +
   ggtitle("Switzerland")
 
-ggsave(filename="plots/switzerland/posterior_predictive_check/model_one/plot_ppc_model_one_switzerland_with_title.png", plot=plot_comparison_clusters_ch_quantile_facet_with_title, width=7, units="in")
+ggsave(filename="plots/switzerland/posterior_predictive_check/model_one/plot_ppc_model_one_switzerland_with_title.png", plot=plot_comparison_clusters_ch_model_one_quantile_facet_with_title, width=7, units="in")
 
 
 
 # Denmark ----
-plot_comparison_clusters_dk_quantile_facet <- ggplot(data = results_post_pred |> filter(country=="denmark")) +
+plot_comparison_clusters_dk_model_one_quantile_facet <- ggplot(data = results_post_pred |> filter(country=="denmark")) +
   geom_ribbon(aes(x=size, ymin=quantile_2_5, ymax=quantile_97_5, fill="col_95_pred_int"), alpha=0.6) +
   geom_line(aes(x=size, y=frequency_data, colour="col_data"), linewidth=0.25) +  
   scale_color_manual(name = NULL,
@@ -117,18 +117,18 @@ plot_comparison_clusters_dk_quantile_facet <- ggplot(data = results_post_pred |>
                                       "5" = "May", "6" = "June", "7" = "July", "8" = "August",
                                       "9" = "September", "10" = "October", "11" = "November", "12" = "December")))
 
-# ggsave(filename="plots/denmark/posterior_predictive_check/model_one/plot_ppc_model_one_denmark.png", plot=plot_comparison_clusters_dk_quantile_facet, width=7, units="in")
+# ggsave(filename="plots/denmark/posterior_predictive_check/model_one/plot_ppc_model_one_denmark.png", plot=plot_comparison_clusters_dk_model_one_quantile_facet, width=7, units="in")
 
 
-plot_comparison_clusters_dk_quantile_facet_with_title <- plot_comparison_clusters_dk_quantile_facet +
+plot_comparison_clusters_dk_model_one_quantile_facet_with_title <- plot_comparison_clusters_dk_model_one_quantile_facet +
   ggtitle("Denmark")
 
-ggsave(filename="plots/denmark/posterior_predictive_check/model_one/plot_ppc_model_one_denmark_with_title.png", plot=plot_comparison_clusters_dk_quantile_facet_with_title, width=7, units="in")
+ggsave(filename="plots/denmark/posterior_predictive_check/model_one/plot_ppc_model_one_denmark_with_title.png", plot=plot_comparison_clusters_dk_model_one_quantile_facet_with_title, width=7, units="in")
 
 
 
 # Germany ----
-plot_comparison_clusters_de_quantile_facet <- ggplot(data = results_post_pred |> filter(country=="germany")) +
+plot_comparison_clusters_de_model_one_quantile_facet <- ggplot(data = results_post_pred |> filter(country=="germany")) +
   geom_ribbon(aes(x=size, ymin=quantile_2_5, ymax=quantile_97_5, fill="col_95_pred_int"), alpha=0.6) +
   geom_line(aes(x=size, y=frequency_data, colour="col_data"), linewidth=0.25) +
   scale_color_manual(name = NULL,
@@ -152,12 +152,12 @@ plot_comparison_clusters_de_quantile_facet <- ggplot(data = results_post_pred |>
                                       "5" = "May", "6" = "June", "7" = "July", "8" = "August",
                                       "9" = "September", "10" = "October", "11" = "November", "12" = "December")))
 
-# ggsave(filename="plots/germany/posterior_predictive_check/model_one/plot_ppc_model_one_germany.png", plot=plot_comparison_clusters_de_quantile_facet, width=7, units="in")
+# ggsave(filename="plots/germany/posterior_predictive_check/model_one/plot_ppc_model_one_germany.png", plot=plot_comparison_clusters_de_model_one_quantile_facet, width=7, units="in")
 
 
-plot_comparison_clusters_de_quantile_facet_with_title <- plot_comparison_clusters_de_quantile_facet +
+plot_comparison_clusters_de_model_one_quantile_facet_with_title <- plot_comparison_clusters_de_model_one_quantile_facet +
   ggtitle("Germany")
 
-ggsave(filename="plots/germany/posterior_predictive_check/model_one/plot_ppc_model_one_germany_with_title.png", plot=plot_comparison_clusters_de_quantile_facet_with_title, width=7, units="in")
+ggsave(filename="plots/germany/posterior_predictive_check/model_one/plot_ppc_model_one_germany_with_title.png", plot=plot_comparison_clusters_de_model_one_quantile_facet_with_title, width=7, units="in")
 
 

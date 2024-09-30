@@ -5,16 +5,16 @@
 
 
 # read parameter grid for simulation study
-data_sim_parameters_grid <- read_csv(path_data_sim_parameters_grid)
+data_sim_parameters_grid_model_one <- read_csv(path_data_sim_parameters_grid_model_one)
 
-n_iterations <- max(data_sim_parameters_grid$iteration)
+n_iterations <- max(data_sim_parameters_grid_model_one$iteration)
 
-n_zeros <- ceiling(log(nrow(data_sim_parameters_grid), base=10))
+n_zeros <- ceiling(log(nrow(data_sim_parameters_grid_model_one), base=10))
 
 prob_lower_cred_int <- 0.025
 prob_upper_cred_int <- 0.975
 
-results <- data_sim_parameters_grid %>%
+results <- data_sim_parameters_grid_model_one %>%
   filter(iteration == 1) %>%
   dplyr::select(-c("iteration")) %>%
   mutate(n_divergent_transitions = 0,
@@ -57,9 +57,9 @@ for (ii in 1:nrow(results)) {
   
   for (jj in 1:n_iterations) {
     
-    if (file.exists(paste0(path_results_sim_raw, str_pad(ii + (jj-1) * nrow(results), n_zeros, pad = "0"), ".rds"))) {
+    if (file.exists(paste0(path_results_sim_raw_model_one, str_pad(ii + (jj-1) * nrow(results), n_zeros, pad = "0"), ".rds"))) {
       
-      fit_ii_jj <- readRDS(paste0(path_results_sim_raw, str_pad(ii + (jj-1) * nrow(results), n_zeros, pad = "0"), ".rds"))
+      fit_ii_jj <- readRDS(paste0(path_results_sim_raw_model_one, str_pad(ii + (jj-1) * nrow(results), n_zeros, pad = "0"), ".rds"))
       
       n_divergent_transitions_ii <- n_divergent_transitions_ii + get_num_divergent(fit_ii_jj)
       
@@ -156,7 +156,7 @@ for (ii in 1:nrow(results)) {
 }
 
 write_csv(x = results,
-          file = path_results_sim_processed_v2)
+          file = path_results_sim_processed_model_one_v2)
 
 
 

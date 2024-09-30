@@ -6,18 +6,18 @@
 # read data ----
 
 # parameter grid for simulation study
-data_sim_parameters_grid <- read_csv(path_data_sim_parameters_grid)
+data_sim_parameters_grid_model_one <- read_csv(path_data_sim_parameters_grid_model_one)
 
 
 
 # process data ----
 
-n_zeros <- ceiling(log(nrow(data_sim_parameters_grid), base=10))
+n_zeros <- ceiling(log(nrow(data_sim_parameters_grid_model_one), base=10))
 
 # read results of parameter estimations ----
-if (!(file.exists(path_results_sim_processed)) | do_new_sim) {
+if (!(file.exists(path_results_sim_processed_model_one_v1)) | do_new_sim) {
   
-  results <- data.frame(matrix(data = 0, nrow = nrow(data_sim_parameters_grid), ncol = 37))
+  results <- data.frame(matrix(data = 0, nrow = nrow(data_sim_parameters_grid_model_one), ncol = 37))
   names(results) <- c("n_divergent_transitions", "min_Rhat", "max_Rhat",
                       "t_c1_w", "t_c2_w", "t_c3_w", "t_c4_w", "t_w_max",
                       "t_c1_s", "t_c2_s", "t_c3_s", "t_c4_s", "t_s_max",
@@ -29,11 +29,11 @@ if (!(file.exists(path_results_sim_processed)) | do_new_sim) {
                       "testing_proba_estimate", "testing_proba_lower_cred_int", "testing_proba_upper_cred_int", "testing_proba_Rhat",
                       "detection_proba_estimate", "detection_proba_lower_cred_int", "detection_proba_upper_cred_int", "detection_proba_Rhat")
   
-  for (ii in 1:nrow(data_sim_parameters_grid)) {
+  for (ii in 1:nrow(data_sim_parameters_grid_model_one)) {
     
-    if (file.exists(paste0(path_results_sim_raw, str_pad(ii, n_zeros, pad = "0"), ".rds"))) {
+    if (file.exists(paste0(path_results_sim_raw_model_one, str_pad(ii, n_zeros, pad = "0"), ".rds"))) {
       
-      fit_ii <- readRDS(paste0(path_results_sim_raw, str_pad(ii, n_zeros, pad = "0"), ".rds"))
+      fit_ii <- readRDS(paste0(path_results_sim_raw_model_one, str_pad(ii, n_zeros, pad = "0"), ".rds"))
       
       results$n_divergent_transitions[ii] <- get_num_divergent(fit_ii)
       
@@ -80,7 +80,7 @@ if (!(file.exists(path_results_sim_processed)) | do_new_sim) {
     
   }
   
-  write_csv(x = results, file = path_results_sim_processed)
+  write_csv(x = results, file = path_results_sim_processed_model_one_v1)
   
 }
 

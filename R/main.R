@@ -32,25 +32,25 @@ source("R/create_plots/01_plots_prior_distributions.R", echo = FALSE)
 source("R/create_plots/02_plots_results_data_individual_countries.R", echo = FALSE)
 
 # create plots of data used for parameter estimation for all countries
-source("R/create_plots/03_plots_results_data_all_countries.R", echo = FALSE)
+source("R/create_plots/03_plots_results_data_multiple_countries.R", echo = FALSE)
 
 # create plots of parameter estimations for individual countries with model one
 source("R/create_plots/04_plots_results_model_one_individual_countries.R", echo = FALSE)
 
 # create plots of parameter estimations for all countries with model one
-source("R/create_plots/05_plots_results_model_one_all_countries.R", echo = FALSE)
+source("R/create_plots/05_plots_results_model_one_multiple_countries.R", echo = FALSE)
 
 # create plots of parameter estimations for individual countries with model two
 source("R/create_plots/06_plots_results_model_two_individual_countries.R", echo = FALSE)
 
 # create plots of parameter estimations for all countries with model two
-source("R/create_plots/07_plots_results_model_two_all_countries.R", echo = FALSE)
+source("R/create_plots/07_plots_results_model_two_multiple_countries.R", echo = FALSE)
 
 # create plots of parameter estimations for individual countries with models one and two
 source("R/create_plots/08_plots_results_models_one_two_individual_countries.R", echo = FALSE)
 
 # create plots of parameter estimations for all countries with models one and two
-source("R/create_plots/09_plots_results_models_one_two_all_countries.R", echo = FALSE)
+source("R/create_plots/09_plots_results_models_one_two_multiple_countries.R", echo = FALSE)
 
 # create plot of transmission tree
 source("R/create_plots/10_plots_model_transmission_tree.R", echo = FALSE)
@@ -59,7 +59,7 @@ source("R/create_plots/10_plots_model_transmission_tree.R", echo = FALSE)
 source("R/create_plots/11_plots_sim_results_model_one.R", echo = FALSE)
 
 # create plots of results of posterior predictive check of model one
-source("R/create_plots/12_plots_ppc_results_model_one.R", echo = FALSE)
+source("R/create_plots/13_plots_ppc_results_model_five.R", echo = FALSE)
 
 # create overview table of data: number of cases, sequences and clusters
 source("R/create_tables/01_ct_overview_data.R", echo = FALSE)

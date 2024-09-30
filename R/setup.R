@@ -42,6 +42,11 @@ path_script <- "R/functions/"
 files <- dir(path = path_script)
 lapply(X = files, FUN = function(x) {source(paste0(path_script, x), echo = FALSE)})
 
+# rounding function
+# input: `x` (number to be rounded) and `accuracy` (precision to which `x` shall be rounded)
+# output: `x` rounded to the next bigger multiple of `accuracy`
+custom_round = function(x, accuracy) {return(ceiling(x / accuracy) * accuracy)}
+
 
 # indicate whether certain parts of the analysis shall be done from scratch again
 # (no stored intermediate results of data processing used)
@@ -79,10 +84,10 @@ path_data_sequences_dates_de_2021 <- "data/germany/raw/germany_date_only.csv"
 
 # path where raw data about shares of different virus variants is stored
 # obtained from CoVariants (https://covariants.org/per-country?country=Germany&country=Denmark&country=Switzerland)
-path_data_variants_shares_ch_dk_de_raw <- "data/all_countries/covariants/raw/data_variants_shares_ch_dk_de_raw.csv"
+path_data_variants_shares_ch_dk_de_raw <- "data/multiple_countries/covariants/raw/data_variants_shares_ch_dk_de_raw.csv"
 
 # path where processed data about shares of different virus variants will be stored
-path_data_variants_shares_ch_dk_de_processed <- "data/all_countries/covariants/processed/data_variants_shares_ch_dk_de_processed.csv"
+path_data_variants_shares_ch_dk_de_processed <- "data/multiple_countries/covariants/processed/data_variants_shares_ch_dk_de_processed.csv"
 
 
 # path where raw new confirmed cases data will be stored
@@ -125,12 +130,12 @@ path_data_cluster_sizes_de_2021_months <- "data/germany/processed/data_cluster_s
 
 
 # path where estimated mutation probabilities of different diseases are stored
-path_mutation_probas_diseases <- "data/different_diseases/raw/df_p_trans_before_mut_with_uncertainty.rds"
+path_mutation_probas_diseases <- "data/new_zealand/raw/df_p_trans_before_mut_with_uncertainty.rds"
 
 
 # path where estimated mutation probabilities of New Zealand between April 2020 and July 2021 are stored
-path_mutation_probas_sarscov2_pre_omicron <- "data/new_zealand/raw/mutation_probas_sarscov2_pre_omicron.rds"
-path_mutation_probas_sarscov2_omicron <- "data/new_zealand/raw/mutation_probas_sarscov2_omicron.rds"
+path_mutation_probas_sarscov2_pre_omicron <- "data/new_zealand/processed/mutation_probas_sarscov2_pre_omicron.rds"
+path_mutation_probas_sarscov2_omicron <- "data/new_zealand/processed/mutation_probas_sarscov2_omicron.rds"
 
 
 # paths where the estimated monthly sequencing probabilities of Switzerland, Denmark and Germany during 2021 and of New Zealand between April 2020 and July 2021 are stored
@@ -147,7 +152,7 @@ path_results_model_one_de <- "results/germany/parameter_estimations/model_one/pa
 path_results_model_one_nz <- "results/new_zealand/parameter_estimations/model_one/parameter_estimates_model_one_new_zealand_"
 
 # paths where overview of results of parameter estimations of model 1 (prior distribution for testing probability) will be stored
-path_results_model_one_ch_dk_de_processed <- "results/all_countries/parameter_estimations/model_one/results_model_one_ch_dk_de_2021_months.csv"
+path_results_model_one_ch_dk_de_processed <- "results/multiple_countries/parameter_estimations/model_one/results_model_one_ch_dk_de_2021_months.csv"
 path_results_model_one_nz_periods_processed <- "results/new_zealand/parameter_estimations/model_one/results_model_one_nz_periods.csv"
 
 
@@ -158,7 +163,7 @@ path_results_model_two_de <- "results/germany/parameter_estimations/model_two/pa
 path_results_model_two_nz <- "results/new_zealand/parameter_estimations/model_two/parameter_estimates_model_two_new_zealand_"
 
 # paths where overview of results of parameter estimations of model 2 (constant value for testing probability) will be stored
-path_results_model_two_ch_dk_de_processed <- "results/all_countries/parameter_estimations/model_two/results_model_two_ch_dk_de_2021_months.csv"
+path_results_model_two_ch_dk_de_processed <- "results/multiple_countries/parameter_estimations/model_two/results_model_two_ch_dk_de_2021_months.csv"
 path_results_model_two_nz_periods_processed <- "results/new_zealand/parameter_estimations/model_two/results_model_two_nz_periods.csv"
 
 
@@ -171,7 +176,7 @@ path_results_model_three_nz <- "results/new_zealand/parameter_estimations/model_
 
 # paths where overview of results of parameter estimations of model 3
 # (prior distributions for R, k and testing probability and constant value for mutation probability) will be stored
-path_results_model_three_ch_dk_de_processed <- "results/all_countries/parameter_estimations/model_three/results_model_three_ch_dk_de_2021_months.csv"
+path_results_model_three_ch_dk_de_processed <- "results/multiple_countries/parameter_estimations/model_three/results_model_three_ch_dk_de_2021_months.csv"
 path_results_model_three_nz_periods_processed <- "results/new_zealand/parameter_estimations/model_three/results_model_three_nz_periods.csv"
 
 
@@ -184,7 +189,7 @@ path_results_model_four_nz <- "results/new_zealand/parameter_estimations/model_f
 
 # paths where overview of results of parameter estimations of model 4
 # (prior distributions for R and k and constant values for mutation probability and testing probability) will be stored
-path_results_model_four_ch_dk_de_processed <- "results/all_countries/parameter_estimations/model_four/results_model_four_ch_dk_de_2021_months.csv"
+path_results_model_four_ch_dk_de_processed <- "results/multiple_countries/parameter_estimations/model_four/results_model_four_ch_dk_de_2021_months.csv"
 path_results_model_four_nz_periods_processed <- "results/new_zealand/parameter_estimations/model_four/results_model_four_nz_periods.csv"
 
 
@@ -197,7 +202,7 @@ path_results_model_five_nz <- "results/new_zealand/parameter_estimations/model_f
 
 # path where overview of results of parameter estimations of model 5
 # (prior distributions for R, k, mutation probability and testing probability) will be stored
-path_results_model_five_ch_dk_de_processed <- "results/all_countries/parameter_estimations/model_five/results_model_five_ch_dk_de_2021_months.csv"
+path_results_model_five_ch_dk_de_processed <- "results/multiple_countries/parameter_estimations/model_five/results_model_five_ch_dk_de_2021_months.csv"
 path_results_model_five_nz_periods_processed <- "results/new_zealand/parameter_estimations/model_five/results_model_five_nz_periods.csv"
 
 
@@ -210,41 +215,68 @@ path_results_model_six_nz <- "results/new_zealand/parameter_estimations/model_si
 
 # path where overview of results of parameter estimations of model 6
 # (prior distributions for R, k and mutation probability and constant value for testing probability) will be stored
-path_results_model_six_ch_dk_de_processed <- "results/all_countries/parameter_estimations/model_six/results_model_six_ch_dk_de_2021_months.csv"
+path_results_model_six_ch_dk_de_processed <- "results/multiple_countries/parameter_estimations/model_six/results_model_six_ch_dk_de_2021_months.csv"
 path_results_model_six_nz_periods_processed <- "results/new_zealand/parameter_estimations/model_six/results_model_six_nz_periods.csv"
 
 
 
-# paths where parameter grid and list of indices for posterior predictive of model 1 check are stored
-path_data_post_pred_model_one_parameters_grid <- "data/all_countries/posterior_predictive_check/model_one/data_parameters_ppc_model_one.csv"
-path_data_post_pred_model_one_index_parameters <- "data/all_countries/posterior_predictive_check/model_one/index_parameters_ppc_model_one.txt"
+# paths where parameter grid and list of indices for posterior predictive of models 1 and 5 check are stored
+path_data_post_pred_model_one_parameters_grid <- "data/multiple_countries/posterior_predictive_check/model_one/data_parameters_ppc_model_one.csv"
+path_data_post_pred_model_one_index_parameters <- "data/multiple_countries/posterior_predictive_check/model_one/index_parameters_ppc_model_one.txt"
 
-# paths where simulation results of posterior predictive check of model 1 are stored
+path_data_post_pred_model_five_parameters_grid <- "data/multiple_countries/posterior_predictive_check/model_five/data_parameters_ppc_model_five.csv"
+path_data_post_pred_model_five_index_parameters <- "data/multiple_countries/posterior_predictive_check/model_five/index_parameters_ppc_model_five.txt"
+
+
+# paths where simulation results of posterior predictive check of models 1 and 5 are stored
 path_results_post_pred_model_one_ch_raw <- "results/switzerland/posterior_predictive_check/model_one/simulated_clusters_model_one_switzerland_"
 path_results_post_pred_model_one_dk_raw <- "results/denmark/posterior_predictive_check/model_one/simulated_clusters_model_one_denmark_"
 path_results_post_pred_model_one_de_raw <- "results/germany/posterior_predictive_check/model_one/simulated_clusters_model_one_germany_"
 
-# path where processed results of posterior predictive check of model 1 are stored
-path_results_post_pred_model_one_ch_dk_de_processed <- "results/all_countries/posterior_predictive_check/model_one/results_ppc_model_one_ch_dk_de.csv"
+path_results_post_pred_model_five_ch_raw <- "results/switzerland/posterior_predictive_check/model_five/simulated_clusters_model_five_switzerland_"
+path_results_post_pred_model_five_dk_raw <- "results/denmark/posterior_predictive_check/model_five/simulated_clusters_model_five_denmark_"
+path_results_post_pred_model_five_de_raw <- "results/germany/posterior_predictive_check/model_five/simulated_clusters_model_five_germany_"
 
 
+# path where processed results of posterior predictive check of models 1 and 5 are stored
+path_results_post_pred_model_one_ch_dk_de_processed <- "results/multiple_countries/posterior_predictive_check/model_one/results_ppc_model_one_ch_dk_de.csv"
 
-# paths where results of second posterior predictive check of model 1 are stored
-path_results_goodness_fit_mean_model_one_ch_dk_de <- "results/all_countries/goodness_fit/model_one/results_goodness_fit_mean_model_one_ch_dk_de.csv"
-path_results_goodness_fit_low_model_one_ch_dk_de <- "results/all_countries/goodness_fit/model_one/results_goodness_fit_low_model_one_ch_dk_de.csv"
-path_results_goodness_fit_high_model_one_ch_dk_de <- "results/all_countries/goodness_fit/model_one/results_goodness_fit_high_model_one_ch_dk_de.csv"
+path_results_post_pred_model_five_ch_dk_de_processed <- "results/multiple_countries/posterior_predictive_check/model_five/results_ppc_model_five_ch_dk_de.csv"
+
+
+# paths where results of goodness of fit check of models 1 and 5 are stored
+path_results_goodness_fit_mean_model_one_ch_dk_de <- "results/multiple_countries/goodness_fit/model_one/results_goodness_fit_mean_model_one_ch_dk_de.csv"
+path_results_goodness_fit_low_model_one_ch_dk_de <- "results/multiple_countries/goodness_fit/model_one/results_goodness_fit_low_model_one_ch_dk_de.csv"
+path_results_goodness_fit_high_model_one_ch_dk_de <- "results/multiple_countries/goodness_fit/model_one/results_goodness_fit_high_model_one_ch_dk_de.csv"
+
+path_results_goodness_fit_mean_model_five_ch_dk_de <- "results/multiple_countries/goodness_fit/model_five/results_goodness_fit_mean_model_five_ch_dk_de.csv"
+path_results_goodness_fit_low_model_five_ch_dk_de <- "results/multiple_countries/goodness_fit/model_five/results_goodness_fit_low_model_five_ch_dk_de.csv"
+path_results_goodness_fit_high_model_five_ch_dk_de <- "results/multiple_countries/goodness_fit/model_five/results_goodness_fit_high_model_five_ch_dk_de.csv"
 
 
 
 # paths where parameter grid and list of indices for simulation study of model 1 are stored 
-path_data_sim_parameters_grid <-  "data/simulation/parameters_grid_simulation.csv"
-path_data_sim_indices <- "data/simulation/indices_simulation.txt"
-path_param_est_indices <- "data/simulation/indices_estimation.txt"
+path_data_sim_parameters_grid_model_one <-  "data/simulation/model_one/parameters_grid_simulation_model_one.csv"
+path_data_sim_indices_model_one <- "data/simulation/model_one/indices_simulation_model_one.txt"
+path_param_est_indices_model_one <- "data/simulation/model_one/indices_estimation_model_one.txt"
+
+# paths where parameter grid and list of indices for simulation study of model 5 are stored 
+path_data_sim_parameters_grid_model_five <-  "data/simulation/model_five/parameters_grid_simulation_model_five.csv"
+path_data_sim_indices_model_five <- "data/simulation/model_five/indices_simulation_model_five.txt"
+path_param_est_indices_model_five <- "data/simulation/model_five/indices_estimation_model_five.txt"
 
 # path where parameter estimation results of simulation study of model 1 are stored
-path_results_sim_raw <- "results/simulation/raw/parameter_estimates_model_one_sim_"
+path_results_sim_raw_model_one <- "results/simulation/model_one/raw/parameter_estimates_model_one_sim_"
 
-# paths where processed results of simulation study of model 1  are stored
-path_results_sim_processed <- "results/simulation/processed/results_sim_model_one_processed.csv"
-path_results_sim_processed_v2 <- "results/simulation/processed/results_sim_model_one_processed_v2.csv"
+# path where parameter estimation results of simulation study of model 5 are stored
+path_results_sim_raw_model_five <- "results/simulation/model_five/raw/parameter_estimates_model_five_sim_"
+
+# paths where processed results of simulation study of model 1 are stored
+path_results_sim_processed_model_one_v1 <- "results/simulation/processed/results_sim_model_one_processed_v1.csv"
+path_results_sim_processed_model_one_v2 <- "results/simulation/processed/results_sim_model_one_processed_v2.csv"
+
+# paths where processed results of simulation study of model 1 are stored
+path_results_sim_processed_model_five_v1 <- "results/simulation/processed/results_sim_model_five_processed_v1.csv"
+path_results_sim_processed_model_five_v2 <- "results/simulation/processed/results_sim_model_five_processed_v2.csv"
+
 
