@@ -22,7 +22,7 @@ The estRodis package can be found here: [GitHub Martin Wohlfender: estRodis](htt
 The structuring of sequence data into clusters of identical sequences was done by Emma Hodcroft. Her code can be found here: [GitHub Emma Hodcroft: sc2_rk_public](https://github.com/emmahodcroft/sc2_rk_public)
 
 ### C.3 Name convention
-Whenever "model five" is mentioned in comments in the code, this refers to the standard model developed in the paper. "model one", "model two", "model three", "model four" and "model six" refer to the alternative models described in the section "Sensitivity analysis" of the supplementary material of the paper "Estimating $R_e$ and overdispersion in secondary cases from the size of identical sequence clusters of SARS-CoV-2" by Emma Hodcroft et al.
+Whenever "model five" is mentioned in comments in the code, this refers to the standard model presented in the paper. "model one", "model two", "model three", "model four" and "model six" refer to the alternative models described in the section "Sensitivity analysis" of the supplementary material of the paper "Estimating $R_e$ and overdispersion in secondary cases from the size of identical sequence clusters of SARS-CoV-2" by Emma Hodcroft et al.
 
 ## (D) Detailed information on content of repository
 
@@ -45,12 +45,12 @@ All R-scripts covering the processing of data and results.
 (a) model one
 * `01_sim_setup_model_one.R` setting up the simulation study: define parameter combinations for which clusters of identical sequences shall be simulated
 * `02_sim_simulate_data_model_one_parallel.R` simulation of identical sequence clusters (run in parallel on the high performance computing cluster of the University of Bern, UBELIX)
-* `03_sim_estimate_parameters_model_one_parallel.R` estimation of parameters from simulated data (run in parallel on the high performance computing cluster of the University of Bern, UBELIX)
+* `03_sim_estimate_parameters_model_one_parallel.R` estimation of parameters from simulated data using model one (run in parallel on the high performance computing cluster of the University of Bern, UBELIX)
 
 (b) model five
 * `01_sim_setup_model_five.R` setting up the simulation study: define parameter combinations for which clusters of identical sequences shall be simulated
 * `02_sim_simulate_data_model_five_parallel.R` simulation of identical sequence clusters (run in parallel on the high performance computing cluster of the University of Bern, UBELIX)
-* `03_sim_estimate_parameters_model_five_parallel.R` estimation of parameters from simulated data (run in parallel on the high performance computing cluster of the University of Bern, UBELIX)
+* `03_sim_estimate_parameters_model_five_parallel.R` estimation of parameters from simulated data using model five (run in parallel on the high performance computing cluster of the University of Bern, UBELIX)
 
 #### D.1.f parameter estimation
 All R-scripts to estimate parameters from data from Switzerland, Denmark and Germany using the main (model five) or the alternative models (models one, two, three four and six). These files were run in parallel on the high performance computing cluster of the University of Bern, UBELIX.
@@ -70,6 +70,12 @@ All R-scripts covering the creation of figures (contained in paper and supplemen
 
 #### D.1.i create tables
 All R-scripts covering the creation of overview tables of data and results (contained in supplementary material).
+
+#### D.1.j varia
+R-scripts used to do some minor extra analysis.
+
+* `clusters_months.R` check how many clusters extend across more than one month.
+* `summary_statistics.R` basic description of cluster data set (number of identical sequence clusters, number of cases in identical sequence clusters, fraction of identical sequence clusters that are of size one and average cluster size)
 
 ### D.2 data
 The repository contains the following data files (see folder `data`):
