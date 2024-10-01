@@ -46,6 +46,11 @@ create_v_lines <- function(x_major_start, x_major_end, x_major_step, x_minor_sta
 
 
 
+data_h_line_one <- tibble(x = c(-0.25, 12.25),
+                          y = c(1, 1))
+
+
+
 create_plot_result <- function(data_plot_results, data_plot_other_estimates = NULL, data_estimate, data_lower_cred_int, data_upper_cred_int, plot_color_scale_values, plot_color_scale_labels, scale_y_from, scale_y_to, scale_y_by, add_line_at_one, label_y) {
   
   plot_result <- ggplot() +
@@ -69,11 +74,11 @@ create_plot_result <- function(data_plot_results, data_plot_other_estimates = NU
                   linewidth = 0.5,
                   width  = 0.02) +
     { if (add_line_at_one)
-      geom_segment(data = data_plot_results, 
-                   mapping = aes(x = -0.25, xend = 12.25, y = 1, yend = 1),
-                   color = "black",
-                   linetype = "dashed",
-                   linewidth = 0.5) } +
+      geom_line(data = data_h_line_one,
+                mapping = aes(x = x, y = y),
+                color = "black",
+                linetype = "dashed",
+                linewidth = 0.5)} +
     { if (is.null(data_plot_other_estimates))
       scale_color_manual(name = "Method:",
                          breaks = sort(unique(data_plot_results$model)),
@@ -95,7 +100,11 @@ create_plot_result <- function(data_plot_results, data_plot_other_estimates = NU
     xlab("Time") +
     ylab(label_y) +
     theme_bw() +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1),
+    theme(axis.text.x = element_text(angle = 45, color="black", hjust = 1),
+          axis.text.y = element_text(color="black"),
+          axis.title.x = element_text(color = "black"),
+          axis.title.y = element_text(color = "black"),
+          legend.text=element_markdown(),
           legend.position = "bottom",
           legend.box = "horizontal",
           legend.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = "cm"),
@@ -145,11 +154,11 @@ create_plot_result_variants <- function(data_plot_results, data_plot_variants, d
                   linewidth = 0.5,
                   width  = 0.02) +
     { if (add_line_at_one)
-      geom_segment(data = data_plot_results, 
-                   mapping = aes(x = -0.25, xend = 12.25, y = 1, yend = 1),
-                   color = "black",
-                   linetype = "dashed",
-                   linewidth = 0.5)} +
+      geom_line(data = data_h_line_one,
+                mapping = aes(x = x, y = y),
+                color = "black",
+                linetype = "dashed",
+                linewidth = 0.5)} +
     { if (is.null(data_plot_other_estimates))
       scale_color_manual(name = "Method:",
                          breaks = sort(unique(data_plot_results$model)),
@@ -174,7 +183,11 @@ create_plot_result_variants <- function(data_plot_results, data_plot_variants, d
     xlab("Time") +
     ylab(label_y) +
     theme_bw() +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1),
+    theme(axis.text.x = element_text(angle = 45, color="black", hjust = 1),
+          axis.text.y = element_text(color="black"),
+          axis.title.x = element_text(color = "black", size = 10),
+          axis.title.y = element_text(color = "black", size = 10),
+          legend.text=element_markdown(),
           legend.position = "bottom",
           legend.box = "vertical",
           legend.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = "cm"),
@@ -188,7 +201,7 @@ create_plot_result_variants <- function(data_plot_results, data_plot_variants, d
 
 
 
-create_plot_result_all_countries <- function(data_plot_results, data_plot_other_estimates = NULL, data_estimate, data_lower_cred_int, data_upper_cred_int, plot_color_scale_values, plot_color_scale_labels, scale_y_from, scale_y_to, scale_y_by, add_line_at_one, label_y) {
+create_plot_result_multiple_countries <- function(data_plot_results, data_plot_other_estimates = NULL, data_estimate, data_lower_cred_int, data_upper_cred_int, plot_color_scale_values, plot_color_scale_labels, scale_y_from, scale_y_to, scale_y_by, add_line_at_one, label_y) {
   
   plot_result <- ggplot() +
     { if (!(is.null(data_plot_other_estimates)))
@@ -208,11 +221,11 @@ create_plot_result_all_countries <- function(data_plot_results, data_plot_other_
                   linewidth = 0.5,
                   width  = 0.02) +
     { if (add_line_at_one)
-      geom_segment(data = data_plot_results, 
-                   mapping = aes(x = -0.25, xend = 12.25, y = 1, yend = 1),
-                   color = "black",
-                   linetype = "dashed",
-                   linewidth = 0.5) } +
+      geom_line(data = data_h_line_one,
+                mapping = aes(x = x, y = y),
+                color = "black",
+                linetype = "dashed",
+                linewidth = 0.5)} +
     { if (is.null(data_plot_other_estimates))
       scale_color_manual(name = "Method:",
                          breaks = sort(unique(data_plot_results$model)),
@@ -234,7 +247,11 @@ create_plot_result_all_countries <- function(data_plot_results, data_plot_other_
     xlab("Time") +
     ylab(label_y) +
     theme_bw() +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1),
+    theme(axis.text.x = element_text(angle = 45, color="black", hjust = 1),
+          axis.text.y = element_text(color="black"),
+          axis.title.x = element_text(color = "black", size = 10),
+          axis.title.y = element_text(color = "black", size = 10),
+          legend.text=element_markdown(),
           legend.position = "bottom",
           legend.box = "horizontal",
           legend.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = "cm"),
@@ -249,7 +266,7 @@ create_plot_result_all_countries <- function(data_plot_results, data_plot_other_
 
 
 
-create_plot_result_variants_all_countries <- function(data_plot_results, data_plot_variants, data_plot_other_estimates = NULL, data_estimate, data_lower_cred_int, data_upper_cred_int, plot_color_scale_values, plot_color_scale_labels, scale_y_from, scale_y_to, scale_y_by, add_line_at_one, label_y) {
+create_plot_result_variants_multiple_countries <- function(data_plot_results, data_plot_variants, data_plot_other_estimates = NULL, data_estimate, data_lower_cred_int, data_upper_cred_int, plot_color_scale_values, plot_color_scale_labels, scale_y_from, scale_y_to, scale_y_by, add_line_at_one, label_y) {
   
   plot_result_variants <- ggplot() +
     geom_area(data = data_plot_variants, mapping = aes(x = months_start_time_float, y = scale_y_to, fill = "col4", group = country)) +
@@ -285,11 +302,11 @@ create_plot_result_variants_all_countries <- function(data_plot_results, data_pl
                   linewidth = 0.5,
                   width  = 0.02) +
     { if (add_line_at_one)
-      geom_segment(data = data_plot_results, 
-                   mapping = aes(x = -0.25, xend = 12.25, y = 1, yend = 1),
-                   color = "black",
-                   linetype = "dashed",
-                   linewidth = 0.5)} +
+      geom_line(data = data_h_line_one,
+                mapping = aes(x = x, y = y),
+                color = "black",
+                linetype = "dashed",
+                linewidth = 0.5)} +
     { if (is.null(data_plot_other_estimates))
       scale_color_manual(name = "Method:",
                          breaks = sort(unique(data_plot_results$model)),
@@ -314,7 +331,11 @@ create_plot_result_variants_all_countries <- function(data_plot_results, data_pl
     xlab("Time") +
     ylab(label_y) +
     theme_bw() +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1),
+    theme(axis.text.x = element_text(angle = 45, color="black", hjust = 1),
+          axis.text.y = element_text(color="black"),
+          axis.title.x = element_text(color = "black", size = 10),
+          axis.title.y = element_text(color = "black", size = 10),
+          legend.text=element_markdown(),
           legend.position = "bottom",
           legend.box = "vertical",
           legend.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = "cm"),

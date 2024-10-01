@@ -30,9 +30,9 @@ data_cluster_sizes_de_2021_months <- read_csv(file = path_data_cluster_sizes_de_
 # process data ----
 
 # round elements of the columns "Nos/Nocc"
-data_cases_sequences_clusters_ch_2021_months <- data_cases_sequences_clusters_ch_2021_months_0 |> mutate(`Nos/Nocc` = round(`Nos/Nocc`, 4))
-data_cases_sequences_clusters_dk_2021_months <- data_cases_sequences_clusters_dk_2021_months_0 |> mutate(`Nos/Nocc` = round(`Nos/Nocc`, 4))
-data_cases_sequences_clusters_de_2021_months <- data_cases_sequences_clusters_de_2021_months_0 |> mutate(`Nos/Nocc` = round(`Nos/Nocc`, 4))
+data_cases_sequences_clusters_ch_2021_months <- data_cases_sequences_clusters_ch_2021_months_0 %>% mutate(`Nos/Nocc` = round(`Nos/Nocc`, 4))
+data_cases_sequences_clusters_dk_2021_months <- data_cases_sequences_clusters_dk_2021_months_0 %>% mutate(`Nos/Nocc` = round(`Nos/Nocc`, 4))
+data_cases_sequences_clusters_de_2021_months <- data_cases_sequences_clusters_de_2021_months_0 %>% mutate(`Nos/Nocc` = round(`Nos/Nocc`, 4))
 
 
 
@@ -57,10 +57,10 @@ flextable::save_as_image(x = table_cases_sequences_clusters_ch_2021_months, path
 
 
 # table of cluster sizes of Switzerland by month of 2021 (absolute numbers)
-data_cluster_sizes_intervals_ch_2021_months <- data_cluster_sizes_ch_2021_months |> mutate(size_interval = factor(cut(x = size, breaks = c(0,1,2,3,4,5,10,50,100,max(size)), labels = c("1", "2", "3", "4", "5", "6-10", "11-50", "51-100", paste0("101-", max(size)))))) |> group_by(size_interval, month) |> summarise(n = sum(frequency)) |> spread(month, n) |> {\(.) {replace(.,is.na(.), 0)}}()
-data_cluster_sizes_intervals_ch_2021_months <- as_tibble(t(data_cluster_sizes_intervals_ch_2021_months[,-1]), .name_repair = c( "universal")) |> rename_all(~as.character(data_cluster_sizes_intervals_ch_2021_months$size_interval)) |> mutate_at(1:9, as.numeric)
-data_cluster_sizes_intervals_ch_2021_months <- data_cluster_sizes_intervals_ch_2021_months |> mutate(All = rowSums(data_cluster_sizes_intervals_ch_2021_months), Month = list_months) |> select(Month, everything())
-data_cluster_sizes_intervals_ch_2021_months <- data_cluster_sizes_intervals_ch_2021_months |> bind_rows(tibble(data.frame(matrix(data = c("Total", colSums(data_cluster_sizes_intervals_ch_2021_months[,-1])), nrow = 1, ncol = 11))) |> mutate_at(2:11, as.numeric) |> rename_all(~names(data_cluster_sizes_intervals_ch_2021_months)))
+data_cluster_sizes_intervals_ch_2021_months <- data_cluster_sizes_ch_2021_months %>% mutate(size_interval = factor(cut(x = size, breaks = c(0,1,2,3,4,5,10,50,100,max(size)), labels = c("1", "2", "3", "4", "5", "6-10", "11-50", "51-100", paste0("101-", max(size)))))) %>% group_by(size_interval, month) %>% summarise(n = sum(frequency)) %>% spread(month, n) %>% {\(.) {replace(.,is.na(.), 0)}}()
+data_cluster_sizes_intervals_ch_2021_months <- as_tibble(t(data_cluster_sizes_intervals_ch_2021_months[,-1]), .name_repair = c( "universal")) %>% rename_all(~as.character(data_cluster_sizes_intervals_ch_2021_months$size_interval)) %>% mutate_at(1:9, as.numeric)
+data_cluster_sizes_intervals_ch_2021_months <- data_cluster_sizes_intervals_ch_2021_months %>% mutate(All = rowSums(data_cluster_sizes_intervals_ch_2021_months), Month = list_months) %>% select(Month, everything())
+data_cluster_sizes_intervals_ch_2021_months <- data_cluster_sizes_intervals_ch_2021_months %>% bind_rows(tibble(data.frame(matrix(data = c("Total", colSums(data_cluster_sizes_intervals_ch_2021_months[,-1])), nrow = 1, ncol = 11))) %>% mutate_at(2:11, as.numeric) %>% rename_all(~names(data_cluster_sizes_intervals_ch_2021_months)))
 
 table_cluster_sizes_intervals_ch_2021_months <- flextable(data_cluster_sizes_intervals_ch_2021_months)
 table_cluster_sizes_intervals_ch_2021_months <- theme_vanilla(table_cluster_sizes_intervals_ch_2021_months)
@@ -77,7 +77,7 @@ flextable::save_as_image(x = table_cluster_sizes_intervals_ch_2021_months, path 
 
 
 # table of cluster sizes of Switzerland by month of 2021 (percentage)
-data_cluster_sizes_intervals_ch_2021_months_percentage <- data_cluster_sizes_intervals_ch_2021_months |> mutate_at(2:11, ~ ./All) |> mutate_at(2:11, ~round(.,4)) |> mutate_at(2:10, ~format(., nsmall = 4, scientific = FALSE))
+data_cluster_sizes_intervals_ch_2021_months_percentage <- data_cluster_sizes_intervals_ch_2021_months %>% mutate_at(2:11, ~ ./All) %>% mutate_at(2:11, ~round(.,4)) %>% mutate_at(2:10, ~format(., nsmall = 4, scientific = FALSE))
 
 table_cluster_sizes_intervals_ch_2021_months_percentage <- flextable(data_cluster_sizes_intervals_ch_2021_months_percentage)
 table_cluster_sizes_intervals_ch_2021_months_percentage <- theme_vanilla(table_cluster_sizes_intervals_ch_2021_months_percentage)
@@ -104,10 +104,10 @@ flextable::save_as_image(x = table_cases_sequences_clusters_dk_2021_months, path
 
 
 # table of cluster sizes of Denmark by month of 2021 (absolute numbers)
-data_cluster_sizes_intervals_dk_2021_months <- data_cluster_sizes_dk_2021_months |> mutate(size_interval = factor(cut(x = size, breaks = c(0,1,2,3,4,5,10,50,100,max(size)), labels = c("1", "2", "3", "4", "5", "6-10", "11-50", "51-100", paste0("101-", max(size)))))) |> group_by(size_interval, month) |> summarise(n = sum(frequency)) |> spread(month, n) |> {\(.) {replace(.,is.na(.), 0)}}()
-data_cluster_sizes_intervals_dk_2021_months <- as_tibble(t(data_cluster_sizes_intervals_dk_2021_months[,-1]), .name_repair = c( "universal")) |> rename_all(~as.character(data_cluster_sizes_intervals_dk_2021_months$size_interval)) |> mutate_at(1:9, as.numeric)
-data_cluster_sizes_intervals_dk_2021_months <- data_cluster_sizes_intervals_dk_2021_months |> mutate(All = rowSums(data_cluster_sizes_intervals_dk_2021_months), Month = list_months) |> select(Month, everything())
-data_cluster_sizes_intervals_dk_2021_months <- data_cluster_sizes_intervals_dk_2021_months |> bind_rows(tibble(data.frame(matrix(data = c("Total", colSums(data_cluster_sizes_intervals_dk_2021_months[,-1])), nrow = 1, ncol = 11))) |> mutate_at(2:11, as.numeric) |> rename_all(~names(data_cluster_sizes_intervals_dk_2021_months)))
+data_cluster_sizes_intervals_dk_2021_months <- data_cluster_sizes_dk_2021_months %>% mutate(size_interval = factor(cut(x = size, breaks = c(0,1,2,3,4,5,10,50,100,max(size)), labels = c("1", "2", "3", "4", "5", "6-10", "11-50", "51-100", paste0("101-", max(size)))))) %>% group_by(size_interval, month) %>% summarise(n = sum(frequency)) %>% spread(month, n) %>% {\(.) {replace(.,is.na(.), 0)}}()
+data_cluster_sizes_intervals_dk_2021_months <- as_tibble(t(data_cluster_sizes_intervals_dk_2021_months[,-1]), .name_repair = c( "universal")) %>% rename_all(~as.character(data_cluster_sizes_intervals_dk_2021_months$size_interval)) %>% mutate_at(1:9, as.numeric)
+data_cluster_sizes_intervals_dk_2021_months <- data_cluster_sizes_intervals_dk_2021_months %>% mutate(All = rowSums(data_cluster_sizes_intervals_dk_2021_months), Month = list_months) %>% select(Month, everything())
+data_cluster_sizes_intervals_dk_2021_months <- data_cluster_sizes_intervals_dk_2021_months %>% bind_rows(tibble(data.frame(matrix(data = c("Total", colSums(data_cluster_sizes_intervals_dk_2021_months[,-1])), nrow = 1, ncol = 11))) %>% mutate_at(2:11, as.numeric) %>% rename_all(~names(data_cluster_sizes_intervals_dk_2021_months)))
 
 table_cluster_sizes_intervals_dk_2021_months <- flextable(data_cluster_sizes_intervals_dk_2021_months)
 table_cluster_sizes_intervals_dk_2021_months <- theme_vanilla(table_cluster_sizes_intervals_dk_2021_months)
@@ -124,7 +124,7 @@ flextable::save_as_image(x = table_cluster_sizes_intervals_dk_2021_months, path 
 
 
 # table of cluster sizes of Denmark by month of 2021 (percentage)
-data_cluster_sizes_intervals_dk_2021_months_percentage <- data_cluster_sizes_intervals_dk_2021_months |> mutate_at(2:11, ~ ./All) |> mutate_at(2:11, ~round(.,4)) |> mutate_at(2:10, ~format(., nsmall = 4, scientific = FALSE))
+data_cluster_sizes_intervals_dk_2021_months_percentage <- data_cluster_sizes_intervals_dk_2021_months %>% mutate_at(2:11, ~ ./All) %>% mutate_at(2:11, ~round(.,4)) %>% mutate_at(2:10, ~format(., nsmall = 4, scientific = FALSE))
 
 table_cluster_sizes_intervals_dk_2021_months_percentage <- flextable(data_cluster_sizes_intervals_dk_2021_months_percentage)
 table_cluster_sizes_intervals_dk_2021_months_percentage <- theme_vanilla(table_cluster_sizes_intervals_dk_2021_months_percentage)
@@ -152,10 +152,10 @@ flextable::save_as_image(x = table_cases_sequences_clusters_de_2021_months, path
 
 
 # table of cluster sizes of Germany by month of 2021 (absolute numbers)
-data_cluster_sizes_intervals_de_2021_months <- data_cluster_sizes_de_2021_months |> mutate(size_interval = factor(cut(x = size, breaks = c(0,1,2,3,4,5,10,50,100,max(size)), labels = c("1", "2", "3", "4", "5", "6-10", "11-50", "51-100", paste0("101-", max(size)))))) |> group_by(size_interval, month) |> summarise(n = sum(frequency)) |> spread(month, n) |> {\(.) {replace(.,is.na(.), 0)}}()
-data_cluster_sizes_intervals_de_2021_months <- as_tibble(t(data_cluster_sizes_intervals_de_2021_months[,-1]), .name_repair = c( "universal")) |> rename_all(~as.character(data_cluster_sizes_intervals_de_2021_months$size_interval)) |> mutate_at(1:9, as.numeric)
-data_cluster_sizes_intervals_de_2021_months <- data_cluster_sizes_intervals_de_2021_months |> mutate(All = rowSums(data_cluster_sizes_intervals_de_2021_months), Month = list_months) |> select(Month, everything())
-data_cluster_sizes_intervals_de_2021_months <- data_cluster_sizes_intervals_de_2021_months |> bind_rows(tibble(data.frame(matrix(data = c("Total", colSums(data_cluster_sizes_intervals_de_2021_months[,-1])), nrow = 1, ncol = 11))) |> mutate_at(2:11, as.numeric) |> rename_all(~names(data_cluster_sizes_intervals_de_2021_months)))
+data_cluster_sizes_intervals_de_2021_months <- data_cluster_sizes_de_2021_months %>% mutate(size_interval = factor(cut(x = size, breaks = c(0,1,2,3,4,5,10,50,100,max(size)), labels = c("1", "2", "3", "4", "5", "6-10", "11-50", "51-100", paste0("101-", max(size)))))) %>% group_by(size_interval, month) %>% summarise(n = sum(frequency)) %>% spread(month, n) %>% {\(.) {replace(.,is.na(.), 0)}}()
+data_cluster_sizes_intervals_de_2021_months <- as_tibble(t(data_cluster_sizes_intervals_de_2021_months[,-1]), .name_repair = c( "universal")) %>% rename_all(~as.character(data_cluster_sizes_intervals_de_2021_months$size_interval)) %>% mutate_at(1:9, as.numeric)
+data_cluster_sizes_intervals_de_2021_months <- data_cluster_sizes_intervals_de_2021_months %>% mutate(All = rowSums(data_cluster_sizes_intervals_de_2021_months), Month = list_months) %>% select(Month, everything())
+data_cluster_sizes_intervals_de_2021_months <- data_cluster_sizes_intervals_de_2021_months %>% bind_rows(tibble(data.frame(matrix(data = c("Total", colSums(data_cluster_sizes_intervals_de_2021_months[,-1])), nrow = 1, ncol = 11))) %>% mutate_at(2:11, as.numeric) %>% rename_all(~names(data_cluster_sizes_intervals_de_2021_months)))
 
 table_cluster_sizes_intervals_de_2021_months <- flextable(data_cluster_sizes_intervals_de_2021_months)
 table_cluster_sizes_intervals_de_2021_months <- theme_vanilla(table_cluster_sizes_intervals_de_2021_months)
@@ -172,7 +172,7 @@ flextable::save_as_image(x = table_cluster_sizes_intervals_de_2021_months, path 
 
 
 # table of cluster sizes of Germany by month of 2021 (percentage)
-data_cluster_sizes_intervals_de_2021_months_percentage <- data_cluster_sizes_intervals_de_2021_months |> mutate_at(2:11, ~ ./All) |> mutate_at(2:11, ~round(.,4)) |> mutate_at(2:10, ~format(., nsmall = 4, scientific = FALSE))
+data_cluster_sizes_intervals_de_2021_months_percentage <- data_cluster_sizes_intervals_de_2021_months %>% mutate_at(2:11, ~ ./All) %>% mutate_at(2:11, ~round(.,4)) %>% mutate_at(2:10, ~format(., nsmall = 4, scientific = FALSE))
 
 table_cluster_sizes_intervals_de_2021_months_percentage <- flextable(data_cluster_sizes_intervals_de_2021_months_percentage)
 table_cluster_sizes_intervals_de_2021_months_percentage <- theme_vanilla(table_cluster_sizes_intervals_de_2021_months_percentage)

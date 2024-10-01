@@ -240,8 +240,8 @@ names(data_cases_sequences_clusters_ch_2021_months) <- c("month", "n_confirmed_c
 data_cases_sequences_clusters_ch_2021_months$n_sequences <- data_sequences_ch_dk_de_2021_months$n_sequences_ch
 
 # determine number of cluster of Switzerland of different sizes for each month of 2021
-data_cluster_sizes_ch_2021_months <- data.frame(matrix(nrow = 0, ncol = 3)) 
-names(data_cluster_sizes_ch_2021_months) <- c("size", "month", "frequency")
+data_cluster_sizes_ch_2021_months <- data.frame(matrix(nrow = 0, ncol = 4)) 
+names(data_cluster_sizes_ch_2021_months) <- c("size", "month", "frequency", "percentage")
 
 for (ii in 1:12) {
   
@@ -262,7 +262,10 @@ for (ii in 1:12) {
   
   data_cases_sequences_clusters_ch_2021_months$max_size_clusters[ii] <- max(clusters)
   
-  data_cluster_sizes_ch_2021_month_ii <- as.data.frame(table(clusters)) %>% mutate(counts = as.numeric(as.character(counts))) %>% rename("size" = "counts", "frequency" = "Freq")
+  data_cluster_sizes_ch_2021_month_ii <- as.data.frame(table(clusters)) %>%
+    mutate(counts = as.numeric(as.character(counts)),
+           percentage = Freq / sum(Freq)) %>%
+    rename("size" = "counts", "frequency" = "Freq")
   
   data_cluster_sizes_ch_2021_months <- bind_rows(data_cluster_sizes_ch_2021_months, data_cluster_sizes_ch_2021_month_ii %>% mutate(month = ii))
   
@@ -286,8 +289,8 @@ names(data_cases_sequences_clusters_dk_2021_months) <- c("month", "n_confirmed_c
 data_cases_sequences_clusters_dk_2021_months$n_sequences <- data_sequences_ch_dk_de_2021_months$n_sequences_dk
 
 # determine number of cluster of Denmark of different sizes for each month of 2021
-data_cluster_sizes_dk_2021_months <- data.frame(matrix(nrow = 0, ncol = 3)) 
-names(data_cluster_sizes_dk_2021_months) <- c("size", "month", "frequency")
+data_cluster_sizes_dk_2021_months <- data.frame(matrix(nrow = 0, ncol = 4)) 
+names(data_cluster_sizes_dk_2021_months) <- c("size", "month", "frequency", "percentage")
 
 for (ii in 1:12) {
   
@@ -308,7 +311,10 @@ for (ii in 1:12) {
   
   data_cases_sequences_clusters_dk_2021_months$max_size_clusters[ii] <- max(clusters)
   
-  data_cluster_sizes_dk_2021_month_ii <- as.data.frame(table(clusters)) %>% mutate(counts = as.numeric(as.character(counts))) %>% rename("size" = "counts", "frequency" = "Freq")
+  data_cluster_sizes_dk_2021_month_ii <- as.data.frame(table(clusters)) %>%
+    mutate(counts = as.numeric(as.character(counts)),
+           percentage = Freq / sum(Freq)) %>%
+    rename("size" = "counts", "frequency" = "Freq")
   
   data_cluster_sizes_dk_2021_months <- bind_rows(data_cluster_sizes_dk_2021_months, data_cluster_sizes_dk_2021_month_ii %>% mutate(month = ii))
   
@@ -332,8 +338,8 @@ names(data_cases_sequences_clusters_de_2021_months) <- c("month", "n_confirmed_c
 data_cases_sequences_clusters_de_2021_months$n_sequences <- data_sequences_ch_dk_de_2021_months$n_sequences_de
 
 # determine number of cluster of Germany of different sizes for each month of 2021
-data_cluster_sizes_de_2021_months <- data.frame(matrix(nrow = 0, ncol = 3)) 
-names(data_cluster_sizes_de_2021_months) <- c("size", "month", "frequency")
+data_cluster_sizes_de_2021_months <- data.frame(matrix(nrow = 0, ncol = 4)) 
+names(data_cluster_sizes_de_2021_months) <- c("size", "month", "frequency", "percentage")
 
 for (ii in 1:12) {
   
@@ -354,7 +360,10 @@ for (ii in 1:12) {
   
   data_cases_sequences_clusters_de_2021_months$max_size_clusters[ii] <- max(clusters)
   
-  data_cluster_sizes_de_2021_month_ii <- as.data.frame(table(clusters)) %>% mutate(counts = as.numeric(as.character(counts))) %>% rename("size" = "counts", "frequency" = "Freq")
+  data_cluster_sizes_de_2021_month_ii <- as.data.frame(table(clusters)) %>%
+    mutate(counts = as.numeric(as.character(counts)),
+           percentage = Freq / sum(Freq)) %>%
+    rename("size" = "counts", "frequency" = "Freq")
   
   data_cluster_sizes_de_2021_months <- bind_rows(data_cluster_sizes_de_2021_months, data_cluster_sizes_de_2021_month_ii %>% mutate(month = ii))
   
