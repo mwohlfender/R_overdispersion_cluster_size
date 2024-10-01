@@ -144,34 +144,63 @@ The repository contains the following data files (see folder `data`):
 * `data_variants_shares_ch_dk_de_processed.csv` shares of SARS-CoV-2 variants (alpha, delta, omicron and other) among sequences on bi-weekly interval during 2021 and auxiliary variables needed for plotting
 
 ##### posterior predictive check
+
+(a) model one
 * `data_parameters_ppc_model_one.csv` all parameter combinations for which identical sequence clusters were simulated during the posterior predictive check
 * `index_parameters_ppc_model_one.txt` auxiliary file needed during the posterior predictive check for the parallel execution of cluster simulation
 
+(b) model five
+* `data_parameters_ppc_model_five.csv` all parameter combinations for which identical sequence clusters were simulated during the posterior predictive check
+* `index_parameters_ppc_model_five.txt` auxiliary file needed during the posterior predictive check for the parallel execution of cluster simulation
+
 #### D.2.f simulation
-* `parameters_grid_simulation.csv` all parameter combinations for which identical sequence clusters were simulated during the simulation study
-* `indices_simulation.txt` and `indices_estimation.txt` auxiliary files needed during the simulation study for the parallel execution of cluster simulation, respectively parameter estimation
-* `simulated_clusters` number of simulated clusters of each size for each combination of parameters contained in `parameters_grid_simulation.csv`
-* `simulated_clusters` simulated data based on parameters defined in `parameters_grid_simulation.csv`
+
+(a) model one
+* `parameters_grid_simulation_model_one.csv` all parameter combinations for which identical sequence clusters were simulated during the simulation study
+* `indices_simulation_model_one.txt` and `indices_estimation_model_one.txt` auxiliary files needed during the simulation study for the parallel execution of cluster simulation, respectively parameter estimation
+* `simulated_clusters` simulated data based on parameters defined in `parameters_grid_simulation_model_one.csv`
+
+(b) model five
+* `parameters_grid_simulation_model_five.csv` all parameter combinations for which identical sequence clusters were simulated during the simulation study
+* `indices_simulation_model_five.txt` and `indices_estimation_model_five.txt` auxiliary files needed during the simulation study for the parallel execution of cluster simulation, respectively parameter estimation
+* `simulated_clusters` simulated data based on parameters defined in `parameters_grid_simulation_model_five.csv`
 
 ### D.3 results
 
 #### D.3.a Switzerland
-stanfit files containing the results of the parameter estimation from data of Switzerland using models one and two
+stanfit files containing the results of the parameter estimation from data of Switzerland using models one, two, three, four, five and six
 
 #### D.3.b Denmark
-stanfit files containing the results of the parameter estimation from data of Denmark using models one and two
+stanfit files containing the results of the parameter estimation from data of Denmark using models one, two, three, four, five and six
 
 #### D.3.c Germany
-stanfit files containing the results of the parameter estimation from data of Germany using models one and two
+stanfit files containing the results of the parameter estimation from data of Germany using models one, two, three, four, five and six
 
-#### D.3.d all countries
+#### D.3.d multiple countries
 
-##### parameter_estimations
+##### parameter estimations
 * `results_model_one_ch_dk_de_2021_months.csv` summary of the results of the parameter estimation from data of Switzerland, Denmark and Germany using model one
 * `results_model_two_ch_dk_de_2021_months.csv` summary of the results of the parameter estimation from data of Switzerland, Denmark and Germany using model two
+* `results_model_three_ch_dk_de_2021_months.csv` summary of the results of the parameter estimation from data of Switzerland, Denmark and Germany using model three
+* `results_model_four_ch_dk_de_2021_months.csv` summary of the results of the parameter estimation from data of Switzerland, Denmark and Germany using model four
+* `results_model_five_ch_dk_de_2021_months.csv` summary of the results of the parameter estimation from data of Switzerland, Denmark and Germany using model five
+* `results_model_six_ch_dk_de_2021_months.csv` summary of the results of the parameter estimation from data of Switzerland, Denmark and Germany using model six
 
-##### posterior_predictive_check
+##### posterior predictive check
 * `results_ppc_model_one_ch_dk_de.csv` summary of the results of the posterior predictive check of the results of the parameter estimation from data of Switzerland, Denmark and Germany using model one
+* `results_ppc_model_five_ch_dk_de.csv` summary of the results of the posterior predictive check of the results of the parameter estimation from data of Switzerland, Denmark and Germany using model five
+
+##### goodness fit
+
+(a) model one
+* `results_goodness_fit_mean_model_one_ch_dk_de.csv` cluster size distribution parametrized by mean estimates of parameters
+* `results_goodness_fit_low_model_one_ch_dk_de.csv` cluster size distribution parametrized by 2.5\% and 97.5\% quantile estimates of parameters (lower limit)
+* `results_goodness_fit_high_model_one_ch_dk_de.csv` cluster size distribution parametrized by 2.5\% and 97.5\% quantile estimates of parameters (upper limit)
+
+(b) model five
+* `results_goodness_fit_mean_model_five_ch_dk_de.csv` cluster size distribution parametrized by mean estimates of parameters
+* `results_goodness_fit_low_model_five_ch_dk_de.csv` cluster size distribution parametrized by 2.5\% and 97.5\% quantile estimates of parameters (lower limit)
+* `results_goodness_fit_high_model_five_ch_dk_de.csv` cluster size distribution parametrized by 2.5\% and 97.5\% quantile estimates of parameters (upper limit)
 
 #### D.3.e simulation
 
@@ -179,9 +208,10 @@ stanfit files containing the results of the parameter estimation from data of Ge
 stanfit files containing the results of the parameter estimation from simulated data (see `data/simulated_clusters`)
 
 ##### processed
-`results_sim_model_one_processed.csv` summary of the results of the parameter estimation from simulated data (see `data/simulated_clusters`)
+`results_sim_model_one_processed.csv` summary of the results of the parameter estimation from simulated data using model one (see `data/simulation/01_model_one/simulated_clusters`)
+`results_sim_model_five_processed.csv` summary of the results of the parameter estimation from simulated data using model five (see `data/simulation/02_model_five/simulated_clusters`)
 
 ### D.4 plots
-Graphical and tabular representations of data, model and results of simulation study, parameter estimation and posterior predictive check both for Switzerland, Denmark and Germany individually and for all three countries together.
+Graphical and tabular representations of data, model and results of simulation study, parameter estimation, posterior predictive check and goodness of fit check both for Switzerland, Denmark and Germany individually and for all three countries together and parameter estimation for New Zealand.
 
 
