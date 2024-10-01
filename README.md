@@ -53,11 +53,17 @@ All R-scripts covering the processing of data and results.
 * `03_sim_estimate_parameters_model_five_parallel.R` estimation of parameters from simulated data (run in parallel on the high performance computing cluster of the University of Bern, UBELIX)
 
 #### D.1.f parameter estimation
-All R-scripts to estimate parameters from data from Switzerland, Denmark and Germany using the main (model five) or the alternative model (models one, two, three four and six). These files were run in parallel on the high performance computing cluster of the University of Bern, UBELIX.
+All R-scripts to estimate parameters from data from Switzerland, Denmark and Germany using the main (model five) or the alternative models (models one, two, three four and six). These files were run in parallel on the high performance computing cluster of the University of Bern, UBELIX.
 
 #### D.1.g posterior predictive check
+
+(a) model one
 * `01_ppc_model_one_setup.R` setting up the posterior predictive check: define parameter combinations for which clusters of identical sequences shall be simulated
 * `02_ppc_model_one_simulations_parallel.R` simulation of identical sequence clusters (run in parallel on the high performance computing cluster of the University of Bern, UBELIX)
+
+(b) model five
+* `01_ppc_model_five_setup.R` setting up the posterior predictive check: define parameter combinations for which clusters of identical sequences shall be simulated
+* `02_ppc_model_five_simulations_parallel.R` simulation of identical sequence clusters (run in parallel on the high performance computing cluster of the University of Bern, UBELIX)
 
 #### D.1.h create plots
 All R-scripts covering the creation of figures (contained in paper and supplementary material).
@@ -116,7 +122,18 @@ The repository contains the following data files (see folder `data`):
 * `data_r_e_de_processed.csv` estimate of effective reproduction number on daily basis based on number of confirmed cases, filtered to 2021
 * `sequencing_probas_de_2021_months.csv` probability of a confirmed case being sequenced on monthly basis during 2021
 
-#### D.2.d all countries
+#### D.2.d New Zealand
+
+##### raw
+* `df_cluster_by_period_NZ.rds` number of clusters of each size in different periods (April 2020 - July 2021) (obtained from [GitHub CecileTK: size-genetic-clusters](https://github.com/blab/size-genetic-clusters/tree/main/data/ncov_NZ))
+* `df_p_trans_before_mut_with_uncertainty.rds` probability of mutation before transmission for different pathogens (obtained from [GitHub CecileTK: size-genetic-clusters](https://github.com/blab/size-genetic-clusters/tree/main/results/proba_trans_before_mut))
+* `df_prop_sequenced_per_period.rds` probability of a confirmed case being sequenced for each period (obtained from [GitHub CecileTK: size-genetic-clusters](https://github.com/blab/size-genetic-clusters/tree/main/data/ncov_NZ))
+
+##### processed
+* `mutation_probas_sarscov2_omicron.rds` probability of mutation before transmission for Omicron variant of SARS-CoV-2
+* `mutation_probas_sarscov2_pre_omicron.rds` probability of mutation before transmission before Omicron variant of SARS-CoV-2
+
+#### D.2.e multiple countries
 
 ##### covariants
 
@@ -130,7 +147,7 @@ The repository contains the following data files (see folder `data`):
 * `data_parameters_ppc_model_one.csv` all parameter combinations for which identical sequence clusters were simulated during the posterior predictive check
 * `index_parameters_ppc_model_one.txt` auxiliary file needed during the posterior predictive check for the parallel execution of cluster simulation
 
-#### D.2.e simulation
+#### D.2.f simulation
 * `parameters_grid_simulation.csv` all parameter combinations for which identical sequence clusters were simulated during the simulation study
 * `indices_simulation.txt` and `indices_estimation.txt` auxiliary files needed during the simulation study for the parallel execution of cluster simulation, respectively parameter estimation
 * `simulated_clusters` number of simulated clusters of each size for each combination of parameters contained in `parameters_grid_simulation.csv`
