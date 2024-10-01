@@ -204,12 +204,21 @@ stanfit files containing the results of the parameter estimation from data of Ge
 
 #### D.3.e simulation
 
+(a) model one
+
 ##### raw
-stanfit files containing the results of the parameter estimation from simulated data (see `data/simulated_clusters`)
+stanfit files containing the results of the parameter estimation from simulated data using model one (see `data/simulation/01_model_one/simulated_clusters`)
 
 ##### processed
-* `results_sim_model_one_processed.csv` summary of the results of the parameter estimation from simulated data using model one (see `data/simulation/01_model_one/simulated_clusters`)
-* `results_sim_model_five_processed.csv` summary of the results of the parameter estimation from simulated data using model five (see `data/simulation/02_model_five/simulated_clusters`)
+* `results_sim_model_one_processed.csv` summary of the results of the parameter estimation from simulated data using model one
+
+(b) model five
+
+##### raw
+stanfit files containing the results of the parameter estimation from simulated data using model five (see `data/simulation/02_model_five/simulated_clusters`)
+
+##### processed
+* `results_sim_model_five_processed.csv` summary of the results of the parameter estimation from simulated data using model five
 
 ### D.4 plots
 Graphical and tabular representations of data, model and results of simulation study, parameter estimation, posterior predictive check and goodness of fit check both for Switzerland, Denmark and Germany individually and for all three countries together and parameter estimation for New Zealand.
