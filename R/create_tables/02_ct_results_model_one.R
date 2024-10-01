@@ -19,9 +19,9 @@ results_model_one_ch_dk_de_2021_months <- read_csv(file = path_results_model_one
 
 
 # process data ----
-results_model_one_ch_2021_months <- results_model_one_ch_dk_de_2021_months |> filter(country == "Switzerland")
-results_model_one_dk_2021_months <- results_model_one_ch_dk_de_2021_months |> filter(country == "Denmark")
-results_model_one_de_2021_months <- results_model_one_ch_dk_de_2021_months |> filter(country == "Germany")
+results_model_one_ch_2021_months <- results_model_one_ch_dk_de_2021_months %>% filter(country == "Switzerland")
+results_model_one_dk_2021_months <- results_model_one_ch_dk_de_2021_months %>% filter(country == "Denmark")
+results_model_one_de_2021_months <- results_model_one_ch_dk_de_2021_months %>% filter(country == "Germany")
 
 
 
