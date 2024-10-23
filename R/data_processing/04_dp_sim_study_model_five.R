@@ -28,6 +28,12 @@ if (!(file.exists(path_results_sim_processed_model_five_v1)) | do_new_sim) {
   
   for (ii in 1:nrow(data_sim_parameters_grid_model_five)) {
     
+    if (ii %% 30 == 0) {
+      
+      print(ii)
+      
+    }
+    
     if (file.exists(paste0(path_results_sim_raw_model_five, str_pad(ii, n_zeros, pad = "0"), ".rds"))) {
       
       fit_ii <- readRDS(paste0(path_results_sim_raw_model_five, str_pad(ii, n_zeros, pad = "0"), ".rds"))
@@ -99,6 +105,12 @@ if (!(file.exists(path_results_sim_processed_model_five_v2)) | do_new_sim) {
   
   
   for (ii in 1:nrow(results)) {
+    
+    if (ii %% 30 == 0) {
+      
+      print(ii)
+      
+    }
     
     n_divergent_transitions_ii <- 0
     

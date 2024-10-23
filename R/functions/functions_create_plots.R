@@ -2,7 +2,12 @@
 
 
 # define useful functions ----
-create_h_lines <- function(y_major_start, y_major_end, y_major_step, y_minor_start, y_minor_end, y_minor_step) {
+create_h_lines <- function(y_major_start,
+                           y_major_end,
+                           y_major_step,
+                           y_minor_start,
+                           y_minor_end,
+                           y_minor_step) {
   
   list_hlines <- list()
   
@@ -24,7 +29,12 @@ create_h_lines <- function(y_major_start, y_major_end, y_major_step, y_minor_sta
 
 
 
-create_v_lines <- function(x_major_start, x_major_end, x_major_step, x_minor_start, x_minor_end, x_minor_step) {
+create_v_lines <- function(x_major_start,
+                           x_major_end,
+                           x_major_step,
+                           x_minor_start,
+                           x_minor_end,
+                           x_minor_step) {
   
   list_vlines <- list()
   
@@ -51,16 +61,24 @@ data_h_line_one <- tibble(x = c(-0.25, 12.25),
 
 
 
-create_plot_result <- function(data_plot_results, data_plot_other_estimates = NULL, data_estimate, data_lower_cred_int, data_upper_cred_int, plot_color_scale_values, plot_color_scale_labels, scale_y_from, scale_y_to, scale_y_by, add_line_at_one, label_y) {
+create_plot_result <- function(data_plot_results,
+                               data_plot_other_estimates = NULL,
+                               data_estimate,
+                               data_lower_cred_int,
+                               data_upper_cred_int,
+                               plot_color_scale_values,
+                               plot_color_scale_labels,
+                               scale_y_from,
+                               scale_y_to,
+                               scale_y_by,
+                               add_line_at_one,
+                               label_y) {
   
   plot_result <- ggplot() +
     { if (!(is.null(data_plot_other_estimates)))
-      geom_line(data = data_plot_other_estimates,
+      geom_line(data = data_plot_other_estimates %>% filter(x >= 0.1, x <= 11.9),
                 mapping = aes(x = x, y = value, color = estimate_type, group = estimate_type),
                 linewidth = 0.8) } +
-    # { if (!(is.null(data_plot_other_estimates)))
-    #   geom_ribbon(data=data_plot_other_estimates,
-    #               mapping = aes(x = x, ymin = boundary_low, ymax = boundary_high, color = estimate_type, fill = estimate_type), alpha = 0.3)} +
     geom_point(data = data_plot_results,
                mapping = aes(x = month + offset - 0.5, y = data_estimate, color = model),
                shape = 16,
@@ -118,7 +136,29 @@ create_plot_result <- function(data_plot_results, data_plot_other_estimates = NU
 
 
 
-create_plot_result_variants <- function(data_plot_results, data_plot_variants, data_plot_other_estimates = NULL, data_estimate, data_lower_cred_int, data_upper_cred_int, plot_color_scale_values, plot_color_scale_labels, scale_y_from, scale_y_to, scale_y_by, add_line_at_one, label_y) {
+create_plot_result_variants <- function(data_plot_results,
+                                        data_plot_variants,
+                                        data_plot_other_estimates = NULL,
+                                        data_estimate,
+                                        data_lower_cred_int,
+                                        data_upper_cred_int,
+                                        plot_color_scale_values,
+                                        plot_color_scale_labels,
+                                        scale_y_from,
+                                        scale_y_to,
+                                        scale_y_by,
+                                        add_line_at_one,
+                                        label_y) {
+  
+  data_rect_1 <- tibble(xmin = -0.5,
+                        xmax = 0,
+                        ymin = scale_y_from,
+                        ymax = scale_y_to)
+  
+  data_rect_2 <- tibble(xmin = 12,
+                        xmax = 12.5,
+                        ymin = scale_y_from,
+                        ymax = scale_y_to)
   
   plot_result_variants <- ggplot() +
     geom_area(data = data_plot_variants, mapping = aes(x = months_start_time_float, y = scale_y_to, fill = "col4", group = country)) +
@@ -126,17 +166,17 @@ create_plot_result_variants <- function(data_plot_results, data_plot_variants, d
     geom_area(data = data_plot_variants, mapping = aes(x = months_start_time_float, y = scale_y_to*(Alpha + Delta), fill = "col2", group = country)) +
     geom_area(data = data_plot_variants, mapping = aes(x = months_start_time_float, y = scale_y_to*Alpha, fill = "col1", group = country)) +
     scale_fill_manual(name = "Variants:",
-                      values = c("col1" = lighten(colors_variants[4], amount = 0.6),
-                                 "col2" = lighten(colors_variants[3], amount = 0.6),
-                                 "col3" = lighten(colors_variants[2], amount = 0.6),
-                                 "col4" = lighten(colors_variants[1], amount = 0.6)),
+                      values = c("col1" = lighten(colors_variants[4], amount = 0.55),
+                                 "col2" = lighten(colors_variants[3], amount = 0.55),
+                                 "col3" = lighten(colors_variants[2], amount = 0.55),
+                                 "col4" = lighten(colors_variants[1], amount = 0.55)),
                       labels = c("Alpha", "Delta", "Omicron", "Others")) +
-    geom_rect(data = data_plot_variants[1,], mapping = aes(xmin = -0.5, xmax = 0, ymin = scale_y_from, ymax = scale_y_to), fill = "white", color = "white") +
-    geom_rect(data = data_plot_variants[1,], mapping = aes(xmin = 12, xmax = 12.5, ymin = scale_y_from, ymax = scale_y_to), fill = "white", color = "white") +
+    geom_rect(data = data_rect_1, mapping = aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax), fill = "white", color = "white") +
+    geom_rect(data = data_rect_2, mapping = aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax), fill = "white", color = "white") +
     create_v_lines(x_major_start = 0.5, x_major_end = 11.5, x_major_step = 1.0, x_minor_start = 0.0, x_minor_end = 12.0, x_minor_step = 1.0) +
     create_h_lines(y_major_start = scale_y_from, y_major_end = scale_y_to, y_major_step = scale_y_by, y_minor_start = scale_y_from + scale_y_by/2, y_minor_end = scale_y_to - scale_y_by/2, y_minor_step = scale_y_by) +
     { if (!(is.null(data_plot_other_estimates)))
-      geom_line(data = data_plot_other_estimates,
+      geom_line(data = data_plot_other_estimates %>% filter(x >= 0.1, x <= 11.9),
                 mapping = aes(x = x, y = value, color = estimate_type, group = estimate_type),
                 linewidth = 0.8)} +
     geom_point(data = data_plot_results,
@@ -201,11 +241,22 @@ create_plot_result_variants <- function(data_plot_results, data_plot_variants, d
 
 
 
-create_plot_result_multiple_countries <- function(data_plot_results, data_plot_other_estimates = NULL, data_estimate, data_lower_cred_int, data_upper_cred_int, plot_color_scale_values, plot_color_scale_labels, scale_y_from, scale_y_to, scale_y_by, add_line_at_one, label_y) {
+create_plot_result_multiple_countries <- function(data_plot_results,
+                                                  data_plot_other_estimates = NULL,
+                                                  data_estimate,
+                                                  data_lower_cred_int,
+                                                  data_upper_cred_int,
+                                                  plot_color_scale_values,
+                                                  plot_color_scale_labels,
+                                                  scale_y_from,
+                                                  scale_y_to,
+                                                  scale_y_by,
+                                                  add_line_at_one,
+                                                  label_y) {
   
   plot_result <- ggplot() +
     { if (!(is.null(data_plot_other_estimates)))
-      geom_line(data = data_plot_other_estimates,
+      geom_line(data = data_plot_other_estimates %>% filter(x >= 0.1, x <= 11.9),
                 mapping = aes(x = x, y = value, color = estimate_type, group = estimate_type),
                 linewidth = 0.8)} +
     geom_point(data = data_plot_results,
@@ -266,7 +317,33 @@ create_plot_result_multiple_countries <- function(data_plot_results, data_plot_o
 
 
 
-create_plot_result_variants_multiple_countries <- function(data_plot_results, data_plot_variants, data_plot_other_estimates = NULL, data_estimate, data_lower_cred_int, data_upper_cred_int, plot_color_scale_values, plot_color_scale_labels, scale_y_from, scale_y_to, scale_y_by, add_line_at_one, label_y) {
+create_plot_result_variants_multiple_countries <- function(data_plot_results,
+                                                           data_plot_variants,
+                                                           data_plot_other_estimates = NULL,
+                                                           data_estimate,
+                                                           data_lower_cred_int,
+                                                           data_upper_cred_int,
+                                                           plot_color_scale_values,
+                                                           plot_color_scale_labels,
+                                                           scale_y_from,
+                                                           scale_y_to,
+                                                           scale_y_by,
+                                                           add_line_at_one,
+                                                           label_y) {
+  
+  list_countries_plot <- unique(data_plot_results$country)
+  
+  data_rect_1 <- tibble(country = list_countries_plot,
+                        xmin = rep(x = -0.5, times = length(list_countries_plot)),
+                        xmax = rep(x = 0, times = length(list_countries_plot)),
+                        ymin = rep(x = scale_y_from, times = length(list_countries_plot)),
+                        ymax = rep(x = scale_y_to, times = length(list_countries_plot)))
+  
+  data_rect_2 <- tibble(country = list_countries_plot,
+                        xmin = rep(x = 12, times = length(list_countries_plot)),
+                        xmax = rep(x = 12.5, times = length(list_countries_plot)),
+                        ymin = rep(x = scale_y_from, times = length(list_countries_plot)),
+                        ymax = rep(x = scale_y_to, times = length(list_countries_plot)))
   
   plot_result_variants <- ggplot() +
     geom_area(data = data_plot_variants, mapping = aes(x = months_start_time_float, y = scale_y_to, fill = "col4", group = country)) +
@@ -274,17 +351,17 @@ create_plot_result_variants_multiple_countries <- function(data_plot_results, da
     geom_area(data = data_plot_variants, mapping = aes(x = months_start_time_float, y = scale_y_to*(Alpha + Delta), fill = "col2", group = country)) +
     geom_area(data = data_plot_variants, mapping = aes(x = months_start_time_float, y = scale_y_to*Alpha, fill = "col1", group = country)) +
     scale_fill_manual(name = "Variants:",
-                      values = c("col1" = lighten(colors_variants[4], amount = 0.6),
-                                 "col2" = lighten(colors_variants[3], amount = 0.6),
-                                 "col3" = lighten(colors_variants[2], amount = 0.6),
-                                 "col4" = lighten(colors_variants[1], amount = 0.6)),
+                      values = c("col1" = lighten(colors_variants[4], amount = 0.55),
+                                 "col2" = lighten(colors_variants[3], amount = 0.55),
+                                 "col3" = lighten(colors_variants[2], amount = 0.55),
+                                 "col4" = lighten(colors_variants[1], amount = 0.55)),
                       labels = c("Alpha", "Delta", "Omicron", "Others")) +
-    geom_rect(data = data_plot_variants[1,], mapping = aes(xmin = -0.5, xmax = 0, ymin = scale_y_from, ymax = scale_y_to), fill = "white", color = "white") +
-    geom_rect(data = data_plot_variants[1,], mapping = aes(xmin = 12, xmax = 12.5, ymin = scale_y_from, ymax = scale_y_to), fill = "white", color = "white") +
+    geom_rect(data = data_rect_1, mapping = aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax), fill = "white", color = "white") +
+    geom_rect(data = data_rect_2, mapping = aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax), fill = "white", color = "white") +
     create_v_lines(x_major_start = 0.5, x_major_end = 11.5, x_major_step = 1.0, x_minor_start = 0.0, x_minor_end = 12.0, x_minor_step = 1.0) +
     create_h_lines(y_major_start = scale_y_from, y_major_end = scale_y_to, y_major_step = scale_y_by, y_minor_start = scale_y_from + scale_y_by/2, y_minor_end = scale_y_to - scale_y_by/2, y_minor_step = scale_y_by) +
     { if (!(is.null(data_plot_other_estimates)))
-      geom_line(data = data_plot_other_estimates,
+      geom_line(data = data_plot_other_estimates %>% filter(x >= 0.1, x <= 11.9),
                 mapping = aes(x = x, y = value, color = estimate_type, group = estimate_type),
                 linewidth = 0.8)} +
     geom_point(data = data_plot_results,

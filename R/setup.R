@@ -3,11 +3,11 @@
 # install packages ----
 
 # install stable version of estRodis package
-# devtools::install_github("mwohlfender/estRodis@v0.0.1-zeta", ref = "main", force = TRUE)
+# devtools::install_github("mwohlfender/estRodis@v1.0.0", ref = "main", force = TRUE)
 
 # install newest version of estRodis package
 # devtools::install_github("mwohlfender/estRodis", ref = "main", force = TRUE)
-# devtools::install_github(repo = "mwohlfender/estRodis", ref = "revisions", force = TRUE)
+
 
 
 # load libraries ----
@@ -166,6 +166,7 @@ path_sequencing_probas_de_2021_months <- "data/germany/processed/sequencing_prob
 path_sequencing_probas_nz_periods <- "data/new_zealand/raw/df_prop_sequenced_per_period.rds"
 
 
+
 # paths where results of parameter estimations of model 1 (prior distribution for testing probability) are stored
 path_results_model_one_ch <- "results/switzerland/parameter_estimations/01_model_one/parameter_estimates_model_one_switzerland_"
 path_results_model_one_dk <- "results/denmark/parameter_estimations/01_model_one/parameter_estimates_model_one_denmark_"
@@ -290,4 +291,12 @@ path_results_sim_processed_model_one_v2 <- "results/simulation/01_model_one/proc
 path_results_sim_processed_model_five_v1 <- "results/simulation/02_model_five/processed/results_sim_model_five_processed_v1.csv"
 path_results_sim_processed_model_five_v2 <- "results/simulation/02_model_five/processed/results_sim_model_five_processed_v2.csv"
 
+
+# path of plots contained in paper
+path_plots_paper_eps <- "plots/paper/eps/"
+path_plots_paper_pdf <- "plots/paper/pdf/"
+path_plots_paper_tiff <- "plots/paper/tiff/"
+
+# path of plots of branching process
+path_plots_branching_process <- "plots/branching_process/"
 

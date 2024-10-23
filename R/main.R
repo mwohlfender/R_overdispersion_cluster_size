@@ -3,6 +3,7 @@
 # remark: set values of `do_new_load_data`, `do_new_sim`, `do_new_ppc` in `setup.R`
 # to define which parts of the data processing shall be done from scratch again
 
+# files that need not to be run to create all results presented in the supplementary material are commented out
 
 
 # data processing ----
@@ -74,68 +75,68 @@ source("R/create_plots/cp_03_results_data_multiple_countries.R", echo = FALSE)
 # create plots of prior distributions
 source("R/create_plots/cp_04_prior_distributions.R", echo = FALSE)
 
-# # create plots of results of parameter estimations with model one for Switzerland, Denmark and Germany individually
-# source("R/create_plots/cp_05_results_model_one_individual_countries.R", echo = FALSE)
-
-# create plots of results of parameter estimations with model one for Switzerland, Denmark and Germany together
-source("R/create_plots/cp_06_results_model_one_multiple_countries.R", echo = FALSE)
-
-# # create plots of results of parameter estimations with model two for Switzerland, Denmark and Germany individually
-# source("R/create_plots/cp_07_results_model_two_individual_countries.R", echo = FALSE)
-
-# create plots of results of parameter estimations with model two for Switzerland, Denmark and Germany together
-source("R/create_plots/cp_08_results_model_two_multiple_countries.R", echo = FALSE)
-
-# create plots of results of parameter estimations with model three for Switzerland, Denmark and Germany together
-source("R/create_plots/cp_09_results_model_three_multiple_countries.R", echo = FALSE)
-
-# create plots of results of parameter estimations with model four for Switzerland, Denmark and Germany together
-source("R/create_plots/cp_10_results_model_four_multiple_countries.R", echo = FALSE)
-
-# create plots of results of parameter estimations with model five for Switzerland, Denmark and Germany together
-source("R/create_plots/cp_11_results_model_five_multiple_countries.R", echo = FALSE)
-
-# create plots of results of parameter estimations with model six for Switzerland, Denmark and Germany together
-source("R/create_plots/cp_12_results_model_six_multiple_countries.R", echo = FALSE)
-
-# # create plots of results of parameter estimations with models one and two for Switzerland, Denmark and Germany individually
-# source("R/create_plots/cp_13_results_models_one_two_individual_countries.R", echo = FALSE)
-
-# # create plots of results of parameter estimations with models one and two for Switzerland, Denmark and Germany together
-# source("R/create_plots/cp_14_results_models_one_two_multiple_countries.R", echo = FALSE)
-
-# # create plots of results of parameter estimations with models one and three for Switzerland, Denmark and Germany together
-# source("R/create_plots/cp_15_results_models_one_three_multiple_countries.R", echo = FALSE)
-
-# # create plots of results of parameter estimations with models one and four for Switzerland, Denmark and Germany together
-# source("R/create_plots/cp_16_results_models_one_four_multiple_countries.R", echo = FALSE)
-
-# # create plots of results of parameter estimations with models one and five for Switzerland, Denmark and Germany together
-# source("R/create_plots/cp_17_results_models_one_five_multiple_countries.R", echo = FALSE)
-
-# # create plots of results of parameter estimations with models one and six for Switzerland, Denmark and Germany together
-# source("R/create_plots/cp_18_results_models_one_six_multiple_countries.R", echo = FALSE)
-
-# create plots of results of parameter estimations with models five and one for Switzerland, Denmark and Germany together
-source("R/create_plots/cp_19_results_models_five_one_multiple_countries.R", echo = FALSE)
-
-# create plots of results of parameter estimations with models five and two for Switzerland, Denmark and Germany together
-source("R/create_plots/cp_20_results_models_five_two_multiple_countries.R", echo = FALSE)
-
-# create plots of results of parameter estimations with models five and three for Switzerland, Denmark and Germany together
-source("R/create_plots/cp_21_results_models_five_three_multiple_countries.R", echo = FALSE)
-
-# create plots of results of parameter estimations with models five and four for Switzerland, Denmark and Germany together
-source("R/create_plots/cp_22_results_models_five_four_multiple_countries.R", echo = FALSE)
-
-# create plots of results of parameter estimations with models five and six for Switzerland, Denmark and Germany together
-source("R/create_plots/cp_23_results_models_five_six_multiple_countries.R", echo = FALSE)
-
 # # create plots of results of simulation study of model one
-# source("R/create_plots/cp_24_sim_results_model_one.R", echo = FALSE)
+# source("R/create_plots/cp_05_sim_results_model_one.R", echo = FALSE)
 
 # create plots of results of simulation study of model five
-source("R/create_plots/cp_25_sim_results_model_five.R", echo = FALSE)
+source("R/create_plots/cp_06_sim_results_model_five.R", echo = FALSE)
+
+# # create plots of results of parameter estimations with model one for Switzerland, Denmark and Germany individually
+# source("R/create_plots/cp_07_results_model_one_individual_countries.R", echo = FALSE)
+
+# create plots of results of parameter estimations with model one for Switzerland, Denmark and Germany together
+source("R/create_plots/cp_08_results_model_one_multiple_countries.R", echo = FALSE)
+
+# # create plots of results of parameter estimations with model two for Switzerland, Denmark and Germany individually
+# source("R/create_plots/cp_09_results_model_two_individual_countries.R", echo = FALSE)
+
+# create plots of results of parameter estimations with model two for Switzerland, Denmark and Germany together
+source("R/create_plots/cp_10_results_model_two_multiple_countries.R", echo = FALSE)
+
+# create plots of results of parameter estimations with model three for Switzerland, Denmark and Germany together
+source("R/create_plots/cp_11_results_model_three_multiple_countries.R", echo = FALSE)
+
+# create plots of results of parameter estimations with model four for Switzerland, Denmark and Germany together
+source("R/create_plots/cp_12_results_model_four_multiple_countries.R", echo = FALSE)
+
+# create plots of results of parameter estimations with model five for Switzerland, Denmark and Germany together
+source("R/create_plots/cp_13_results_model_five_multiple_countries.R", echo = FALSE)
+
+# create plots of results of parameter estimations with model six for Switzerland, Denmark and Germany together
+source("R/create_plots/cp_14_results_model_six_multiple_countries.R", echo = FALSE)
+
+# # create plots of results of parameter estimations with models one and two for Switzerland, Denmark and Germany individually
+# source("R/create_plots/cp_15_results_models_one_two_individual_countries.R", echo = FALSE)
+
+# # create plots of results of parameter estimations with models one and two for Switzerland, Denmark and Germany together
+# source("R/create_plots/cp_16_results_models_one_two_multiple_countries.R", echo = FALSE)
+
+# # create plots of results of parameter estimations with models one and three for Switzerland, Denmark and Germany together
+# source("R/create_plots/cp_17_results_models_one_three_multiple_countries.R", echo = FALSE)
+
+# # create plots of results of parameter estimations with models one and four for Switzerland, Denmark and Germany together
+# source("R/create_plots/cp_18_results_models_one_four_multiple_countries.R", echo = FALSE)
+
+# # create plots of results of parameter estimations with models one and five for Switzerland, Denmark and Germany together
+# source("R/create_plots/cp_19_results_models_one_five_multiple_countries.R", echo = FALSE)
+
+# # create plots of results of parameter estimations with models one and six for Switzerland, Denmark and Germany together
+# source("R/create_plots/cp_20_results_models_one_six_multiple_countries.R", echo = FALSE)
+
+# create plots of results of parameter estimations with models five and one for Switzerland, Denmark and Germany together
+source("R/create_plots/cp_21_results_models_five_one_multiple_countries.R", echo = FALSE)
+
+# create plots of results of parameter estimations with models five and two for Switzerland, Denmark and Germany together
+source("R/create_plots/cp_22_results_models_five_two_multiple_countries.R", echo = FALSE)
+
+# create plots of results of parameter estimations with models five and three for Switzerland, Denmark and Germany together
+source("R/create_plots/cp_23_results_models_five_three_multiple_countries.R", echo = FALSE)
+
+# create plots of results of parameter estimations with models five and four for Switzerland, Denmark and Germany together
+source("R/create_plots/cp_24_results_models_five_four_multiple_countries.R", echo = FALSE)
+
+# create plots of results of parameter estimations with models five and six for Switzerland, Denmark and Germany together
+source("R/create_plots/cp_25_results_models_five_six_multiple_countries.R", echo = FALSE)
 
 # # create plots of results of posterior predictive check of model one
 # source("R/create_plots/cp_26_ppc_results_model_one.R", echo = FALSE)
@@ -177,4 +178,6 @@ source("R/create_tables/06_ct_results_model_five.R", echo = FALSE)
 # create overview tables of results of parameter estimations with model six for Switzerland, Denmark and Germany individually
 source("R/create_tables/07_ct_results_model_six.R", echo = FALSE)
 
+# create overview tables of results of parameter estimations with model four for New Zealand
+source("R/create_tables/08_ct_results_model_four_nz.R", echo = FALSE)
 

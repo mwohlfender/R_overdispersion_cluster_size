@@ -5,7 +5,7 @@
 n_repetitions <- 10
 
 # define parameters for simulations
-R_range <- c(0.7, 0.9, 1.1, 1.3)
+R_range <- c(0.7, 0.9, 1.1, 1.3, 1.5)
 k_range <- c(0.1, 0.3, 0.5)
 mutation_proba_range <- c(0.281)
 testing_proba_range <- c(0.1, 0.2, 0.4, 0.6, 0.8)
@@ -38,6 +38,5 @@ write_csv(x = parameters_grid, file = path_data_sim_parameters_grid_model_five)
 # write list of indices to txt file
 write.table(1:nrow(parameters_grid), file = path_data_sim_indices_model_five, sep = "", append = FALSE, row.names = FALSE, col.names = FALSE)
 write.table(1:nrow(parameters_grid), file = path_param_est_indices_model_five, sep = "", append = FALSE, row.names = FALSE, col.names = FALSE)
-
 
 
