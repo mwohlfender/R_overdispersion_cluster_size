@@ -439,27 +439,27 @@ ggsave(filename = "plots/multiple_countries/model_five/figure_param_estimates_mo
        width = 7.3, height = 9.0, units = c("in"),
        bg = "white")
 
-ggsave(filename = "plots/paper/figure_param_estimates_model_five.pdf",
+ggsave(filename = "plots/paper/pdf/figure_param_estimates_model_five.pdf",
        plot = plot_grid_R_k_testing_proba_model_five,
        device = "pdf",
        width = 7.3, height = 9.0, units = c("in"),
        bg = "white")
 
-ggsave(filename = paste0("plots/paper/tiff/figure_param_estimates_model_five_300dpi.tiff"),
+ggsave(filename = "plots/paper/tiff/figure_param_estimates_model_five_300dpi.tiff",
        plot = plot_grid_R_k_testing_proba_model_five,
        device = "tiff",
        width = 7.3, height = 9, units = "in",
        dpi = 300,
        bg = "white")
 
-ggsave(filename = paste0("plots/paper/tiff/figure_param_estimates_model_five_400dpi.tiff"),
+ggsave(filename = "plots/paper/tiff/figure_param_estimates_model_five_400dpi.tiff",
        plot = plot_grid_R_k_testing_proba_model_five,
        device = "tiff",
        width = 7.3, height = 9, units = "in",
        dpi = 400,
        bg = "white")
 
-ggsave(filename = paste0("plots/paper/eps/figure_param_estimates_model_five.eps"),
+ggsave(filename = "plots/paper/eps/figure_param_estimates_model_five.eps",
        plot = plot_grid_R_k_testing_proba_model_five,
        device = "eps",
        width = 7.3, height = 9, units = "in",

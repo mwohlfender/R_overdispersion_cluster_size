@@ -97,7 +97,7 @@ plot_R_g <- ggraph(graph=graph_R_g, layout="tree") +
   guides(colour=guide_legend(order=1),
          edge_linetype=guide_legend(order=2))
 
-ggsave(filename = paste0(path_plots_branching_process, "01_plot_R_g.pdf"),
+ggsave(filename = paste0("plots/branching_process/01_plot_R_g.pdf"),
        plot = plot_R_g,
        device = "pdf",
        width = image_width_in, height = image_width_in/ratio_width_height, units = "in",
@@ -156,7 +156,7 @@ plot_R_g_mutation <- ggraph(graph=graph_R_g, layout="tree") +
          edge_linetype=guide_legend(order=2),
          shape=guide_legend(order=3, override.aes=list(size=5.5)))
 
-ggsave(filename = paste0(path_plots_branching_process, "02_plot_R_g_mutation.pdf"),
+ggsave(filename = paste0("plots/branching_process/02_plot_R_g_mutation.pdf"),
        plot = plot_R_g_mutation,
        device = "pdf",
        width = image_width_in, height = image_width_in/ratio_width_height, units = "in",
@@ -205,7 +205,7 @@ plot_R_g_detection <- ggraph(graph=graph_R_g, layout="tree") +
          edge_linetype=guide_legend(order=2),
          alpha=guide_legend(order=3))
 
-ggsave(filename = paste0(path_plots_branching_process, "03_plot_R_g_detection.pdf"),
+ggsave(filename = paste0("plots/branching_process/03_plot_R_g_detection.pdf"),
        plot = plot_R_g_detection,
        device = "pdf",
        width = image_width_in, height = image_width_in/ratio_width_height, units = "in",
@@ -271,7 +271,7 @@ plot_R_g_mutation_detection <- ggraph(graph=graph_R_g, layout="tree") +
          shape=guide_legend(order=3, override.aes=list(size=5.5, stroke=1.25)),
          alpha=guide_legend(order=4, override.aes=list(shape=c(19, 1), size=5.5, stroke=1.25)))
 
-ggsave(filename = paste0(path_plots_branching_process, "04_plot_R_g_mutation_detection.pdf"),
+ggsave(filename = paste0("plots/branching_process/04_plot_R_g_mutation_detection.pdf"),
        plot = plot_R_g_mutation_detection,
        device = "pdf",
        width = image_width_in, height = image_width_in/ratio_width_height, units = "in",
@@ -342,7 +342,7 @@ plot_R_g_mutation_detection_cluster_size <- ggraph(graph=graph_R_g, layout="tree
          shape=guide_legend(order=3, override.aes=list(size=5.5, stroke=1.25)),
          alpha=guide_legend(order=4, override.aes=list(shape=c(19, 1), size=5.5, stroke=1.25)))
 
-ggsave(filename = paste0(path_plots_branching_process, "05_plot_R_g_mutation_detection_cluster_size.pdf"),
+ggsave(filename = paste0("plots/branching_process/05_plot_R_g_mutation_detection_cluster_size.pdf"),
        plot = plot_R_g_mutation_detection_cluster_size,
        device = "pdf",
        width = image_width_in, height = image_width_in/ratio_width_height, units = "in",
@@ -395,33 +395,33 @@ plot_R_g_detection_cluster_size <- ggraph(graph=graph_R_g, layout="tree") +
   guides(colour=guide_legend(order=1),
          edge_linetype=guide_legend(order=2))
 
-ggsave(filename = paste0(path_plots_branching_process, "06_plot_R_g_detection_cluster_size.pdf"),
+ggsave(filename = "plots/branching_process/06_plot_R_g_detection_cluster_size.pdf",
        plot = plot_R_g_detection_cluster_size,
        device = "pdf",
        width = image_width_in, height = image_width_in/ratio_width_height, units = "in",
        bg = "white")
 
-ggsave(filename = paste0(path_plots_paper_pdf, "figure_cluster_simulation_revised.pdf"),
+ggsave(filename = "plots/paper/pdf/figure_cluster_simulation_revised.pdf",
        plot = plot_R_g_detection_cluster_size,
        device = "pdf",
        width = image_width_in, height = image_width_in/ratio_width_height, units = "in",
        bg = "white")
 
-ggsave(filename = paste0(path_plots_paper_tiff, "figure_cluster_simulation_revised_300dpi.tiff"),
+ggsave(filename = "plots/paper/tiff/figure_cluster_simulation_revised_300dpi.tiff",
        plot = plot_R_g_detection_cluster_size,
        device = "tiff",
        width = image_width_in, height = image_width_in/ratio_width_height, units = "in",
        dpi = 300,
        bg = "white")
 
-ggsave(filename = paste0(path_plots_paper_tiff, "figure_cluster_simulation_revised_400dpi.tiff"),
+ggsave(filename = "plots/paper/tiff/figure_cluster_simulation_revised_400dpi.tiff",
        plot = plot_R_g_detection_cluster_size,
        device = "tiff",
        width = image_width_in, height = image_width_in/ratio_width_height, units = "in",
        dpi = 400,
        bg = "white")
 
-ggsave(filename = paste0(path_plots_paper_eps, "figure_cluster_simulation_revised.eps"),
+ggsave(filename = "plots/paper/eps/figure_cluster_simulation_revised.eps",
        plot = plot_R_g_detection_cluster_size,
        device = "eps",
        width = image_width_in, height = image_width_in/ratio_width_height, units = "in",

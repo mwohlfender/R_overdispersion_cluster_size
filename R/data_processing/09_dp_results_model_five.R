@@ -556,701 +556,701 @@ results_model_five_checks_dk <- results_model_five_checks_ch_dk_de %>% filter(co
 results_model_five_checks_de <- results_model_five_checks_ch_dk_de %>% filter(country == "Germany")
 
 
-# 
-# # determine over all mean estimate of Re, k, the number of yearly mutations, the testing probability,
-# # the mutation probability and the detection probability ----
-# 
-# # Re
-# results_model_five_ch_2021_01_R_samples <- rstan::extract(results_model_five_ch_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_ch_2021_02_R_samples <- rstan::extract(results_model_five_ch_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_ch_2021_03_R_samples <- rstan::extract(results_model_five_ch_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_ch_2021_04_R_samples <- rstan::extract(results_model_five_ch_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_ch_2021_05_R_samples <- rstan::extract(results_model_five_ch_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_ch_2021_06_R_samples <- rstan::extract(results_model_five_ch_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_ch_2021_07_R_samples <- rstan::extract(results_model_five_ch_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_ch_2021_08_R_samples <- rstan::extract(results_model_five_ch_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_ch_2021_09_R_samples <- rstan::extract(results_model_five_ch_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_ch_2021_10_R_samples <- rstan::extract(results_model_five_ch_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_ch_2021_11_R_samples <- rstan::extract(results_model_five_ch_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_ch_2021_12_R_samples <- rstan::extract(results_model_five_ch_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# 
-# results_model_five_ch_2021_R_samples <- c(results_model_five_ch_2021_01_R_samples,
-#                                          results_model_five_ch_2021_02_R_samples,
-#                                          results_model_five_ch_2021_03_R_samples,
-#                                          results_model_five_ch_2021_04_R_samples,
-#                                          results_model_five_ch_2021_05_R_samples,
-#                                          results_model_five_ch_2021_06_R_samples,
-#                                          results_model_five_ch_2021_07_R_samples,
-#                                          results_model_five_ch_2021_08_R_samples,
-#                                          results_model_five_ch_2021_09_R_samples,
-#                                          results_model_five_ch_2021_10_R_samples,
-#                                          results_model_five_ch_2021_11_R_samples,
-#                                          results_model_five_ch_2021_12_R_samples)
-# 
-# summary_results_model_five_2021_R_over_all <- tibble(country = "Switzerland",
-#                                                     mean = round(mean(results_model_five_ch_2021_R_samples), 2),
-#                                                     quantile_025 = round(quantile(x = results_model_five_ch_2021_R_samples, probs = 0.025), 2),
-#                                                     quantile_975 = round(quantile(x = results_model_five_ch_2021_R_samples, probs = 0.975), 2))
-# 
-# results_model_five_dk_2021_01_R_samples <- rstan::extract(results_model_five_dk_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_dk_2021_02_R_samples <- rstan::extract(results_model_five_dk_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_dk_2021_03_R_samples <- rstan::extract(results_model_five_dk_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_dk_2021_04_R_samples <- rstan::extract(results_model_five_dk_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_dk_2021_05_R_samples <- rstan::extract(results_model_five_dk_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_dk_2021_06_R_samples <- rstan::extract(results_model_five_dk_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_dk_2021_07_R_samples <- rstan::extract(results_model_five_dk_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_dk_2021_08_R_samples <- rstan::extract(results_model_five_dk_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_dk_2021_09_R_samples <- rstan::extract(results_model_five_dk_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_dk_2021_10_R_samples <- rstan::extract(results_model_five_dk_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_dk_2021_11_R_samples <- rstan::extract(results_model_five_dk_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_dk_2021_12_R_samples <- rstan::extract(results_model_five_dk_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# 
-# results_model_five_dk_2021_R_samples <- c(results_model_five_dk_2021_01_R_samples,
-#                                          results_model_five_dk_2021_02_R_samples,
-#                                          results_model_five_dk_2021_03_R_samples,
-#                                          results_model_five_dk_2021_04_R_samples,
-#                                          results_model_five_dk_2021_05_R_samples,
-#                                          results_model_five_dk_2021_06_R_samples,
-#                                          results_model_five_dk_2021_07_R_samples,
-#                                          results_model_five_dk_2021_08_R_samples,
-#                                          results_model_five_dk_2021_09_R_samples,
-#                                          results_model_five_dk_2021_10_R_samples,
-#                                          results_model_five_dk_2021_11_R_samples,
-#                                          results_model_five_dk_2021_12_R_samples)
-# 
-# summary_results_model_five_2021_R_over_all <- bind_rows(summary_results_model_five_2021_R_over_all,
-#                                                        tibble(country = "Denmark",
-#                                                               mean = round(mean(results_model_five_dk_2021_R_samples), 2),
-#                                                               quantile_025 = round(quantile(x = results_model_five_dk_2021_R_samples, probs = 0.025), 2),
-#                                                               quantile_975 = round(quantile(x = results_model_five_dk_2021_R_samples, probs = 0.975), 2)))
-# 
-# results_model_five_de_2021_01_R_samples <- rstan::extract(results_model_five_de_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_de_2021_02_R_samples <- rstan::extract(results_model_five_de_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_de_2021_03_R_samples <- rstan::extract(results_model_five_de_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_de_2021_04_R_samples <- rstan::extract(results_model_five_de_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_de_2021_05_R_samples <- rstan::extract(results_model_five_de_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_de_2021_06_R_samples <- rstan::extract(results_model_five_de_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_de_2021_07_R_samples <- rstan::extract(results_model_five_de_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_de_2021_08_R_samples <- rstan::extract(results_model_five_de_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_de_2021_09_R_samples <- rstan::extract(results_model_five_de_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_de_2021_10_R_samples <- rstan::extract(results_model_five_de_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_de_2021_11_R_samples <- rstan::extract(results_model_five_de_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# results_model_five_de_2021_12_R_samples <- rstan::extract(results_model_five_de_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
-# 
-# results_model_five_de_2021_R_samples <- c(results_model_five_de_2021_01_R_samples,
-#                                          results_model_five_de_2021_02_R_samples,
-#                                          results_model_five_de_2021_03_R_samples,
-#                                          results_model_five_de_2021_04_R_samples,
-#                                          results_model_five_de_2021_05_R_samples,
-#                                          results_model_five_de_2021_06_R_samples,
-#                                          results_model_five_de_2021_07_R_samples,
-#                                          results_model_five_de_2021_08_R_samples,
-#                                          results_model_five_de_2021_09_R_samples,
-#                                          results_model_five_de_2021_10_R_samples,
-#                                          results_model_five_de_2021_11_R_samples,
-#                                          results_model_five_de_2021_12_R_samples)
-# 
-# summary_results_model_five_2021_R_over_all <- bind_rows(summary_results_model_five_2021_R_over_all,
-#                                                        tibble(country = "Germany",
-#                                                               mean = round(mean(results_model_five_de_2021_R_samples), 2),
-#                                                               quantile_025 = round(quantile(x = results_model_five_de_2021_R_samples, probs = 0.025), 2),
-#                                                               quantile_975 = round(quantile(x = results_model_five_de_2021_R_samples, probs = 0.975), 2)))
-# 
-# 
-# # k
-# results_model_five_ch_2021_01_k_samples <- rstan::extract(results_model_five_ch_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_ch_2021_02_k_samples <- rstan::extract(results_model_five_ch_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_ch_2021_03_k_samples <- rstan::extract(results_model_five_ch_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_ch_2021_04_k_samples <- rstan::extract(results_model_five_ch_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_ch_2021_05_k_samples <- rstan::extract(results_model_five_ch_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_ch_2021_06_k_samples <- rstan::extract(results_model_five_ch_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_ch_2021_07_k_samples <- rstan::extract(results_model_five_ch_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_ch_2021_08_k_samples <- rstan::extract(results_model_five_ch_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_ch_2021_09_k_samples <- rstan::extract(results_model_five_ch_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_ch_2021_10_k_samples <- rstan::extract(results_model_five_ch_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_ch_2021_11_k_samples <- rstan::extract(results_model_five_ch_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_ch_2021_12_k_samples <- rstan::extract(results_model_five_ch_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# 
-# results_model_five_ch_2021_k_samples <- c(results_model_five_ch_2021_01_k_samples,
-#                                          results_model_five_ch_2021_02_k_samples,
-#                                          results_model_five_ch_2021_03_k_samples,
-#                                          results_model_five_ch_2021_04_k_samples,
-#                                          results_model_five_ch_2021_05_k_samples,
-#                                          results_model_five_ch_2021_06_k_samples,
-#                                          results_model_five_ch_2021_07_k_samples,
-#                                          results_model_five_ch_2021_08_k_samples,
-#                                          results_model_five_ch_2021_09_k_samples,
-#                                          results_model_five_ch_2021_10_k_samples,
-#                                          results_model_five_ch_2021_11_k_samples,
-#                                          results_model_five_ch_2021_12_k_samples)
-# 
-# summary_results_model_five_2021_k_over_all <- tibble(country = "Switzerland",
-#                                                     mean = round(mean(results_model_five_ch_2021_k_samples), 2),
-#                                                     quantile_025 = round(quantile(x = results_model_five_ch_2021_k_samples, probs = 0.025), 2),
-#                                                     quantile_975 = round(quantile(x = results_model_five_ch_2021_k_samples, probs = 0.975), 2))
-# 
-# results_model_five_dk_2021_01_k_samples <- rstan::extract(results_model_five_dk_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_dk_2021_02_k_samples <- rstan::extract(results_model_five_dk_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_dk_2021_03_k_samples <- rstan::extract(results_model_five_dk_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_dk_2021_04_k_samples <- rstan::extract(results_model_five_dk_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_dk_2021_05_k_samples <- rstan::extract(results_model_five_dk_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_dk_2021_06_k_samples <- rstan::extract(results_model_five_dk_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_dk_2021_07_k_samples <- rstan::extract(results_model_five_dk_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_dk_2021_08_k_samples <- rstan::extract(results_model_five_dk_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_dk_2021_09_k_samples <- rstan::extract(results_model_five_dk_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_dk_2021_10_k_samples <- rstan::extract(results_model_five_dk_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_dk_2021_11_k_samples <- rstan::extract(results_model_five_dk_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_dk_2021_12_k_samples <- rstan::extract(results_model_five_dk_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# 
-# results_model_five_dk_2021_k_samples <- c(results_model_five_dk_2021_01_k_samples,
-#                                          results_model_five_dk_2021_02_k_samples,
-#                                          results_model_five_dk_2021_03_k_samples,
-#                                          results_model_five_dk_2021_04_k_samples,
-#                                          results_model_five_dk_2021_05_k_samples,
-#                                          results_model_five_dk_2021_06_k_samples,
-#                                          results_model_five_dk_2021_07_k_samples,
-#                                          results_model_five_dk_2021_08_k_samples,
-#                                          results_model_five_dk_2021_09_k_samples,
-#                                          results_model_five_dk_2021_10_k_samples,
-#                                          results_model_five_dk_2021_11_k_samples,
-#                                          results_model_five_dk_2021_12_k_samples)
-# 
-# summary_results_model_five_2021_k_over_all <- bind_rows(summary_results_model_five_2021_k_over_all,
-#                                                        tibble(country = "Denmark",
-#                                                               mean = round(mean(results_model_five_dk_2021_k_samples), 2),
-#                                                               quantile_025 = round(quantile(x = results_model_five_dk_2021_k_samples, probs = 0.025), 2),
-#                                                               quantile_975 = round(quantile(x = results_model_five_dk_2021_k_samples, probs = 0.975), 2)))
-# 
-# results_model_five_de_2021_01_k_samples <- rstan::extract(results_model_five_de_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_de_2021_02_k_samples <- rstan::extract(results_model_five_de_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_de_2021_03_k_samples <- rstan::extract(results_model_five_de_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_de_2021_04_k_samples <- rstan::extract(results_model_five_de_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_de_2021_05_k_samples <- rstan::extract(results_model_five_de_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_de_2021_06_k_samples <- rstan::extract(results_model_five_de_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_de_2021_07_k_samples <- rstan::extract(results_model_five_de_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_de_2021_08_k_samples <- rstan::extract(results_model_five_de_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_de_2021_09_k_samples <- rstan::extract(results_model_five_de_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_de_2021_10_k_samples <- rstan::extract(results_model_five_de_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_de_2021_11_k_samples <- rstan::extract(results_model_five_de_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# results_model_five_de_2021_12_k_samples <- rstan::extract(results_model_five_de_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
-# 
-# results_model_five_de_2021_k_samples <- c(results_model_five_de_2021_01_k_samples,
-#                                          results_model_five_de_2021_02_k_samples,
-#                                          results_model_five_de_2021_03_k_samples,
-#                                          results_model_five_de_2021_04_k_samples,
-#                                          results_model_five_de_2021_05_k_samples,
-#                                          results_model_five_de_2021_06_k_samples,
-#                                          results_model_five_de_2021_07_k_samples,
-#                                          results_model_five_de_2021_08_k_samples,
-#                                          results_model_five_de_2021_09_k_samples,
-#                                          results_model_five_de_2021_10_k_samples,
-#                                          results_model_five_de_2021_11_k_samples,
-#                                          results_model_five_de_2021_12_k_samples)
-# 
-# summary_results_model_five_2021_k_over_all <- bind_rows(summary_results_model_five_2021_k_over_all,
-#                                                        tibble(country = "Germany",
-#                                                               mean = round(mean(results_model_five_de_2021_k_samples), 2),
-#                                                               quantile_025 = round(quantile(x = results_model_five_de_2021_k_samples, probs = 0.025), 2),
-#                                                               quantile_975 = round(quantile(x = results_model_five_de_2021_k_samples, probs = 0.975), 2)))
-# 
-# 
-# # mutation probability
-# results_model_five_ch_2021_01_mutation_proba_samples <- rstan::extract(results_model_five_ch_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_ch_2021_02_mutation_proba_samples <- rstan::extract(results_model_five_ch_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_ch_2021_03_mutation_proba_samples <- rstan::extract(results_model_five_ch_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_ch_2021_04_mutation_proba_samples <- rstan::extract(results_model_five_ch_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_ch_2021_05_mutation_proba_samples <- rstan::extract(results_model_five_ch_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_ch_2021_06_mutation_proba_samples <- rstan::extract(results_model_five_ch_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_ch_2021_07_mutation_proba_samples <- rstan::extract(results_model_five_ch_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_ch_2021_08_mutation_proba_samples <- rstan::extract(results_model_five_ch_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_ch_2021_09_mutation_proba_samples <- rstan::extract(results_model_five_ch_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_ch_2021_10_mutation_proba_samples <- rstan::extract(results_model_five_ch_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_ch_2021_11_mutation_proba_samples <- rstan::extract(results_model_five_ch_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_ch_2021_12_mutation_proba_samples <- rstan::extract(results_model_five_ch_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# 
-# results_model_five_ch_2021_mutation_proba_samples <- c(results_model_five_ch_2021_01_mutation_proba_samples,
-#                                                        results_model_five_ch_2021_02_mutation_proba_samples,
-#                                                        results_model_five_ch_2021_03_mutation_proba_samples,
-#                                                        results_model_five_ch_2021_04_mutation_proba_samples,
-#                                                        results_model_five_ch_2021_05_mutation_proba_samples,
-#                                                        results_model_five_ch_2021_06_mutation_proba_samples,
-#                                                        results_model_five_ch_2021_07_mutation_proba_samples,
-#                                                        results_model_five_ch_2021_08_mutation_proba_samples,
-#                                                        results_model_five_ch_2021_09_mutation_proba_samples,
-#                                                        results_model_five_ch_2021_10_mutation_proba_samples,
-#                                                        results_model_five_ch_2021_11_mutation_proba_samples,
-#                                                        results_model_five_ch_2021_12_mutation_proba_samples)
-# 
-# summary_results_model_five_2021_mutation_proba_over_all <- tibble(country = "Switzerland",
-#                                                                   mean = round(mean(results_model_five_ch_2021_mutation_proba_samples), 2),
-#                                                                   quantile_025 = round(quantile(x = results_model_five_ch_2021_mutation_proba_samples, probs = 0.025), 2),
-#                                                                   quantile_975 = round(quantile(x = results_model_five_ch_2021_mutation_proba_samples, probs = 0.975), 2))
-# 
-# results_model_five_dk_2021_01_mutation_proba_samples <- rstan::extract(results_model_five_dk_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_dk_2021_02_mutation_proba_samples <- rstan::extract(results_model_five_dk_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_dk_2021_03_mutation_proba_samples <- rstan::extract(results_model_five_dk_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_dk_2021_04_mutation_proba_samples <- rstan::extract(results_model_five_dk_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_dk_2021_05_mutation_proba_samples <- rstan::extract(results_model_five_dk_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_dk_2021_06_mutation_proba_samples <- rstan::extract(results_model_five_dk_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_dk_2021_07_mutation_proba_samples <- rstan::extract(results_model_five_dk_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_dk_2021_08_mutation_proba_samples <- rstan::extract(results_model_five_dk_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_dk_2021_09_mutation_proba_samples <- rstan::extract(results_model_five_dk_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_dk_2021_10_mutation_proba_samples <- rstan::extract(results_model_five_dk_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_dk_2021_11_mutation_proba_samples <- rstan::extract(results_model_five_dk_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_dk_2021_12_mutation_proba_samples <- rstan::extract(results_model_five_dk_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# 
-# results_model_five_dk_2021_mutation_proba_samples <- c(results_model_five_dk_2021_01_mutation_proba_samples,
-#                                                        results_model_five_dk_2021_02_mutation_proba_samples,
-#                                                        results_model_five_dk_2021_03_mutation_proba_samples,
-#                                                        results_model_five_dk_2021_04_mutation_proba_samples,
-#                                                        results_model_five_dk_2021_05_mutation_proba_samples,
-#                                                        results_model_five_dk_2021_06_mutation_proba_samples,
-#                                                        results_model_five_dk_2021_07_mutation_proba_samples,
-#                                                        results_model_five_dk_2021_08_mutation_proba_samples,
-#                                                        results_model_five_dk_2021_09_mutation_proba_samples,
-#                                                        results_model_five_dk_2021_10_mutation_proba_samples,
-#                                                        results_model_five_dk_2021_11_mutation_proba_samples,
-#                                                        results_model_five_dk_2021_12_mutation_proba_samples)
-# 
-# summary_results_model_five_2021_mutation_proba_over_all <- bind_rows(summary_results_model_five_2021_mutation_proba_over_all,
-#                                                                      tibble(country = "Denmark",
-#                                                                             mean = round(mean(results_model_five_dk_2021_mutation_proba_samples), 2),
-#                                                                             quantile_025 = round(quantile(x = results_model_five_dk_2021_mutation_proba_samples, probs = 0.025), 2),
-#                                                                             quantile_975 = round(quantile(x = results_model_five_dk_2021_mutation_proba_samples, probs = 0.975), 2)))
-# 
-# results_model_five_de_2021_01_mutation_proba_samples <- rstan::extract(results_model_five_de_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_de_2021_02_mutation_proba_samples <- rstan::extract(results_model_five_de_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_de_2021_03_mutation_proba_samples <- rstan::extract(results_model_five_de_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_de_2021_04_mutation_proba_samples <- rstan::extract(results_model_five_de_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_de_2021_05_mutation_proba_samples <- rstan::extract(results_model_five_de_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_de_2021_06_mutation_proba_samples <- rstan::extract(results_model_five_de_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_de_2021_07_mutation_proba_samples <- rstan::extract(results_model_five_de_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_de_2021_08_mutation_proba_samples <- rstan::extract(results_model_five_de_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_de_2021_09_mutation_proba_samples <- rstan::extract(results_model_five_de_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_de_2021_10_mutation_proba_samples <- rstan::extract(results_model_five_de_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_de_2021_11_mutation_proba_samples <- rstan::extract(results_model_five_de_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# results_model_five_de_2021_12_mutation_proba_samples <- rstan::extract(results_model_five_de_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
-# 
-# results_model_five_de_2021_mutation_proba_samples <- c(results_model_five_de_2021_01_mutation_proba_samples,
-#                                                        results_model_five_de_2021_02_mutation_proba_samples,
-#                                                        results_model_five_de_2021_03_mutation_proba_samples,
-#                                                        results_model_five_de_2021_04_mutation_proba_samples,
-#                                                        results_model_five_de_2021_05_mutation_proba_samples,
-#                                                        results_model_five_de_2021_06_mutation_proba_samples,
-#                                                        results_model_five_de_2021_07_mutation_proba_samples,
-#                                                        results_model_five_de_2021_08_mutation_proba_samples,
-#                                                        results_model_five_de_2021_09_mutation_proba_samples,
-#                                                        results_model_five_de_2021_10_mutation_proba_samples,
-#                                                        results_model_five_de_2021_11_mutation_proba_samples,
-#                                                        results_model_five_de_2021_12_mutation_proba_samples)
-# 
-# summary_results_model_five_2021_mutation_proba_over_all <- bind_rows(summary_results_model_five_2021_mutation_proba_over_all,
-#                                                                      tibble(country = "Germany",
-#                                                                             mean = round(mean(results_model_five_de_2021_mutation_proba_samples), 2),
-#                                                                             quantile_025 = round(quantile(x = results_model_five_de_2021_mutation_proba_samples, probs = 0.025), 2),
-#                                                                             quantile_975 = round(quantile(x = results_model_five_de_2021_mutation_proba_samples, probs = 0.975), 2)))
-# 
-# 
-# # testing probability
-# results_model_five_ch_2021_01_testing_proba_samples <- rstan::extract(results_model_five_ch_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_ch_2021_02_testing_proba_samples <- rstan::extract(results_model_five_ch_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_ch_2021_03_testing_proba_samples <- rstan::extract(results_model_five_ch_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_ch_2021_04_testing_proba_samples <- rstan::extract(results_model_five_ch_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_ch_2021_05_testing_proba_samples <- rstan::extract(results_model_five_ch_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_ch_2021_06_testing_proba_samples <- rstan::extract(results_model_five_ch_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_ch_2021_07_testing_proba_samples <- rstan::extract(results_model_five_ch_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_ch_2021_08_testing_proba_samples <- rstan::extract(results_model_five_ch_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_ch_2021_09_testing_proba_samples <- rstan::extract(results_model_five_ch_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_ch_2021_10_testing_proba_samples <- rstan::extract(results_model_five_ch_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_ch_2021_11_testing_proba_samples <- rstan::extract(results_model_five_ch_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_ch_2021_12_testing_proba_samples <- rstan::extract(results_model_five_ch_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# 
-# results_model_five_ch_2021_testing_proba_samples <- c(results_model_five_ch_2021_01_testing_proba_samples,
-#                                                      results_model_five_ch_2021_02_testing_proba_samples,
-#                                                      results_model_five_ch_2021_03_testing_proba_samples,
-#                                                      results_model_five_ch_2021_04_testing_proba_samples,
-#                                                      results_model_five_ch_2021_05_testing_proba_samples,
-#                                                      results_model_five_ch_2021_06_testing_proba_samples,
-#                                                      results_model_five_ch_2021_07_testing_proba_samples,
-#                                                      results_model_five_ch_2021_08_testing_proba_samples,
-#                                                      results_model_five_ch_2021_09_testing_proba_samples,
-#                                                      results_model_five_ch_2021_10_testing_proba_samples,
-#                                                      results_model_five_ch_2021_11_testing_proba_samples,
-#                                                      results_model_five_ch_2021_12_testing_proba_samples)
-# 
-# summary_results_model_five_2021_testing_proba_over_all <- tibble(country = "Switzerland",
-#                                                                 mean = round(mean(results_model_five_ch_2021_testing_proba_samples), 2),
-#                                                                 quantile_025 = round(quantile(x = results_model_five_ch_2021_testing_proba_samples, probs = 0.025), 2),
-#                                                                 quantile_975 = round(quantile(x = results_model_five_ch_2021_testing_proba_samples, probs = 0.975), 2))
-# 
-# results_model_five_dk_2021_01_testing_proba_samples <- rstan::extract(results_model_five_dk_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_dk_2021_02_testing_proba_samples <- rstan::extract(results_model_five_dk_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_dk_2021_03_testing_proba_samples <- rstan::extract(results_model_five_dk_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_dk_2021_04_testing_proba_samples <- rstan::extract(results_model_five_dk_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_dk_2021_05_testing_proba_samples <- rstan::extract(results_model_five_dk_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_dk_2021_06_testing_proba_samples <- rstan::extract(results_model_five_dk_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_dk_2021_07_testing_proba_samples <- rstan::extract(results_model_five_dk_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_dk_2021_08_testing_proba_samples <- rstan::extract(results_model_five_dk_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_dk_2021_09_testing_proba_samples <- rstan::extract(results_model_five_dk_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_dk_2021_10_testing_proba_samples <- rstan::extract(results_model_five_dk_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_dk_2021_11_testing_proba_samples <- rstan::extract(results_model_five_dk_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_dk_2021_12_testing_proba_samples <- rstan::extract(results_model_five_dk_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# 
-# results_model_five_dk_2021_testing_proba_samples <- c(results_model_five_dk_2021_01_testing_proba_samples,
-#                                                      results_model_five_dk_2021_02_testing_proba_samples,
-#                                                      results_model_five_dk_2021_03_testing_proba_samples,
-#                                                      results_model_five_dk_2021_04_testing_proba_samples,
-#                                                      results_model_five_dk_2021_05_testing_proba_samples,
-#                                                      results_model_five_dk_2021_06_testing_proba_samples,
-#                                                      results_model_five_dk_2021_07_testing_proba_samples,
-#                                                      results_model_five_dk_2021_08_testing_proba_samples,
-#                                                      results_model_five_dk_2021_09_testing_proba_samples,
-#                                                      results_model_five_dk_2021_10_testing_proba_samples,
-#                                                      results_model_five_dk_2021_11_testing_proba_samples,
-#                                                      results_model_five_dk_2021_12_testing_proba_samples)
-# 
-# summary_results_model_five_2021_testing_proba_over_all <- bind_rows(summary_results_model_five_2021_testing_proba_over_all,
-#                                                                    tibble(country = "Denmark",
-#                                                                           mean = round(mean(results_model_five_dk_2021_testing_proba_samples), 2),
-#                                                                           quantile_025 = round(quantile(x = results_model_five_dk_2021_testing_proba_samples, probs = 0.025), 2),
-#                                                                           quantile_975 = round(quantile(x = results_model_five_dk_2021_testing_proba_samples, probs = 0.975), 2)))
-# 
-# results_model_five_de_2021_01_testing_proba_samples <- rstan::extract(results_model_five_de_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_de_2021_02_testing_proba_samples <- rstan::extract(results_model_five_de_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_de_2021_03_testing_proba_samples <- rstan::extract(results_model_five_de_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_de_2021_04_testing_proba_samples <- rstan::extract(results_model_five_de_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_de_2021_05_testing_proba_samples <- rstan::extract(results_model_five_de_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_de_2021_06_testing_proba_samples <- rstan::extract(results_model_five_de_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_de_2021_07_testing_proba_samples <- rstan::extract(results_model_five_de_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_de_2021_08_testing_proba_samples <- rstan::extract(results_model_five_de_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_de_2021_09_testing_proba_samples <- rstan::extract(results_model_five_de_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_de_2021_10_testing_proba_samples <- rstan::extract(results_model_five_de_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_de_2021_11_testing_proba_samples <- rstan::extract(results_model_five_de_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# results_model_five_de_2021_12_testing_proba_samples <- rstan::extract(results_model_five_de_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
-# 
-# results_model_five_de_2021_testing_proba_samples <- c(results_model_five_de_2021_01_testing_proba_samples,
-#                                                      results_model_five_de_2021_02_testing_proba_samples,
-#                                                      results_model_five_de_2021_03_testing_proba_samples,
-#                                                      results_model_five_de_2021_04_testing_proba_samples,
-#                                                      results_model_five_de_2021_05_testing_proba_samples,
-#                                                      results_model_five_de_2021_06_testing_proba_samples,
-#                                                      results_model_five_de_2021_07_testing_proba_samples,
-#                                                      results_model_five_de_2021_08_testing_proba_samples,
-#                                                      results_model_five_de_2021_09_testing_proba_samples,
-#                                                      results_model_five_de_2021_10_testing_proba_samples,
-#                                                      results_model_five_de_2021_11_testing_proba_samples,
-#                                                      results_model_five_de_2021_12_testing_proba_samples)
-# 
-# summary_results_model_five_2021_testing_proba_over_all <- bind_rows(summary_results_model_five_2021_testing_proba_over_all,
-#                                                                    tibble(country = "Germany",
-#                                                                           mean = round(mean(results_model_five_de_2021_testing_proba_samples), 2),
-#                                                                           quantile_025 = round(quantile(x = results_model_five_de_2021_testing_proba_samples, probs = 0.025), 2),
-#                                                                           quantile_975 = round(quantile(x = results_model_five_de_2021_testing_proba_samples, probs = 0.975), 2)))
-# 
-# 
-# # detection probability
-# results_model_five_ch_2021_01_detection_proba_samples <- rstan::extract(results_model_five_ch_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_ch_2021_02_detection_proba_samples <- rstan::extract(results_model_five_ch_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_ch_2021_03_detection_proba_samples <- rstan::extract(results_model_five_ch_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_ch_2021_04_detection_proba_samples <- rstan::extract(results_model_five_ch_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_ch_2021_05_detection_proba_samples <- rstan::extract(results_model_five_ch_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_ch_2021_06_detection_proba_samples <- rstan::extract(results_model_five_ch_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_ch_2021_07_detection_proba_samples <- rstan::extract(results_model_five_ch_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_ch_2021_08_detection_proba_samples <- rstan::extract(results_model_five_ch_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_ch_2021_09_detection_proba_samples <- rstan::extract(results_model_five_ch_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_ch_2021_10_detection_proba_samples <- rstan::extract(results_model_five_ch_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_ch_2021_11_detection_proba_samples <- rstan::extract(results_model_five_ch_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_ch_2021_12_detection_proba_samples <- rstan::extract(results_model_five_ch_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# 
-# results_model_five_ch_2021_detection_proba_samples <- c(results_model_five_ch_2021_01_detection_proba_samples,
-#                                                        results_model_five_ch_2021_02_detection_proba_samples,
-#                                                        results_model_five_ch_2021_03_detection_proba_samples,
-#                                                        results_model_five_ch_2021_04_detection_proba_samples,
-#                                                        results_model_five_ch_2021_05_detection_proba_samples,
-#                                                        results_model_five_ch_2021_06_detection_proba_samples,
-#                                                        results_model_five_ch_2021_07_detection_proba_samples,
-#                                                        results_model_five_ch_2021_08_detection_proba_samples,
-#                                                        results_model_five_ch_2021_09_detection_proba_samples,
-#                                                        results_model_five_ch_2021_10_detection_proba_samples,
-#                                                        results_model_five_ch_2021_11_detection_proba_samples,
-#                                                        results_model_five_ch_2021_12_detection_proba_samples)
-# 
-# summary_results_model_five_2021_detection_proba_over_all <- tibble(country = "Switzerland",
-#                                                                   mean = round(mean(results_model_five_ch_2021_detection_proba_samples), 2),
-#                                                                   quantile_025 = round(quantile(x = results_model_five_ch_2021_detection_proba_samples, probs = 0.025), 2),
-#                                                                   quantile_975 = round(quantile(x = results_model_five_ch_2021_detection_proba_samples, probs = 0.975), 2))
-# 
-# results_model_five_dk_2021_01_detection_proba_samples <- rstan::extract(results_model_five_dk_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_dk_2021_02_detection_proba_samples <- rstan::extract(results_model_five_dk_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_dk_2021_03_detection_proba_samples <- rstan::extract(results_model_five_dk_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_dk_2021_04_detection_proba_samples <- rstan::extract(results_model_five_dk_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_dk_2021_05_detection_proba_samples <- rstan::extract(results_model_five_dk_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_dk_2021_06_detection_proba_samples <- rstan::extract(results_model_five_dk_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_dk_2021_07_detection_proba_samples <- rstan::extract(results_model_five_dk_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_dk_2021_08_detection_proba_samples <- rstan::extract(results_model_five_dk_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_dk_2021_09_detection_proba_samples <- rstan::extract(results_model_five_dk_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_dk_2021_10_detection_proba_samples <- rstan::extract(results_model_five_dk_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_dk_2021_11_detection_proba_samples <- rstan::extract(results_model_five_dk_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_dk_2021_12_detection_proba_samples <- rstan::extract(results_model_five_dk_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# 
-# results_model_five_dk_2021_detection_proba_samples <- c(results_model_five_dk_2021_01_detection_proba_samples,
-#                                                        results_model_five_dk_2021_02_detection_proba_samples,
-#                                                        results_model_five_dk_2021_03_detection_proba_samples,
-#                                                        results_model_five_dk_2021_04_detection_proba_samples,
-#                                                        results_model_five_dk_2021_05_detection_proba_samples,
-#                                                        results_model_five_dk_2021_06_detection_proba_samples,
-#                                                        results_model_five_dk_2021_07_detection_proba_samples,
-#                                                        results_model_five_dk_2021_08_detection_proba_samples,
-#                                                        results_model_five_dk_2021_09_detection_proba_samples,
-#                                                        results_model_five_dk_2021_10_detection_proba_samples,
-#                                                        results_model_five_dk_2021_11_detection_proba_samples,
-#                                                        results_model_five_dk_2021_12_detection_proba_samples)
-# 
-# summary_results_model_five_2021_detection_proba_over_all <- bind_rows(summary_results_model_five_2021_detection_proba_over_all,
-#                                                                      tibble(country = "Denmark",
-#                                                                             mean = round(mean(results_model_five_dk_2021_detection_proba_samples), 2),
-#                                                                             quantile_025 = round(quantile(x = results_model_five_dk_2021_detection_proba_samples, probs = 0.025), 2),
-#                                                                             quantile_975 = round(quantile(x = results_model_five_dk_2021_detection_proba_samples, probs = 0.975), 2)))
-# 
-# results_model_five_de_2021_01_detection_proba_samples <- rstan::extract(results_model_five_de_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_de_2021_02_detection_proba_samples <- rstan::extract(results_model_five_de_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_de_2021_03_detection_proba_samples <- rstan::extract(results_model_five_de_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_de_2021_04_detection_proba_samples <- rstan::extract(results_model_five_de_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_de_2021_05_detection_proba_samples <- rstan::extract(results_model_five_de_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_de_2021_06_detection_proba_samples <- rstan::extract(results_model_five_de_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_de_2021_07_detection_proba_samples <- rstan::extract(results_model_five_de_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_de_2021_08_detection_proba_samples <- rstan::extract(results_model_five_de_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_de_2021_09_detection_proba_samples <- rstan::extract(results_model_five_de_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_de_2021_10_detection_proba_samples <- rstan::extract(results_model_five_de_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_de_2021_11_detection_proba_samples <- rstan::extract(results_model_five_de_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# results_model_five_de_2021_12_detection_proba_samples <- rstan::extract(results_model_five_de_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
-# 
-# results_model_five_de_2021_detection_proba_samples <- c(results_model_five_de_2021_01_detection_proba_samples,
-#                                                        results_model_five_de_2021_02_detection_proba_samples,
-#                                                        results_model_five_de_2021_03_detection_proba_samples,
-#                                                        results_model_five_de_2021_04_detection_proba_samples,
-#                                                        results_model_five_de_2021_05_detection_proba_samples,
-#                                                        results_model_five_de_2021_06_detection_proba_samples,
-#                                                        results_model_five_de_2021_07_detection_proba_samples,
-#                                                        results_model_five_de_2021_08_detection_proba_samples,
-#                                                        results_model_five_de_2021_09_detection_proba_samples,
-#                                                        results_model_five_de_2021_10_detection_proba_samples,
-#                                                        results_model_five_de_2021_11_detection_proba_samples,
-#                                                        results_model_five_de_2021_12_detection_proba_samples)
-# 
-# summary_results_model_five_2021_detection_proba_over_all <- bind_rows(summary_results_model_five_2021_detection_proba_over_all,
-#                                                                      tibble(country = "Germany",
-#                                                                             mean = round(mean(results_model_five_de_2021_detection_proba_samples), 2),
-#                                                                             quantile_025 = round(quantile(x = results_model_five_de_2021_detection_proba_samples, probs = 0.025), 2),
-#                                                                             quantile_975 = round(quantile(x = results_model_five_de_2021_detection_proba_samples, probs = 0.975), 2)))
-# 
-# 
-# 
-# # have a look at the range of estimates of Re, k, the number of yearly mutations, the testing probability,
-# # the mutation probability and the detection probability ----
-# 
-# # Re
-# Re_estimate_model_five_ch_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(R_estimate))
-# Re_estimate_model_five_dk_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(R_estimate))
-# Re_estimate_model_five_de_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(R_estimate))
-# 
-# Re_estimate_model_five_ch_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(R_estimate))
-# Re_estimate_model_five_dk_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(R_estimate))
-# Re_estimate_model_five_de_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(R_estimate))
-# 
-# Re_n_na_Rhat_model_five_2021_ch <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(R_Rhat)))
-# Re_n_na_Rhat_model_five_2021_dk <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(R_Rhat)))
-# Re_n_na_Rhat_model_five_2021_de <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(R_Rhat)))
-# 
-# Re_min_Rhat_model_five_2021_ch <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(R_Rhat), na.rm = TRUE)
-# Re_min_Rhat_model_five_2021_dk <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(R_Rhat), na.rm = TRUE)
-# Re_min_Rhat_model_five_2021_de <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(R_Rhat), na.rm = TRUE)
-# 
-# Re_max_Rhat_model_five_2021_ch <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(R_Rhat), na.rm = TRUE)
-# Re_max_Rhat_model_five_2021_dk <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(R_Rhat), na.rm = TRUE)
-# Re_max_Rhat_model_five_2021_de <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(R_Rhat), na.rm = TRUE)
-# 
-# summary_results_model_five_2021_R_months <- tibble(country = c("Switzerland", "Denmark", "Germany"),
-#                                                   min_month = c(Re_estimate_model_five_ch_2021_min, Re_estimate_model_five_dk_2021_min, Re_estimate_model_five_de_2021_min),
-#                                                   max_month = c(Re_estimate_model_five_ch_2021_max, Re_estimate_model_five_dk_2021_max, Re_estimate_model_five_de_2021_max),
-#                                                   n_na_R_Rhat = c(Re_n_na_Rhat_model_five_2021_ch, Re_n_na_Rhat_model_five_2021_dk, Re_n_na_Rhat_model_five_2021_de),
-#                                                   min_R_Rhat = c(Re_min_Rhat_model_five_2021_ch, Re_min_Rhat_model_five_2021_dk, Re_min_Rhat_model_five_2021_de),
-#                                                   max_R_Rhat = c(Re_max_Rhat_model_five_2021_ch, Re_max_Rhat_model_five_2021_dk, Re_max_Rhat_model_five_2021_de))
-# 
-# summary_results_model_five_2021_R <- summary_results_model_five_2021_R_over_all %>%
-#   full_join(summary_results_model_five_2021_R_months, by = "country")
-# 
-# 
-# # k
-# k_estimate_model_five_ch_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(k_estimate))
-# k_estimate_model_five_dk_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(k_estimate))
-# k_estimate_model_five_de_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(k_estimate))
-# 
-# k_estimate_model_five_ch_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(k_estimate))
-# k_estimate_model_five_dk_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(k_estimate))
-# k_estimate_model_five_de_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(k_estimate))
-# 
-# k_n_na_Rhat_model_five_2021_ch <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(k_Rhat)))
-# k_n_na_Rhat_model_five_2021_dk <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(k_Rhat)))
-# k_n_na_Rhat_model_five_2021_de <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(k_Rhat)))
-# 
-# k_min_Rhat_model_five_2021_ch <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(k_Rhat), na.rm = TRUE)
-# k_min_Rhat_model_five_2021_dk <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(k_Rhat), na.rm = TRUE)
-# k_min_Rhat_model_five_2021_de <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(k_Rhat), na.rm = TRUE)
-# 
-# k_max_Rhat_model_five_2021_ch <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(k_Rhat), na.rm = TRUE)
-# k_max_Rhat_model_five_2021_dk <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(k_Rhat), na.rm = TRUE)
-# k_max_Rhat_model_five_2021_de <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(k_Rhat), na.rm = TRUE)
-# 
-# summary_results_model_five_2021_k_months <- tibble(country = c("Switzerland", "Denmark", "Germany"),
-#                                                   min_month = c(k_estimate_model_five_ch_2021_min, k_estimate_model_five_dk_2021_min, k_estimate_model_five_de_2021_min),
-#                                                   max_month = c(k_estimate_model_five_ch_2021_max, k_estimate_model_five_dk_2021_max, k_estimate_model_five_de_2021_max),
-#                                                   n_na_k_Rhat = c(k_n_na_Rhat_model_five_2021_ch, k_n_na_Rhat_model_five_2021_dk, k_n_na_Rhat_model_five_2021_de),
-#                                                   min_k_Rhat = c(k_min_Rhat_model_five_2021_ch, k_min_Rhat_model_five_2021_dk, k_min_Rhat_model_five_2021_de),
-#                                                   max_k_Rhat = c(k_max_Rhat_model_five_2021_ch, k_max_Rhat_model_five_2021_dk, k_max_Rhat_model_five_2021_de))
-# 
-# summary_results_model_five_2021_k <- summary_results_model_five_2021_k_over_all %>%
-#   full_join(summary_results_model_five_2021_k_months, by = "country")
-# 
-# 
-# # mutation probability
-# mutation_proba_estimate_model_five_ch_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(mutation_proba_estimate))
-# mutation_proba_estimate_model_five_dk_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(mutation_proba_estimate))
-# mutation_proba_estimate_model_five_de_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(mutation_proba_estimate))
-# 
-# mutation_proba_estimate_model_five_ch_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(mutation_proba_estimate))
-# mutation_proba_estimate_model_five_dk_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(mutation_proba_estimate))
-# mutation_proba_estimate_model_five_de_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(mutation_proba_estimate))
-# 
-# mutation_proba_n_na_Rhat_model_five_2021_ch <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(mutation_proba_Rhat)))
-# mutation_proba_n_na_Rhat_model_five_2021_dk <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(mutation_proba_Rhat)))
-# mutation_proba_n_na_Rhat_model_five_2021_de <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(mutation_proba_Rhat)))
-# 
-# mutation_proba_min_Rhat_model_five_2021_ch <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(mutation_proba_Rhat), na.rm = TRUE)
-# mutation_proba_min_Rhat_model_five_2021_dk <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(mutation_proba_Rhat), na.rm = TRUE)
-# mutation_proba_min_Rhat_model_five_2021_de <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(mutation_proba_Rhat), na.rm = TRUE)
-# 
-# mutation_proba_max_Rhat_model_five_2021_ch <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(mutation_proba_Rhat), na.rm = TRUE)
-# mutation_proba_max_Rhat_model_five_2021_dk <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(mutation_proba_Rhat), na.rm = TRUE)
-# mutation_proba_max_Rhat_model_five_2021_de <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(mutation_proba_Rhat), na.rm = TRUE)
-# 
-# summary_results_model_five_2021_mutation_proba_months <- tibble(country = c("Switzerland", "Denmark", "Germany"),
-#                                                                 min_month = c(mutation_proba_estimate_model_five_ch_2021_min,
-#                                                                               mutation_proba_estimate_model_five_dk_2021_min,
-#                                                                               mutation_proba_estimate_model_five_de_2021_min),
-#                                                                 max_month = c(mutation_proba_estimate_model_five_ch_2021_max,
-#                                                                               mutation_proba_estimate_model_five_dk_2021_max,
-#                                                                               mutation_proba_estimate_model_five_de_2021_max),
-#                                                                 n_na_mutation_proba_Rhat = c(mutation_proba_n_na_Rhat_model_five_2021_ch,
-#                                                                                              mutation_proba_n_na_Rhat_model_five_2021_dk,
-#                                                                                              mutation_proba_n_na_Rhat_model_five_2021_de),
-#                                                                 min_mutation_proba_Rhat = c(mutation_proba_min_Rhat_model_five_2021_ch,
-#                                                                                             mutation_proba_min_Rhat_model_five_2021_dk,
-#                                                                                             mutation_proba_min_Rhat_model_five_2021_de),
-#                                                                 max_mutation_proba_Rhat = c(mutation_proba_max_Rhat_model_five_2021_ch,
-#                                                                                             mutation_proba_max_Rhat_model_five_2021_dk,
-#                                                                                             mutation_proba_max_Rhat_model_five_2021_de))
-# 
-# summary_results_model_five_2021_mutation_proba <- summary_results_model_five_2021_mutation_proba_over_all %>%
-#   full_join(summary_results_model_five_2021_mutation_proba_months, by = "country")
-# 
-# 
-# # testing probability
-# testing_proba_estimate_model_five_ch_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(testing_proba_estimate))
-# testing_proba_estimate_model_five_dk_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(testing_proba_estimate))
-# testing_proba_estimate_model_five_de_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(testing_proba_estimate))
-# 
-# testing_proba_estimate_model_five_ch_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(testing_proba_estimate))
-# testing_proba_estimate_model_five_dk_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(testing_proba_estimate))
-# testing_proba_estimate_model_five_de_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(testing_proba_estimate))
-# 
-# testing_proba_n_na_Rhat_model_five_2021_ch <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(testing_proba_Rhat)))
-# testing_proba_n_na_Rhat_model_five_2021_dk <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(testing_proba_Rhat)))
-# testing_proba_n_na_Rhat_model_five_2021_de <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(testing_proba_Rhat)))
-# 
-# testing_proba_min_Rhat_model_five_2021_ch <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(testing_proba_Rhat), na.rm = TRUE)
-# testing_proba_min_Rhat_model_five_2021_dk <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(testing_proba_Rhat), na.rm = TRUE)
-# testing_proba_min_Rhat_model_five_2021_de <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(testing_proba_Rhat), na.rm = TRUE)
-# 
-# testing_proba_max_Rhat_model_five_2021_ch <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(testing_proba_Rhat), na.rm = TRUE)
-# testing_proba_max_Rhat_model_five_2021_dk <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(testing_proba_Rhat), na.rm = TRUE)
-# testing_proba_max_Rhat_model_five_2021_de <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(testing_proba_Rhat), na.rm = TRUE)
-# 
-# summary_results_model_five_2021_testing_proba_months <- tibble(country = c("Switzerland", "Denmark", "Germany"),
-#                                                               min_month = c(testing_proba_estimate_model_five_ch_2021_min,
-#                                                                             testing_proba_estimate_model_five_dk_2021_min,
-#                                                                             testing_proba_estimate_model_five_de_2021_min),
-#                                                               max_month = c(testing_proba_estimate_model_five_ch_2021_max,
-#                                                                             testing_proba_estimate_model_five_dk_2021_max,
-#                                                                             testing_proba_estimate_model_five_de_2021_max),
-#                                                               n_na_testing_proba_Rhat = c(testing_proba_n_na_Rhat_model_five_2021_ch,
-#                                                                                           testing_proba_n_na_Rhat_model_five_2021_dk,
-#                                                                                           testing_proba_n_na_Rhat_model_five_2021_de),
-#                                                               min_testing_proba_Rhat = c(testing_proba_min_Rhat_model_five_2021_ch,
-#                                                                                          testing_proba_min_Rhat_model_five_2021_dk,
-#                                                                                          testing_proba_min_Rhat_model_five_2021_de),
-#                                                               max_testing_proba_Rhat = c(testing_proba_max_Rhat_model_five_2021_ch,
-#                                                                                          testing_proba_max_Rhat_model_five_2021_dk,
-#                                                                                          testing_proba_max_Rhat_model_five_2021_de))
-# 
-# summary_results_model_five_2021_testing_proba <- summary_results_model_five_2021_testing_proba_over_all %>%
-#   full_join(summary_results_model_five_2021_testing_proba_months, by = "country")
-# 
-# 
-# # detection probability
-# detection_proba_estimate_model_five_ch_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(detection_proba_estimate))
-# detection_proba_estimate_model_five_dk_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(detection_proba_estimate))
-# detection_proba_estimate_model_five_de_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(detection_proba_estimate))
-# 
-# detection_proba_estimate_model_five_ch_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(detection_proba_estimate))
-# detection_proba_estimate_model_five_dk_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(detection_proba_estimate))
-# detection_proba_estimate_model_five_de_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(detection_proba_estimate))
-# 
-# detection_proba_n_na_Rhat_model_five_2021_ch <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(detection_proba_Rhat)))
-# detection_proba_n_na_Rhat_model_five_2021_dk <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(detection_proba_Rhat)))
-# detection_proba_n_na_Rhat_model_five_2021_de <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(detection_proba_Rhat)))
-# 
-# detection_proba_min_Rhat_model_five_2021_ch <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(detection_proba_Rhat), na.rm = TRUE)
-# detection_proba_min_Rhat_model_five_2021_dk <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(detection_proba_Rhat), na.rm = TRUE)
-# detection_proba_min_Rhat_model_five_2021_de <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(detection_proba_Rhat), na.rm = TRUE)
-# 
-# detection_proba_max_Rhat_model_five_2021_ch <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(detection_proba_Rhat), na.rm = TRUE)
-# detection_proba_max_Rhat_model_five_2021_dk <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(detection_proba_Rhat), na.rm = TRUE)
-# detection_proba_max_Rhat_model_five_2021_de <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(detection_proba_Rhat), na.rm = TRUE)
-# 
-# summary_results_model_five_2021_detection_proba_months <- tibble(country = c("Switzerland", "Denmark", "Germany"),
-#                                                                 min_month = c(detection_proba_estimate_model_five_ch_2021_min,
-#                                                                               detection_proba_estimate_model_five_dk_2021_min,
-#                                                                               detection_proba_estimate_model_five_de_2021_min),
-#                                                                 max_month = c(detection_proba_estimate_model_five_ch_2021_max,
-#                                                                               detection_proba_estimate_model_five_dk_2021_max,
-#                                                                               detection_proba_estimate_model_five_de_2021_max),
-#                                                                 n_na_detection_proba_Rhat = c(detection_proba_n_na_Rhat_model_five_2021_ch,
-#                                                                                               detection_proba_n_na_Rhat_model_five_2021_dk,
-#                                                                                               detection_proba_n_na_Rhat_model_five_2021_de),
-#                                                                 min_detection_proba_Rhat = c(detection_proba_min_Rhat_model_five_2021_ch,
-#                                                                                              detection_proba_min_Rhat_model_five_2021_dk,
-#                                                                                              detection_proba_min_Rhat_model_five_2021_de),
-#                                                                 max_detection_proba_Rhat = c(detection_proba_max_Rhat_model_five_2021_ch,
-#                                                                                              detection_proba_max_Rhat_model_five_2021_dk,
-#                                                                                              detection_proba_max_Rhat_model_five_2021_de))
-# 
-# summary_results_model_five_2021_detection_proba <- summary_results_model_five_2021_detection_proba_over_all %>%
-#   full_join(summary_results_model_five_2021_detection_proba_months, by = "country")
-# 
-# 
-# 
-# # print summaries ----
-# print(results_model_five_checks_ch)
-# print(results_model_five_checks_dk)
-# print(results_model_five_checks_de)
-# 
-# print(summary_results_model_five_2021_R)
-# print(summary_results_model_five_2021_k)
-# print(summary_results_model_five_2021_mutation_proba)
-# print(summary_results_model_five_2021_testing_proba)
-# print(summary_results_model_five_2021_detection_proba)
-# 
+
+# determine over all mean estimate of Re, k, the number of yearly mutations, the testing probability,
+# the mutation probability and the detection probability ----
+
+# Re
+results_model_five_ch_2021_01_R_samples <- rstan::extract(results_model_five_ch_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_ch_2021_02_R_samples <- rstan::extract(results_model_five_ch_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_ch_2021_03_R_samples <- rstan::extract(results_model_five_ch_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_ch_2021_04_R_samples <- rstan::extract(results_model_five_ch_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_ch_2021_05_R_samples <- rstan::extract(results_model_five_ch_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_ch_2021_06_R_samples <- rstan::extract(results_model_five_ch_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_ch_2021_07_R_samples <- rstan::extract(results_model_five_ch_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_ch_2021_08_R_samples <- rstan::extract(results_model_five_ch_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_ch_2021_09_R_samples <- rstan::extract(results_model_five_ch_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_ch_2021_10_R_samples <- rstan::extract(results_model_five_ch_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_ch_2021_11_R_samples <- rstan::extract(results_model_five_ch_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_ch_2021_12_R_samples <- rstan::extract(results_model_five_ch_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+
+results_model_five_ch_2021_R_samples <- c(results_model_five_ch_2021_01_R_samples,
+                                         results_model_five_ch_2021_02_R_samples,
+                                         results_model_five_ch_2021_03_R_samples,
+                                         results_model_five_ch_2021_04_R_samples,
+                                         results_model_five_ch_2021_05_R_samples,
+                                         results_model_five_ch_2021_06_R_samples,
+                                         results_model_five_ch_2021_07_R_samples,
+                                         results_model_five_ch_2021_08_R_samples,
+                                         results_model_five_ch_2021_09_R_samples,
+                                         results_model_five_ch_2021_10_R_samples,
+                                         results_model_five_ch_2021_11_R_samples,
+                                         results_model_five_ch_2021_12_R_samples)
+
+summary_results_model_five_2021_R_over_all <- tibble(country = "Switzerland",
+                                                    mean = round(mean(results_model_five_ch_2021_R_samples), 2),
+                                                    quantile_025 = round(quantile(x = results_model_five_ch_2021_R_samples, probs = 0.025), 2),
+                                                    quantile_975 = round(quantile(x = results_model_five_ch_2021_R_samples, probs = 0.975), 2))
+
+results_model_five_dk_2021_01_R_samples <- rstan::extract(results_model_five_dk_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_dk_2021_02_R_samples <- rstan::extract(results_model_five_dk_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_dk_2021_03_R_samples <- rstan::extract(results_model_five_dk_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_dk_2021_04_R_samples <- rstan::extract(results_model_five_dk_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_dk_2021_05_R_samples <- rstan::extract(results_model_five_dk_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_dk_2021_06_R_samples <- rstan::extract(results_model_five_dk_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_dk_2021_07_R_samples <- rstan::extract(results_model_five_dk_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_dk_2021_08_R_samples <- rstan::extract(results_model_five_dk_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_dk_2021_09_R_samples <- rstan::extract(results_model_five_dk_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_dk_2021_10_R_samples <- rstan::extract(results_model_five_dk_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_dk_2021_11_R_samples <- rstan::extract(results_model_five_dk_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_dk_2021_12_R_samples <- rstan::extract(results_model_five_dk_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+
+results_model_five_dk_2021_R_samples <- c(results_model_five_dk_2021_01_R_samples,
+                                         results_model_five_dk_2021_02_R_samples,
+                                         results_model_five_dk_2021_03_R_samples,
+                                         results_model_five_dk_2021_04_R_samples,
+                                         results_model_five_dk_2021_05_R_samples,
+                                         results_model_five_dk_2021_06_R_samples,
+                                         results_model_five_dk_2021_07_R_samples,
+                                         results_model_five_dk_2021_08_R_samples,
+                                         results_model_five_dk_2021_09_R_samples,
+                                         results_model_five_dk_2021_10_R_samples,
+                                         results_model_five_dk_2021_11_R_samples,
+                                         results_model_five_dk_2021_12_R_samples)
+
+summary_results_model_five_2021_R_over_all <- bind_rows(summary_results_model_five_2021_R_over_all,
+                                                       tibble(country = "Denmark",
+                                                              mean = round(mean(results_model_five_dk_2021_R_samples), 2),
+                                                              quantile_025 = round(quantile(x = results_model_five_dk_2021_R_samples, probs = 0.025), 2),
+                                                              quantile_975 = round(quantile(x = results_model_five_dk_2021_R_samples, probs = 0.975), 2)))
+
+results_model_five_de_2021_01_R_samples <- rstan::extract(results_model_five_de_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_de_2021_02_R_samples <- rstan::extract(results_model_five_de_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_de_2021_03_R_samples <- rstan::extract(results_model_five_de_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_de_2021_04_R_samples <- rstan::extract(results_model_five_de_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_de_2021_05_R_samples <- rstan::extract(results_model_five_de_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_de_2021_06_R_samples <- rstan::extract(results_model_five_de_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_de_2021_07_R_samples <- rstan::extract(results_model_five_de_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_de_2021_08_R_samples <- rstan::extract(results_model_five_de_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_de_2021_09_R_samples <- rstan::extract(results_model_five_de_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_de_2021_10_R_samples <- rstan::extract(results_model_five_de_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_de_2021_11_R_samples <- rstan::extract(results_model_five_de_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+results_model_five_de_2021_12_R_samples <- rstan::extract(results_model_five_de_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,1][1:2000]
+
+results_model_five_de_2021_R_samples <- c(results_model_five_de_2021_01_R_samples,
+                                         results_model_five_de_2021_02_R_samples,
+                                         results_model_five_de_2021_03_R_samples,
+                                         results_model_five_de_2021_04_R_samples,
+                                         results_model_five_de_2021_05_R_samples,
+                                         results_model_five_de_2021_06_R_samples,
+                                         results_model_five_de_2021_07_R_samples,
+                                         results_model_five_de_2021_08_R_samples,
+                                         results_model_five_de_2021_09_R_samples,
+                                         results_model_five_de_2021_10_R_samples,
+                                         results_model_five_de_2021_11_R_samples,
+                                         results_model_five_de_2021_12_R_samples)
+
+summary_results_model_five_2021_R_over_all <- bind_rows(summary_results_model_five_2021_R_over_all,
+                                                       tibble(country = "Germany",
+                                                              mean = round(mean(results_model_five_de_2021_R_samples), 2),
+                                                              quantile_025 = round(quantile(x = results_model_five_de_2021_R_samples, probs = 0.025), 2),
+                                                              quantile_975 = round(quantile(x = results_model_five_de_2021_R_samples, probs = 0.975), 2)))
+
+
+# k
+results_model_five_ch_2021_01_k_samples <- rstan::extract(results_model_five_ch_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_ch_2021_02_k_samples <- rstan::extract(results_model_five_ch_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_ch_2021_03_k_samples <- rstan::extract(results_model_five_ch_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_ch_2021_04_k_samples <- rstan::extract(results_model_five_ch_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_ch_2021_05_k_samples <- rstan::extract(results_model_five_ch_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_ch_2021_06_k_samples <- rstan::extract(results_model_five_ch_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_ch_2021_07_k_samples <- rstan::extract(results_model_five_ch_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_ch_2021_08_k_samples <- rstan::extract(results_model_five_ch_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_ch_2021_09_k_samples <- rstan::extract(results_model_five_ch_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_ch_2021_10_k_samples <- rstan::extract(results_model_five_ch_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_ch_2021_11_k_samples <- rstan::extract(results_model_five_ch_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_ch_2021_12_k_samples <- rstan::extract(results_model_five_ch_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+
+results_model_five_ch_2021_k_samples <- c(results_model_five_ch_2021_01_k_samples,
+                                         results_model_five_ch_2021_02_k_samples,
+                                         results_model_five_ch_2021_03_k_samples,
+                                         results_model_five_ch_2021_04_k_samples,
+                                         results_model_five_ch_2021_05_k_samples,
+                                         results_model_five_ch_2021_06_k_samples,
+                                         results_model_five_ch_2021_07_k_samples,
+                                         results_model_five_ch_2021_08_k_samples,
+                                         results_model_five_ch_2021_09_k_samples,
+                                         results_model_five_ch_2021_10_k_samples,
+                                         results_model_five_ch_2021_11_k_samples,
+                                         results_model_five_ch_2021_12_k_samples)
+
+summary_results_model_five_2021_k_over_all <- tibble(country = "Switzerland",
+                                                    mean = round(mean(results_model_five_ch_2021_k_samples), 2),
+                                                    quantile_025 = round(quantile(x = results_model_five_ch_2021_k_samples, probs = 0.025), 2),
+                                                    quantile_975 = round(quantile(x = results_model_five_ch_2021_k_samples, probs = 0.975), 2))
+
+results_model_five_dk_2021_01_k_samples <- rstan::extract(results_model_five_dk_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_dk_2021_02_k_samples <- rstan::extract(results_model_five_dk_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_dk_2021_03_k_samples <- rstan::extract(results_model_five_dk_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_dk_2021_04_k_samples <- rstan::extract(results_model_five_dk_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_dk_2021_05_k_samples <- rstan::extract(results_model_five_dk_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_dk_2021_06_k_samples <- rstan::extract(results_model_five_dk_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_dk_2021_07_k_samples <- rstan::extract(results_model_five_dk_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_dk_2021_08_k_samples <- rstan::extract(results_model_five_dk_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_dk_2021_09_k_samples <- rstan::extract(results_model_five_dk_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_dk_2021_10_k_samples <- rstan::extract(results_model_five_dk_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_dk_2021_11_k_samples <- rstan::extract(results_model_five_dk_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_dk_2021_12_k_samples <- rstan::extract(results_model_five_dk_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+
+results_model_five_dk_2021_k_samples <- c(results_model_five_dk_2021_01_k_samples,
+                                         results_model_five_dk_2021_02_k_samples,
+                                         results_model_five_dk_2021_03_k_samples,
+                                         results_model_five_dk_2021_04_k_samples,
+                                         results_model_five_dk_2021_05_k_samples,
+                                         results_model_five_dk_2021_06_k_samples,
+                                         results_model_five_dk_2021_07_k_samples,
+                                         results_model_five_dk_2021_08_k_samples,
+                                         results_model_five_dk_2021_09_k_samples,
+                                         results_model_five_dk_2021_10_k_samples,
+                                         results_model_five_dk_2021_11_k_samples,
+                                         results_model_five_dk_2021_12_k_samples)
+
+summary_results_model_five_2021_k_over_all <- bind_rows(summary_results_model_five_2021_k_over_all,
+                                                       tibble(country = "Denmark",
+                                                              mean = round(mean(results_model_five_dk_2021_k_samples), 2),
+                                                              quantile_025 = round(quantile(x = results_model_five_dk_2021_k_samples, probs = 0.025), 2),
+                                                              quantile_975 = round(quantile(x = results_model_five_dk_2021_k_samples, probs = 0.975), 2)))
+
+results_model_five_de_2021_01_k_samples <- rstan::extract(results_model_five_de_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_de_2021_02_k_samples <- rstan::extract(results_model_five_de_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_de_2021_03_k_samples <- rstan::extract(results_model_five_de_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_de_2021_04_k_samples <- rstan::extract(results_model_five_de_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_de_2021_05_k_samples <- rstan::extract(results_model_five_de_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_de_2021_06_k_samples <- rstan::extract(results_model_five_de_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_de_2021_07_k_samples <- rstan::extract(results_model_five_de_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_de_2021_08_k_samples <- rstan::extract(results_model_five_de_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_de_2021_09_k_samples <- rstan::extract(results_model_five_de_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_de_2021_10_k_samples <- rstan::extract(results_model_five_de_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_de_2021_11_k_samples <- rstan::extract(results_model_five_de_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+results_model_five_de_2021_12_k_samples <- rstan::extract(results_model_five_de_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,2][1:2000]
+
+results_model_five_de_2021_k_samples <- c(results_model_five_de_2021_01_k_samples,
+                                         results_model_five_de_2021_02_k_samples,
+                                         results_model_five_de_2021_03_k_samples,
+                                         results_model_five_de_2021_04_k_samples,
+                                         results_model_five_de_2021_05_k_samples,
+                                         results_model_five_de_2021_06_k_samples,
+                                         results_model_five_de_2021_07_k_samples,
+                                         results_model_five_de_2021_08_k_samples,
+                                         results_model_five_de_2021_09_k_samples,
+                                         results_model_five_de_2021_10_k_samples,
+                                         results_model_five_de_2021_11_k_samples,
+                                         results_model_five_de_2021_12_k_samples)
+
+summary_results_model_five_2021_k_over_all <- bind_rows(summary_results_model_five_2021_k_over_all,
+                                                       tibble(country = "Germany",
+                                                              mean = round(mean(results_model_five_de_2021_k_samples), 2),
+                                                              quantile_025 = round(quantile(x = results_model_five_de_2021_k_samples, probs = 0.025), 2),
+                                                              quantile_975 = round(quantile(x = results_model_five_de_2021_k_samples, probs = 0.975), 2)))
+
+
+# mutation probability
+results_model_five_ch_2021_01_mutation_proba_samples <- rstan::extract(results_model_five_ch_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_ch_2021_02_mutation_proba_samples <- rstan::extract(results_model_five_ch_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_ch_2021_03_mutation_proba_samples <- rstan::extract(results_model_five_ch_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_ch_2021_04_mutation_proba_samples <- rstan::extract(results_model_five_ch_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_ch_2021_05_mutation_proba_samples <- rstan::extract(results_model_five_ch_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_ch_2021_06_mutation_proba_samples <- rstan::extract(results_model_five_ch_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_ch_2021_07_mutation_proba_samples <- rstan::extract(results_model_five_ch_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_ch_2021_08_mutation_proba_samples <- rstan::extract(results_model_five_ch_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_ch_2021_09_mutation_proba_samples <- rstan::extract(results_model_five_ch_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_ch_2021_10_mutation_proba_samples <- rstan::extract(results_model_five_ch_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_ch_2021_11_mutation_proba_samples <- rstan::extract(results_model_five_ch_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_ch_2021_12_mutation_proba_samples <- rstan::extract(results_model_five_ch_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+
+results_model_five_ch_2021_mutation_proba_samples <- c(results_model_five_ch_2021_01_mutation_proba_samples,
+                                                       results_model_five_ch_2021_02_mutation_proba_samples,
+                                                       results_model_five_ch_2021_03_mutation_proba_samples,
+                                                       results_model_five_ch_2021_04_mutation_proba_samples,
+                                                       results_model_five_ch_2021_05_mutation_proba_samples,
+                                                       results_model_five_ch_2021_06_mutation_proba_samples,
+                                                       results_model_five_ch_2021_07_mutation_proba_samples,
+                                                       results_model_five_ch_2021_08_mutation_proba_samples,
+                                                       results_model_five_ch_2021_09_mutation_proba_samples,
+                                                       results_model_five_ch_2021_10_mutation_proba_samples,
+                                                       results_model_five_ch_2021_11_mutation_proba_samples,
+                                                       results_model_five_ch_2021_12_mutation_proba_samples)
+
+summary_results_model_five_2021_mutation_proba_over_all <- tibble(country = "Switzerland",
+                                                                  mean = round(mean(results_model_five_ch_2021_mutation_proba_samples), 2),
+                                                                  quantile_025 = round(quantile(x = results_model_five_ch_2021_mutation_proba_samples, probs = 0.025), 2),
+                                                                  quantile_975 = round(quantile(x = results_model_five_ch_2021_mutation_proba_samples, probs = 0.975), 2))
+
+results_model_five_dk_2021_01_mutation_proba_samples <- rstan::extract(results_model_five_dk_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_dk_2021_02_mutation_proba_samples <- rstan::extract(results_model_five_dk_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_dk_2021_03_mutation_proba_samples <- rstan::extract(results_model_five_dk_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_dk_2021_04_mutation_proba_samples <- rstan::extract(results_model_five_dk_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_dk_2021_05_mutation_proba_samples <- rstan::extract(results_model_five_dk_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_dk_2021_06_mutation_proba_samples <- rstan::extract(results_model_five_dk_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_dk_2021_07_mutation_proba_samples <- rstan::extract(results_model_five_dk_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_dk_2021_08_mutation_proba_samples <- rstan::extract(results_model_five_dk_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_dk_2021_09_mutation_proba_samples <- rstan::extract(results_model_five_dk_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_dk_2021_10_mutation_proba_samples <- rstan::extract(results_model_five_dk_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_dk_2021_11_mutation_proba_samples <- rstan::extract(results_model_five_dk_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_dk_2021_12_mutation_proba_samples <- rstan::extract(results_model_five_dk_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+
+results_model_five_dk_2021_mutation_proba_samples <- c(results_model_five_dk_2021_01_mutation_proba_samples,
+                                                       results_model_five_dk_2021_02_mutation_proba_samples,
+                                                       results_model_five_dk_2021_03_mutation_proba_samples,
+                                                       results_model_five_dk_2021_04_mutation_proba_samples,
+                                                       results_model_five_dk_2021_05_mutation_proba_samples,
+                                                       results_model_five_dk_2021_06_mutation_proba_samples,
+                                                       results_model_five_dk_2021_07_mutation_proba_samples,
+                                                       results_model_five_dk_2021_08_mutation_proba_samples,
+                                                       results_model_five_dk_2021_09_mutation_proba_samples,
+                                                       results_model_five_dk_2021_10_mutation_proba_samples,
+                                                       results_model_five_dk_2021_11_mutation_proba_samples,
+                                                       results_model_five_dk_2021_12_mutation_proba_samples)
+
+summary_results_model_five_2021_mutation_proba_over_all <- bind_rows(summary_results_model_five_2021_mutation_proba_over_all,
+                                                                     tibble(country = "Denmark",
+                                                                            mean = round(mean(results_model_five_dk_2021_mutation_proba_samples), 2),
+                                                                            quantile_025 = round(quantile(x = results_model_five_dk_2021_mutation_proba_samples, probs = 0.025), 2),
+                                                                            quantile_975 = round(quantile(x = results_model_five_dk_2021_mutation_proba_samples, probs = 0.975), 2)))
+
+results_model_five_de_2021_01_mutation_proba_samples <- rstan::extract(results_model_five_de_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_de_2021_02_mutation_proba_samples <- rstan::extract(results_model_five_de_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_de_2021_03_mutation_proba_samples <- rstan::extract(results_model_five_de_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_de_2021_04_mutation_proba_samples <- rstan::extract(results_model_five_de_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_de_2021_05_mutation_proba_samples <- rstan::extract(results_model_five_de_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_de_2021_06_mutation_proba_samples <- rstan::extract(results_model_five_de_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_de_2021_07_mutation_proba_samples <- rstan::extract(results_model_five_de_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_de_2021_08_mutation_proba_samples <- rstan::extract(results_model_five_de_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_de_2021_09_mutation_proba_samples <- rstan::extract(results_model_five_de_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_de_2021_10_mutation_proba_samples <- rstan::extract(results_model_five_de_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_de_2021_11_mutation_proba_samples <- rstan::extract(results_model_five_de_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+results_model_five_de_2021_12_mutation_proba_samples <- rstan::extract(results_model_five_de_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,3][1:2000]
+
+results_model_five_de_2021_mutation_proba_samples <- c(results_model_five_de_2021_01_mutation_proba_samples,
+                                                       results_model_five_de_2021_02_mutation_proba_samples,
+                                                       results_model_five_de_2021_03_mutation_proba_samples,
+                                                       results_model_five_de_2021_04_mutation_proba_samples,
+                                                       results_model_five_de_2021_05_mutation_proba_samples,
+                                                       results_model_five_de_2021_06_mutation_proba_samples,
+                                                       results_model_five_de_2021_07_mutation_proba_samples,
+                                                       results_model_five_de_2021_08_mutation_proba_samples,
+                                                       results_model_five_de_2021_09_mutation_proba_samples,
+                                                       results_model_five_de_2021_10_mutation_proba_samples,
+                                                       results_model_five_de_2021_11_mutation_proba_samples,
+                                                       results_model_five_de_2021_12_mutation_proba_samples)
+
+summary_results_model_five_2021_mutation_proba_over_all <- bind_rows(summary_results_model_five_2021_mutation_proba_over_all,
+                                                                     tibble(country = "Germany",
+                                                                            mean = round(mean(results_model_five_de_2021_mutation_proba_samples), 2),
+                                                                            quantile_025 = round(quantile(x = results_model_five_de_2021_mutation_proba_samples, probs = 0.025), 2),
+                                                                            quantile_975 = round(quantile(x = results_model_five_de_2021_mutation_proba_samples, probs = 0.975), 2)))
+
+
+# testing probability
+results_model_five_ch_2021_01_testing_proba_samples <- rstan::extract(results_model_five_ch_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_ch_2021_02_testing_proba_samples <- rstan::extract(results_model_five_ch_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_ch_2021_03_testing_proba_samples <- rstan::extract(results_model_five_ch_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_ch_2021_04_testing_proba_samples <- rstan::extract(results_model_five_ch_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_ch_2021_05_testing_proba_samples <- rstan::extract(results_model_five_ch_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_ch_2021_06_testing_proba_samples <- rstan::extract(results_model_five_ch_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_ch_2021_07_testing_proba_samples <- rstan::extract(results_model_five_ch_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_ch_2021_08_testing_proba_samples <- rstan::extract(results_model_five_ch_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_ch_2021_09_testing_proba_samples <- rstan::extract(results_model_five_ch_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_ch_2021_10_testing_proba_samples <- rstan::extract(results_model_five_ch_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_ch_2021_11_testing_proba_samples <- rstan::extract(results_model_five_ch_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_ch_2021_12_testing_proba_samples <- rstan::extract(results_model_five_ch_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+
+results_model_five_ch_2021_testing_proba_samples <- c(results_model_five_ch_2021_01_testing_proba_samples,
+                                                     results_model_five_ch_2021_02_testing_proba_samples,
+                                                     results_model_five_ch_2021_03_testing_proba_samples,
+                                                     results_model_five_ch_2021_04_testing_proba_samples,
+                                                     results_model_five_ch_2021_05_testing_proba_samples,
+                                                     results_model_five_ch_2021_06_testing_proba_samples,
+                                                     results_model_five_ch_2021_07_testing_proba_samples,
+                                                     results_model_five_ch_2021_08_testing_proba_samples,
+                                                     results_model_five_ch_2021_09_testing_proba_samples,
+                                                     results_model_five_ch_2021_10_testing_proba_samples,
+                                                     results_model_five_ch_2021_11_testing_proba_samples,
+                                                     results_model_five_ch_2021_12_testing_proba_samples)
+
+summary_results_model_five_2021_testing_proba_over_all <- tibble(country = "Switzerland",
+                                                                mean = round(mean(results_model_five_ch_2021_testing_proba_samples), 2),
+                                                                quantile_025 = round(quantile(x = results_model_five_ch_2021_testing_proba_samples, probs = 0.025), 2),
+                                                                quantile_975 = round(quantile(x = results_model_five_ch_2021_testing_proba_samples, probs = 0.975), 2))
+
+results_model_five_dk_2021_01_testing_proba_samples <- rstan::extract(results_model_five_dk_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_dk_2021_02_testing_proba_samples <- rstan::extract(results_model_five_dk_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_dk_2021_03_testing_proba_samples <- rstan::extract(results_model_five_dk_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_dk_2021_04_testing_proba_samples <- rstan::extract(results_model_five_dk_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_dk_2021_05_testing_proba_samples <- rstan::extract(results_model_five_dk_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_dk_2021_06_testing_proba_samples <- rstan::extract(results_model_five_dk_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_dk_2021_07_testing_proba_samples <- rstan::extract(results_model_five_dk_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_dk_2021_08_testing_proba_samples <- rstan::extract(results_model_five_dk_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_dk_2021_09_testing_proba_samples <- rstan::extract(results_model_five_dk_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_dk_2021_10_testing_proba_samples <- rstan::extract(results_model_five_dk_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_dk_2021_11_testing_proba_samples <- rstan::extract(results_model_five_dk_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_dk_2021_12_testing_proba_samples <- rstan::extract(results_model_five_dk_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+
+results_model_five_dk_2021_testing_proba_samples <- c(results_model_five_dk_2021_01_testing_proba_samples,
+                                                     results_model_five_dk_2021_02_testing_proba_samples,
+                                                     results_model_five_dk_2021_03_testing_proba_samples,
+                                                     results_model_five_dk_2021_04_testing_proba_samples,
+                                                     results_model_five_dk_2021_05_testing_proba_samples,
+                                                     results_model_five_dk_2021_06_testing_proba_samples,
+                                                     results_model_five_dk_2021_07_testing_proba_samples,
+                                                     results_model_five_dk_2021_08_testing_proba_samples,
+                                                     results_model_five_dk_2021_09_testing_proba_samples,
+                                                     results_model_five_dk_2021_10_testing_proba_samples,
+                                                     results_model_five_dk_2021_11_testing_proba_samples,
+                                                     results_model_five_dk_2021_12_testing_proba_samples)
+
+summary_results_model_five_2021_testing_proba_over_all <- bind_rows(summary_results_model_five_2021_testing_proba_over_all,
+                                                                   tibble(country = "Denmark",
+                                                                          mean = round(mean(results_model_five_dk_2021_testing_proba_samples), 2),
+                                                                          quantile_025 = round(quantile(x = results_model_five_dk_2021_testing_proba_samples, probs = 0.025), 2),
+                                                                          quantile_975 = round(quantile(x = results_model_five_dk_2021_testing_proba_samples, probs = 0.975), 2)))
+
+results_model_five_de_2021_01_testing_proba_samples <- rstan::extract(results_model_five_de_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_de_2021_02_testing_proba_samples <- rstan::extract(results_model_five_de_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_de_2021_03_testing_proba_samples <- rstan::extract(results_model_five_de_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_de_2021_04_testing_proba_samples <- rstan::extract(results_model_five_de_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_de_2021_05_testing_proba_samples <- rstan::extract(results_model_five_de_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_de_2021_06_testing_proba_samples <- rstan::extract(results_model_five_de_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_de_2021_07_testing_proba_samples <- rstan::extract(results_model_five_de_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_de_2021_08_testing_proba_samples <- rstan::extract(results_model_five_de_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_de_2021_09_testing_proba_samples <- rstan::extract(results_model_five_de_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_de_2021_10_testing_proba_samples <- rstan::extract(results_model_five_de_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_de_2021_11_testing_proba_samples <- rstan::extract(results_model_five_de_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+results_model_five_de_2021_12_testing_proba_samples <- rstan::extract(results_model_five_de_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,4][1:2000]
+
+results_model_five_de_2021_testing_proba_samples <- c(results_model_five_de_2021_01_testing_proba_samples,
+                                                     results_model_five_de_2021_02_testing_proba_samples,
+                                                     results_model_five_de_2021_03_testing_proba_samples,
+                                                     results_model_five_de_2021_04_testing_proba_samples,
+                                                     results_model_five_de_2021_05_testing_proba_samples,
+                                                     results_model_five_de_2021_06_testing_proba_samples,
+                                                     results_model_five_de_2021_07_testing_proba_samples,
+                                                     results_model_five_de_2021_08_testing_proba_samples,
+                                                     results_model_five_de_2021_09_testing_proba_samples,
+                                                     results_model_five_de_2021_10_testing_proba_samples,
+                                                     results_model_five_de_2021_11_testing_proba_samples,
+                                                     results_model_five_de_2021_12_testing_proba_samples)
+
+summary_results_model_five_2021_testing_proba_over_all <- bind_rows(summary_results_model_five_2021_testing_proba_over_all,
+                                                                   tibble(country = "Germany",
+                                                                          mean = round(mean(results_model_five_de_2021_testing_proba_samples), 2),
+                                                                          quantile_025 = round(quantile(x = results_model_five_de_2021_testing_proba_samples, probs = 0.025), 2),
+                                                                          quantile_975 = round(quantile(x = results_model_five_de_2021_testing_proba_samples, probs = 0.975), 2)))
+
+
+# detection probability
+results_model_five_ch_2021_01_detection_proba_samples <- rstan::extract(results_model_five_ch_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_ch_2021_02_detection_proba_samples <- rstan::extract(results_model_five_ch_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_ch_2021_03_detection_proba_samples <- rstan::extract(results_model_five_ch_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_ch_2021_04_detection_proba_samples <- rstan::extract(results_model_five_ch_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_ch_2021_05_detection_proba_samples <- rstan::extract(results_model_five_ch_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_ch_2021_06_detection_proba_samples <- rstan::extract(results_model_five_ch_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_ch_2021_07_detection_proba_samples <- rstan::extract(results_model_five_ch_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_ch_2021_08_detection_proba_samples <- rstan::extract(results_model_five_ch_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_ch_2021_09_detection_proba_samples <- rstan::extract(results_model_five_ch_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_ch_2021_10_detection_proba_samples <- rstan::extract(results_model_five_ch_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_ch_2021_11_detection_proba_samples <- rstan::extract(results_model_five_ch_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_ch_2021_12_detection_proba_samples <- rstan::extract(results_model_five_ch_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+
+results_model_five_ch_2021_detection_proba_samples <- c(results_model_five_ch_2021_01_detection_proba_samples,
+                                                       results_model_five_ch_2021_02_detection_proba_samples,
+                                                       results_model_five_ch_2021_03_detection_proba_samples,
+                                                       results_model_five_ch_2021_04_detection_proba_samples,
+                                                       results_model_five_ch_2021_05_detection_proba_samples,
+                                                       results_model_five_ch_2021_06_detection_proba_samples,
+                                                       results_model_five_ch_2021_07_detection_proba_samples,
+                                                       results_model_five_ch_2021_08_detection_proba_samples,
+                                                       results_model_five_ch_2021_09_detection_proba_samples,
+                                                       results_model_five_ch_2021_10_detection_proba_samples,
+                                                       results_model_five_ch_2021_11_detection_proba_samples,
+                                                       results_model_five_ch_2021_12_detection_proba_samples)
+
+summary_results_model_five_2021_detection_proba_over_all <- tibble(country = "Switzerland",
+                                                                  mean = round(mean(results_model_five_ch_2021_detection_proba_samples), 2),
+                                                                  quantile_025 = round(quantile(x = results_model_five_ch_2021_detection_proba_samples, probs = 0.025), 2),
+                                                                  quantile_975 = round(quantile(x = results_model_five_ch_2021_detection_proba_samples, probs = 0.975), 2))
+
+results_model_five_dk_2021_01_detection_proba_samples <- rstan::extract(results_model_five_dk_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_dk_2021_02_detection_proba_samples <- rstan::extract(results_model_five_dk_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_dk_2021_03_detection_proba_samples <- rstan::extract(results_model_five_dk_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_dk_2021_04_detection_proba_samples <- rstan::extract(results_model_five_dk_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_dk_2021_05_detection_proba_samples <- rstan::extract(results_model_five_dk_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_dk_2021_06_detection_proba_samples <- rstan::extract(results_model_five_dk_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_dk_2021_07_detection_proba_samples <- rstan::extract(results_model_five_dk_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_dk_2021_08_detection_proba_samples <- rstan::extract(results_model_five_dk_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_dk_2021_09_detection_proba_samples <- rstan::extract(results_model_five_dk_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_dk_2021_10_detection_proba_samples <- rstan::extract(results_model_five_dk_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_dk_2021_11_detection_proba_samples <- rstan::extract(results_model_five_dk_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_dk_2021_12_detection_proba_samples <- rstan::extract(results_model_five_dk_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+
+results_model_five_dk_2021_detection_proba_samples <- c(results_model_five_dk_2021_01_detection_proba_samples,
+                                                       results_model_five_dk_2021_02_detection_proba_samples,
+                                                       results_model_five_dk_2021_03_detection_proba_samples,
+                                                       results_model_five_dk_2021_04_detection_proba_samples,
+                                                       results_model_five_dk_2021_05_detection_proba_samples,
+                                                       results_model_five_dk_2021_06_detection_proba_samples,
+                                                       results_model_five_dk_2021_07_detection_proba_samples,
+                                                       results_model_five_dk_2021_08_detection_proba_samples,
+                                                       results_model_five_dk_2021_09_detection_proba_samples,
+                                                       results_model_five_dk_2021_10_detection_proba_samples,
+                                                       results_model_five_dk_2021_11_detection_proba_samples,
+                                                       results_model_five_dk_2021_12_detection_proba_samples)
+
+summary_results_model_five_2021_detection_proba_over_all <- bind_rows(summary_results_model_five_2021_detection_proba_over_all,
+                                                                     tibble(country = "Denmark",
+                                                                            mean = round(mean(results_model_five_dk_2021_detection_proba_samples), 2),
+                                                                            quantile_025 = round(quantile(x = results_model_five_dk_2021_detection_proba_samples, probs = 0.025), 2),
+                                                                            quantile_975 = round(quantile(x = results_model_five_dk_2021_detection_proba_samples, probs = 0.975), 2)))
+
+results_model_five_de_2021_01_detection_proba_samples <- rstan::extract(results_model_five_de_2021_01, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_de_2021_02_detection_proba_samples <- rstan::extract(results_model_five_de_2021_02, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_de_2021_03_detection_proba_samples <- rstan::extract(results_model_five_de_2021_03, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_de_2021_04_detection_proba_samples <- rstan::extract(results_model_five_de_2021_04, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_de_2021_05_detection_proba_samples <- rstan::extract(results_model_five_de_2021_05, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_de_2021_06_detection_proba_samples <- rstan::extract(results_model_five_de_2021_06, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_de_2021_07_detection_proba_samples <- rstan::extract(results_model_five_de_2021_07, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_de_2021_08_detection_proba_samples <- rstan::extract(results_model_five_de_2021_08, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_de_2021_09_detection_proba_samples <- rstan::extract(results_model_five_de_2021_09, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_de_2021_10_detection_proba_samples <- rstan::extract(results_model_five_de_2021_10, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_de_2021_11_detection_proba_samples <- rstan::extract(results_model_five_de_2021_11, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+results_model_five_de_2021_12_detection_proba_samples <- rstan::extract(results_model_five_de_2021_12, permuted = FALSE, inc_warmup = FALSE)[,,5][1:2000]
+
+results_model_five_de_2021_detection_proba_samples <- c(results_model_five_de_2021_01_detection_proba_samples,
+                                                       results_model_five_de_2021_02_detection_proba_samples,
+                                                       results_model_five_de_2021_03_detection_proba_samples,
+                                                       results_model_five_de_2021_04_detection_proba_samples,
+                                                       results_model_five_de_2021_05_detection_proba_samples,
+                                                       results_model_five_de_2021_06_detection_proba_samples,
+                                                       results_model_five_de_2021_07_detection_proba_samples,
+                                                       results_model_five_de_2021_08_detection_proba_samples,
+                                                       results_model_five_de_2021_09_detection_proba_samples,
+                                                       results_model_five_de_2021_10_detection_proba_samples,
+                                                       results_model_five_de_2021_11_detection_proba_samples,
+                                                       results_model_five_de_2021_12_detection_proba_samples)
+
+summary_results_model_five_2021_detection_proba_over_all <- bind_rows(summary_results_model_five_2021_detection_proba_over_all,
+                                                                     tibble(country = "Germany",
+                                                                            mean = round(mean(results_model_five_de_2021_detection_proba_samples), 2),
+                                                                            quantile_025 = round(quantile(x = results_model_five_de_2021_detection_proba_samples, probs = 0.025), 2),
+                                                                            quantile_975 = round(quantile(x = results_model_five_de_2021_detection_proba_samples, probs = 0.975), 2)))
+
+
+
+# have a look at the range of estimates of Re, k, the number of yearly mutations, the testing probability,
+# the mutation probability and the detection probability ----
+
+# Re
+Re_estimate_model_five_ch_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(R_estimate))
+Re_estimate_model_five_dk_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(R_estimate))
+Re_estimate_model_five_de_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(R_estimate))
+
+Re_estimate_model_five_ch_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(R_estimate))
+Re_estimate_model_five_dk_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(R_estimate))
+Re_estimate_model_five_de_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(R_estimate))
+
+Re_n_na_Rhat_model_five_2021_ch <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(R_Rhat)))
+Re_n_na_Rhat_model_five_2021_dk <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(R_Rhat)))
+Re_n_na_Rhat_model_five_2021_de <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(R_Rhat)))
+
+Re_min_Rhat_model_five_2021_ch <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(R_Rhat), na.rm = TRUE)
+Re_min_Rhat_model_five_2021_dk <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(R_Rhat), na.rm = TRUE)
+Re_min_Rhat_model_five_2021_de <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(R_Rhat), na.rm = TRUE)
+
+Re_max_Rhat_model_five_2021_ch <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(R_Rhat), na.rm = TRUE)
+Re_max_Rhat_model_five_2021_dk <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(R_Rhat), na.rm = TRUE)
+Re_max_Rhat_model_five_2021_de <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(R_Rhat), na.rm = TRUE)
+
+summary_results_model_five_2021_R_months <- tibble(country = c("Switzerland", "Denmark", "Germany"),
+                                                  min_month = c(Re_estimate_model_five_ch_2021_min, Re_estimate_model_five_dk_2021_min, Re_estimate_model_five_de_2021_min),
+                                                  max_month = c(Re_estimate_model_five_ch_2021_max, Re_estimate_model_five_dk_2021_max, Re_estimate_model_five_de_2021_max),
+                                                  n_na_R_Rhat = c(Re_n_na_Rhat_model_five_2021_ch, Re_n_na_Rhat_model_five_2021_dk, Re_n_na_Rhat_model_five_2021_de),
+                                                  min_R_Rhat = c(Re_min_Rhat_model_five_2021_ch, Re_min_Rhat_model_five_2021_dk, Re_min_Rhat_model_five_2021_de),
+                                                  max_R_Rhat = c(Re_max_Rhat_model_five_2021_ch, Re_max_Rhat_model_five_2021_dk, Re_max_Rhat_model_five_2021_de))
+
+summary_results_model_five_2021_R <- summary_results_model_five_2021_R_over_all %>%
+  full_join(summary_results_model_five_2021_R_months, by = "country")
+
+
+# k
+k_estimate_model_five_ch_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(k_estimate))
+k_estimate_model_five_dk_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(k_estimate))
+k_estimate_model_five_de_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(k_estimate))
+
+k_estimate_model_five_ch_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(k_estimate))
+k_estimate_model_five_dk_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(k_estimate))
+k_estimate_model_five_de_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(k_estimate))
+
+k_n_na_Rhat_model_five_2021_ch <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(k_Rhat)))
+k_n_na_Rhat_model_five_2021_dk <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(k_Rhat)))
+k_n_na_Rhat_model_five_2021_de <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(k_Rhat)))
+
+k_min_Rhat_model_five_2021_ch <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(k_Rhat), na.rm = TRUE)
+k_min_Rhat_model_five_2021_dk <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(k_Rhat), na.rm = TRUE)
+k_min_Rhat_model_five_2021_de <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(k_Rhat), na.rm = TRUE)
+
+k_max_Rhat_model_five_2021_ch <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(k_Rhat), na.rm = TRUE)
+k_max_Rhat_model_five_2021_dk <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(k_Rhat), na.rm = TRUE)
+k_max_Rhat_model_five_2021_de <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(k_Rhat), na.rm = TRUE)
+
+summary_results_model_five_2021_k_months <- tibble(country = c("Switzerland", "Denmark", "Germany"),
+                                                  min_month = c(k_estimate_model_five_ch_2021_min, k_estimate_model_five_dk_2021_min, k_estimate_model_five_de_2021_min),
+                                                  max_month = c(k_estimate_model_five_ch_2021_max, k_estimate_model_five_dk_2021_max, k_estimate_model_five_de_2021_max),
+                                                  n_na_k_Rhat = c(k_n_na_Rhat_model_five_2021_ch, k_n_na_Rhat_model_five_2021_dk, k_n_na_Rhat_model_five_2021_de),
+                                                  min_k_Rhat = c(k_min_Rhat_model_five_2021_ch, k_min_Rhat_model_five_2021_dk, k_min_Rhat_model_five_2021_de),
+                                                  max_k_Rhat = c(k_max_Rhat_model_five_2021_ch, k_max_Rhat_model_five_2021_dk, k_max_Rhat_model_five_2021_de))
+
+summary_results_model_five_2021_k <- summary_results_model_five_2021_k_over_all %>%
+  full_join(summary_results_model_five_2021_k_months, by = "country")
+
+
+# mutation probability
+mutation_proba_estimate_model_five_ch_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(mutation_proba_estimate))
+mutation_proba_estimate_model_five_dk_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(mutation_proba_estimate))
+mutation_proba_estimate_model_five_de_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(mutation_proba_estimate))
+
+mutation_proba_estimate_model_five_ch_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(mutation_proba_estimate))
+mutation_proba_estimate_model_five_dk_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(mutation_proba_estimate))
+mutation_proba_estimate_model_five_de_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(mutation_proba_estimate))
+
+mutation_proba_n_na_Rhat_model_five_2021_ch <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(mutation_proba_Rhat)))
+mutation_proba_n_na_Rhat_model_five_2021_dk <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(mutation_proba_Rhat)))
+mutation_proba_n_na_Rhat_model_five_2021_de <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(mutation_proba_Rhat)))
+
+mutation_proba_min_Rhat_model_five_2021_ch <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(mutation_proba_Rhat), na.rm = TRUE)
+mutation_proba_min_Rhat_model_five_2021_dk <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(mutation_proba_Rhat), na.rm = TRUE)
+mutation_proba_min_Rhat_model_five_2021_de <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(mutation_proba_Rhat), na.rm = TRUE)
+
+mutation_proba_max_Rhat_model_five_2021_ch <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(mutation_proba_Rhat), na.rm = TRUE)
+mutation_proba_max_Rhat_model_five_2021_dk <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(mutation_proba_Rhat), na.rm = TRUE)
+mutation_proba_max_Rhat_model_five_2021_de <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(mutation_proba_Rhat), na.rm = TRUE)
+
+summary_results_model_five_2021_mutation_proba_months <- tibble(country = c("Switzerland", "Denmark", "Germany"),
+                                                                min_month = c(mutation_proba_estimate_model_five_ch_2021_min,
+                                                                              mutation_proba_estimate_model_five_dk_2021_min,
+                                                                              mutation_proba_estimate_model_five_de_2021_min),
+                                                                max_month = c(mutation_proba_estimate_model_five_ch_2021_max,
+                                                                              mutation_proba_estimate_model_five_dk_2021_max,
+                                                                              mutation_proba_estimate_model_five_de_2021_max),
+                                                                n_na_mutation_proba_Rhat = c(mutation_proba_n_na_Rhat_model_five_2021_ch,
+                                                                                             mutation_proba_n_na_Rhat_model_five_2021_dk,
+                                                                                             mutation_proba_n_na_Rhat_model_five_2021_de),
+                                                                min_mutation_proba_Rhat = c(mutation_proba_min_Rhat_model_five_2021_ch,
+                                                                                            mutation_proba_min_Rhat_model_five_2021_dk,
+                                                                                            mutation_proba_min_Rhat_model_five_2021_de),
+                                                                max_mutation_proba_Rhat = c(mutation_proba_max_Rhat_model_five_2021_ch,
+                                                                                            mutation_proba_max_Rhat_model_five_2021_dk,
+                                                                                            mutation_proba_max_Rhat_model_five_2021_de))
+
+summary_results_model_five_2021_mutation_proba <- summary_results_model_five_2021_mutation_proba_over_all %>%
+  full_join(summary_results_model_five_2021_mutation_proba_months, by = "country")
+
+
+# testing probability
+testing_proba_estimate_model_five_ch_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(testing_proba_estimate))
+testing_proba_estimate_model_five_dk_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(testing_proba_estimate))
+testing_proba_estimate_model_five_de_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(testing_proba_estimate))
+
+testing_proba_estimate_model_five_ch_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(testing_proba_estimate))
+testing_proba_estimate_model_five_dk_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(testing_proba_estimate))
+testing_proba_estimate_model_five_de_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(testing_proba_estimate))
+
+testing_proba_n_na_Rhat_model_five_2021_ch <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(testing_proba_Rhat)))
+testing_proba_n_na_Rhat_model_five_2021_dk <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(testing_proba_Rhat)))
+testing_proba_n_na_Rhat_model_five_2021_de <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(testing_proba_Rhat)))
+
+testing_proba_min_Rhat_model_five_2021_ch <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(testing_proba_Rhat), na.rm = TRUE)
+testing_proba_min_Rhat_model_five_2021_dk <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(testing_proba_Rhat), na.rm = TRUE)
+testing_proba_min_Rhat_model_five_2021_de <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(testing_proba_Rhat), na.rm = TRUE)
+
+testing_proba_max_Rhat_model_five_2021_ch <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(testing_proba_Rhat), na.rm = TRUE)
+testing_proba_max_Rhat_model_five_2021_dk <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(testing_proba_Rhat), na.rm = TRUE)
+testing_proba_max_Rhat_model_five_2021_de <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(testing_proba_Rhat), na.rm = TRUE)
+
+summary_results_model_five_2021_testing_proba_months <- tibble(country = c("Switzerland", "Denmark", "Germany"),
+                                                              min_month = c(testing_proba_estimate_model_five_ch_2021_min,
+                                                                            testing_proba_estimate_model_five_dk_2021_min,
+                                                                            testing_proba_estimate_model_five_de_2021_min),
+                                                              max_month = c(testing_proba_estimate_model_five_ch_2021_max,
+                                                                            testing_proba_estimate_model_five_dk_2021_max,
+                                                                            testing_proba_estimate_model_five_de_2021_max),
+                                                              n_na_testing_proba_Rhat = c(testing_proba_n_na_Rhat_model_five_2021_ch,
+                                                                                          testing_proba_n_na_Rhat_model_five_2021_dk,
+                                                                                          testing_proba_n_na_Rhat_model_five_2021_de),
+                                                              min_testing_proba_Rhat = c(testing_proba_min_Rhat_model_five_2021_ch,
+                                                                                         testing_proba_min_Rhat_model_five_2021_dk,
+                                                                                         testing_proba_min_Rhat_model_five_2021_de),
+                                                              max_testing_proba_Rhat = c(testing_proba_max_Rhat_model_five_2021_ch,
+                                                                                         testing_proba_max_Rhat_model_five_2021_dk,
+                                                                                         testing_proba_max_Rhat_model_five_2021_de))
+
+summary_results_model_five_2021_testing_proba <- summary_results_model_five_2021_testing_proba_over_all %>%
+  full_join(summary_results_model_five_2021_testing_proba_months, by = "country")
+
+
+# detection probability
+detection_proba_estimate_model_five_ch_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(detection_proba_estimate))
+detection_proba_estimate_model_five_dk_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(detection_proba_estimate))
+detection_proba_estimate_model_five_de_2021_min <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(detection_proba_estimate))
+
+detection_proba_estimate_model_five_ch_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% dplyr::select(detection_proba_estimate))
+detection_proba_estimate_model_five_dk_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% dplyr::select(detection_proba_estimate))
+detection_proba_estimate_model_five_de_2021_max <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% dplyr::select(detection_proba_estimate))
+
+detection_proba_n_na_Rhat_model_five_2021_ch <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(detection_proba_Rhat)))
+detection_proba_n_na_Rhat_model_five_2021_dk <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(detection_proba_Rhat)))
+detection_proba_n_na_Rhat_model_five_2021_de <- sum(is.na(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(detection_proba_Rhat)))
+
+detection_proba_min_Rhat_model_five_2021_ch <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(detection_proba_Rhat), na.rm = TRUE)
+detection_proba_min_Rhat_model_five_2021_dk <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(detection_proba_Rhat), na.rm = TRUE)
+detection_proba_min_Rhat_model_five_2021_de <- min(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(detection_proba_Rhat), na.rm = TRUE)
+
+detection_proba_max_Rhat_model_five_2021_ch <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Switzerland") %>% pull(detection_proba_Rhat), na.rm = TRUE)
+detection_proba_max_Rhat_model_five_2021_dk <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Denmark") %>% pull(detection_proba_Rhat), na.rm = TRUE)
+detection_proba_max_Rhat_model_five_2021_de <- max(results_model_five_ch_dk_de_2021_months %>% filter(country == "Germany") %>% pull(detection_proba_Rhat), na.rm = TRUE)
+
+summary_results_model_five_2021_detection_proba_months <- tibble(country = c("Switzerland", "Denmark", "Germany"),
+                                                                min_month = c(detection_proba_estimate_model_five_ch_2021_min,
+                                                                              detection_proba_estimate_model_five_dk_2021_min,
+                                                                              detection_proba_estimate_model_five_de_2021_min),
+                                                                max_month = c(detection_proba_estimate_model_five_ch_2021_max,
+                                                                              detection_proba_estimate_model_five_dk_2021_max,
+                                                                              detection_proba_estimate_model_five_de_2021_max),
+                                                                n_na_detection_proba_Rhat = c(detection_proba_n_na_Rhat_model_five_2021_ch,
+                                                                                              detection_proba_n_na_Rhat_model_five_2021_dk,
+                                                                                              detection_proba_n_na_Rhat_model_five_2021_de),
+                                                                min_detection_proba_Rhat = c(detection_proba_min_Rhat_model_five_2021_ch,
+                                                                                             detection_proba_min_Rhat_model_five_2021_dk,
+                                                                                             detection_proba_min_Rhat_model_five_2021_de),
+                                                                max_detection_proba_Rhat = c(detection_proba_max_Rhat_model_five_2021_ch,
+                                                                                             detection_proba_max_Rhat_model_five_2021_dk,
+                                                                                             detection_proba_max_Rhat_model_five_2021_de))
+
+summary_results_model_five_2021_detection_proba <- summary_results_model_five_2021_detection_proba_over_all %>%
+  full_join(summary_results_model_five_2021_detection_proba_months, by = "country")
+
+
+
+# print summaries ----
+print(results_model_five_checks_ch)
+print(results_model_five_checks_dk)
+print(results_model_five_checks_de)
+
+print(summary_results_model_five_2021_R)
+print(summary_results_model_five_2021_k)
+print(summary_results_model_five_2021_mutation_proba)
+print(summary_results_model_five_2021_testing_proba)
+print(summary_results_model_five_2021_detection_proba)
+
 
 
 # remove variables from environment

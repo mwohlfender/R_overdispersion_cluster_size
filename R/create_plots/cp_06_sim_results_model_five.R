@@ -183,7 +183,7 @@ for (ii in 1:length(n_clusters_range)) {
       ggtitle("Effective reproduction number") +
       xlab("Sequencing probability") +
       ylab("Testing probability") +
-      facet_grid(k~R, labeller = label_both) +
+      facet_grid(rows = vars(k), cols = vars(R), labeller = label_bquote(cols=R[e]==.(R), rows=k==.(k))) +
       scale_fill_viridis_c(name = "RMSE") +
       theme_bw() +
       theme(legend.position="bottom",
@@ -203,7 +203,7 @@ for (ii in 1:length(n_clusters_range)) {
     #   ggtitle("Effective reproduction number") +
     #   xlab("Sequencing probability") +
     #   ylab("Testing probability") +
-    #   facet_grid(k~R, labeller = label_both) +
+    #   facet_grid(rows = vars(k), cols = vars(R), labeller = label_bquote(cols=R[e]==.(R), rows=k==.(k))) +
     #   scale_fill_viridis_c(name = "CV") +
     #   theme_bw() +
     #   theme(legend.position="bottom")
@@ -213,7 +213,7 @@ for (ii in 1:length(n_clusters_range)) {
       ggtitle("Effective reproduction number") +
       xlab("Sequencing probability") +
       ylab("Testing probability") +
-      facet_grid(k~R, labeller = label_both) +
+      facet_grid(rows = vars(k), cols = vars(R), labeller = label_bquote(cols=R[e]==.(R), rows=k==.(k))) +
       scale_fill_viridis_c(name = "CV",
                            breaks = c(1, 10, 100),
                            limits = c(0.3, 900),
@@ -236,7 +236,7 @@ for (ii in 1:length(n_clusters_range)) {
       ggtitle("Effective reproduction number") +
       xlab("Sequencing probability") +
       ylab("Testing probability") +
-      facet_grid(k~R, labeller = label_both) +
+      facet_grid(rows = vars(k), cols = vars(R), labeller = label_bquote(cols=R[e]==.(R), rows=k==.(k))) +
       scale_fill_viridis_c(name = "Coverage",
                            breaks = c(0, 0.25, 0.5, 0.75, 1),
                            limits = c(0, 1)) +
@@ -259,7 +259,7 @@ for (ii in 1:length(n_clusters_range)) {
       ggtitle("Dispersion parameter") +
       xlab("Sequencing probability") +
       ylab("Testing probability") +
-      facet_grid(k~R, labeller = label_both) +
+      facet_grid(rows = vars(k), cols = vars(R), labeller = label_bquote(cols=R[e]==.(R), rows=k==.(k))) +
       # scale_fill_viridis_c(name = "RMSE")
       scale_fill_viridis_c(name = expression(paste(log[10], ~ "(RMSE)"))) +
       theme_bw() +
@@ -281,7 +281,7 @@ for (ii in 1:length(n_clusters_range)) {
     #   ggtitle("Dispersion parameter") +
     #   xlab("Sequencing probability") +
     #   ylab("Testing probability") +
-    #   facet_grid(k~R, labeller = label_both) +
+    #   facet_grid(rows = vars(k), cols = vars(R), labeller = label_bquote(cols=R[e]==.(R), rows=k==.(k))) +
     #   # scale_fill_viridis_c(name = "CV") +
     #   scale_fill_viridis_c(name = "CV", trans = "log") +
     #   # scale_fill_viridis_c(name = expression(paste(log[10], ~ "(CV)"))) +
@@ -293,7 +293,7 @@ for (ii in 1:length(n_clusters_range)) {
       ggtitle("Dispersion parameter") +
       xlab("Sequencing probability") +
       ylab("Testing probability") +
-      facet_grid(k~R, labeller = label_both) +
+      facet_grid(rows = vars(k), cols = vars(R), labeller = label_bquote(cols=R[e]==.(R), rows=k==.(k))) +
       scale_fill_viridis_c(name = "CV",
                            breaks = c(1, 10, 100),
                            limits = c(0.3, 900),
@@ -316,7 +316,7 @@ for (ii in 1:length(n_clusters_range)) {
       ggtitle("Dispersion parameter") +
       xlab("Sequencing probability") +
       ylab("Testing probability") +
-      facet_grid(k~R, labeller = label_both) +
+      facet_grid(rows = vars(k), cols = vars(R), labeller = label_bquote(cols=R[e]==.(R), rows=k==.(k))) +
       scale_fill_viridis_c(name = "Coverage",
                            breaks = c(0, 0.25, 0.5, 0.75, 1),
                            limits = c(0, 1)) +
@@ -338,7 +338,7 @@ for (ii in 1:length(n_clusters_range)) {
       ggtitle("Testing probability") +
       xlab("Sequencing probability") +
       ylab("Testing probability") +
-      facet_grid(k~R, labeller = label_both) +
+      facet_grid(rows = vars(k), cols = vars(R), labeller = label_bquote(cols=R[e]==.(R), rows=k==.(k))) +
       scale_fill_viridis_c(name = "RMSE") +
       theme_bw() +
       theme(legend.position="bottom",
@@ -359,7 +359,7 @@ for (ii in 1:length(n_clusters_range)) {
     #   ggtitle("Testing probability") +
     #   xlab("Sequencing probability") +
     #   ylab("Testing probability") +
-    #   facet_grid(k~R, labeller = label_both) +
+    #   facet_grid(rows = vars(k), cols = vars(R), labeller = label_bquote(cols=R[e]==.(R), rows=k==.(k))) +
     #   # scale_fill_viridis_c(name = "CV") +
     #   scale_fill_viridis_c(name = expression(paste(log[10], ~ "(CV)"))) +
     #   theme_bw() +
@@ -370,7 +370,7 @@ for (ii in 1:length(n_clusters_range)) {
       ggtitle("Testing probability") +
       xlab("Sequencing probability") +
       ylab("Testing probability") +
-      facet_grid(k~R, labeller = label_both) +
+      facet_grid(rows = vars(k), cols = vars(R), labeller = label_bquote(cols=R[e]==.(R), rows=k==.(k))) +
       scale_fill_viridis_c(name = "CV",
                            breaks = c(1, 10, 100),
                            limits = c(0.3, 900),
@@ -393,7 +393,7 @@ for (ii in 1:length(n_clusters_range)) {
       ggtitle("Testing probability") +
       xlab("Sequencing probability") +
       ylab("Testing probability") +
-      facet_grid(k~R, labeller = label_both) +
+      facet_grid(rows = vars(k), cols = vars(R), labeller = label_bquote(cols=R[e]==.(R), rows=k==.(k))) +
       scale_fill_viridis_c(name = "Coverage",
                            breaks = c(0, 0.25, 0.5, 0.75, 1),
                            limits = c(0, 1)) +
@@ -415,7 +415,7 @@ for (ii in 1:length(n_clusters_range)) {
       ggtitle("Number of estimates") +
       xlab("Sequencing probability") +
       ylab("Testing probability") +
-      facet_grid(k~R, labeller = label_both) +
+      facet_grid(rows = vars(k), cols = vars(R), labeller = label_bquote(cols=R[e]==.(R), rows=k==.(k))) +
       scale_fill_viridis_c(name = "successful estimates") +
       theme_bw() +
       theme(legend.position="bottom",
@@ -435,7 +435,7 @@ for (ii in 1:length(n_clusters_range)) {
       ggtitle("Run time") +
       xlab("Sequencing probability") +
       ylab("Testing probability") +
-      facet_grid(k~R, labeller = label_both) +
+      facet_grid(rows = vars(k), cols = vars(R), labeller = label_bquote(cols=R[e]==.(R), rows=k==.(k))) +
       scale_fill_viridis_c(name = "run time") +
       theme_bw() +
       theme(legend.position="bottom",
@@ -553,7 +553,7 @@ for (ii in 1:length(n_clusters_range)) {
                          limits = c(0.2, 1.6),
                          breaks = c(0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5)) +
       scale_colour_viridis_d(name = "Sequencing probability") +
-      facet_grid(k~R, labeller = label_both) + 
+      facet_grid(rows = vars(k), cols = vars(R), labeller = label_bquote(cols=R[e]==.(R), rows=k==.(k))) + 
       theme_bw() +
       theme(legend.position = "bottom",
             legend.box = "horizontal",
@@ -590,7 +590,7 @@ for (ii in 1:length(n_clusters_range)) {
       #                    breaks = c(0.1, 0.3, 0.5, 1, 1.5),
       #                    trans='log') +
       scale_colour_viridis_d(name = "Sequencing probability") +
-      facet_grid(k~R, labeller = label_both) + 
+      facet_grid(rows = vars(k), cols = vars(R), labeller = label_bquote(cols=R[e]==.(R), rows=k==.(k))) + 
       theme_bw() +
       theme(legend.position = "bottom",
             legend.box = "horizontal",
@@ -623,7 +623,7 @@ for (ii in 1:length(n_clusters_range)) {
                          breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1),
                          labels = c("0", "0.2", "0.4", "0.6", "0.8", "1")) +
       scale_colour_viridis_d(name = "Sequencing probability") +
-      facet_grid(k~R, labeller = label_both) + 
+      facet_grid(rows = vars(k), cols = vars(R), labeller = label_bquote(cols=R[e]==.(R), rows=k==.(k))) + 
       theme_bw() +
       theme(legend.position = "bottom",
             legend.box = "horizontal",
@@ -664,27 +664,27 @@ for (ii in 1:length(n_clusters_range)) {
            width = 7.3, height = 10.7, units = c("in"),
            bg = "white")
     
-    ggsave(filename = "plots/paper/pdf/figure_bayesian_validation_model_five.pdf",
+    ggsave(filename = "plots/paper/pdf/figure_bayesian_validation_model_five_revised.pdf",
            plot = plot_grid_sim_pooled_R_k_testing_proba,
            device = "pdf",
            width = 7.3, height = 9, units = c("in"),
            bg = "white")
     
-    ggsave(filename = paste0("plots/paper/tiff/figure_bayesian_validation_model_five_300dpi.tiff"),
+    ggsave(filename = "plots/paper/tiff/figure_bayesian_validation_model_five_revised_300dpi.tiff",
            plot = plot_grid_sim_pooled_R_k_testing_proba,
            device = "tiff",
            width = 7.3, height = 9, units = "in",
            dpi = 300,
            bg = "white")
     
-    ggsave(filename = paste0("plots/paper/tiff/figure_bayesian_validation_model_five_400dpi.tiff"),
+    ggsave(filename = "plots/paper/tiff/figure_bayesian_validation_model_five_revised_400dpi.tiff",
            plot = plot_grid_sim_pooled_R_k_testing_proba,
            device = "tiff",
            width = 7.3, height = 9, units = "in",
            dpi = 400,
            bg = "white")
     
-    ggsave(filename = paste0("plots/paper/eps/figure_bayesian_validation_model_five.eps"),
+    ggsave(filename = "plots/paper/eps/figure_bayesian_validation_model_five_revised.eps",
            plot = plot_grid_sim_pooled_R_k_testing_proba,
            device = "eps",
            width = 7.3, height = 9, units = "in",

@@ -292,11 +292,3 @@ path_results_sim_processed_model_five_v1 <- "results/simulation/02_model_five/pr
 path_results_sim_processed_model_five_v2 <- "results/simulation/02_model_five/processed/results_sim_model_five_processed_v2.csv"
 
 
-# path of plots contained in paper
-path_plots_paper_eps <- "plots/paper/eps/"
-path_plots_paper_pdf <- "plots/paper/pdf/"
-path_plots_paper_tiff <- "plots/paper/tiff/"
-
-# path of plots of branching process
-path_plots_branching_process <- "plots/branching_process/"
-

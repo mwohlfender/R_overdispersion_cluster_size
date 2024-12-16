@@ -269,26 +269,26 @@ plot_grid_clusters_seq_proba <- plot_grid(plot_violin_clusters_2021,
                                           nrow = 2,
                                           align = 'v')
 
-ggsave(filename = "plots/paper/figure_cluster_dist.pdf",
+ggsave(filename = "plots/paper/pdf/figure_cluster_dist.pdf",
        plot = plot_grid_clusters_seq_proba,
        device = "pdf",
        width = 7.3, height = 9, units = "in")
 
-ggsave(filename = paste0("plots/paper/tiff/figure_cluster_dist_300dpi.tiff"),
+ggsave(filename = "plots/paper/tiff/figure_cluster_dist_300dpi.tiff",
        plot = plot_grid_clusters_seq_proba,
        device = "tiff",
        width = 7.3, height = 9, units = "in",
        dpi = 300,
        bg = "white")
 
-ggsave(filename = paste0("plots/paper/tiff/figure_cluster_dist_400dpi.tiff"),
+ggsave(filename = "plots/paper/tiff/figure_cluster_dist_400dpi.tiff",
        plot = plot_grid_clusters_seq_proba,
        device = "tiff",
        width = 7.3, height = 9, units = "in",
        dpi = 400,
        bg = "white")
 
-ggsave(filename = paste0("plots/paper/eps/figure_cluster_dist.eps"),
+ggsave(filename = "plots/paper/eps/figure_cluster_dist.eps",
        plot = plot_grid_clusters_seq_proba,
        device = "eps",
        width = 7.3, height = 9, units = "in",

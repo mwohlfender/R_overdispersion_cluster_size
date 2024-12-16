@@ -1,0 +1,212 @@
+---
+title: "Simulation negative binomial distribution"
+author: "Martin Wohlfender"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r load_packages}
+library(stats)
+library(cowplot)
+library(dplyr)
+library(ggplot2)
+library(tibble)
+```
+
+```{r set_seed}
+set.seed(314)
+```
+
+```{r define_parameters}
+
+# effective reproduction number
+R <- 1.2
+
+# dispersion parameter
+k <- 0.3
+
+# mutation probability
+mu <- 0.5
+
+# number of samples
+N <- 10000
+
+```
+
+```{r get_samples_1}
+
+samples_T_1 <- rnbinom(n = N, mu = R, size = k)
+samples_V_1 <- unlist(lapply(X = samples_T_1, FUN = function(x) rbinom(n = 1, size = x, prob = 1-mu)))
+samples_W_1 <- samples_T_1 - samples_V_1
+samples_V_plus_W_1 <- samples_V_1 + samples_W_1
+
+table_samples_T_1 <- tibble(x = sort(unique(samples_T_1)),
+                            freq_T_1 = as.numeric(table(samples_T_1)))
+table_samples_V_1 <- tibble(x = sort(unique(samples_V_1)),
+                            freq_V_1 = as.numeric(table(samples_V_1)))
+table_samples_W_1 <- tibble(x = sort(unique(samples_W_1)),
+                            freq_W_1 = as.numeric(table(samples_W_1)))
+table_samples_V_plus_W_1 <- tibble(x = sort(unique(samples_V_plus_W_1)),
+                                   freq_V_plus_W_1 = as.numeric(table(samples_V_plus_W_1)))
+
+min_T_V_W_1 <- min(samples_T_1, samples_V_1, samples_W_1, samples_V_plus_W_1)
+max_T_V_W_1 <- max(samples_T_1, samples_V_1, samples_W_1, samples_V_plus_W_1)
+
+table_samples_T_V_W_1 <- tibble(x = min_T_V_W_1:max_T_V_W_1) %>%
+  left_join(table_samples_T_1, by = "x") %>%
+  left_join(table_samples_V_1, by = "x") %>%
+  left_join(table_samples_W_1, by = "x") %>%
+  left_join(table_samples_V_plus_W_1, by = "x") %>%
+  replace(is.na(.), 0)
+
+```
+
+```{r get_samples_2}
+
+samples_V_2 <- rnbinom(n = N, mu = (1-mu)*R, size = k)
+samples_W_2 <- rnbinom(n = N, mu = mu*R, size = k)
+samples_V_plus_W_2 <- samples_V_2 + samples_W_2
+
+table_samples_V_2 <- tibble(x = sort(unique(samples_V_2)),
+                            freq_V_2 = as.numeric(table(samples_V_2)))
+table_samples_W_2 <- tibble(x = sort(unique(samples_W_2)),
+                            freq_W_2 = as.numeric(table(samples_W_2)))
+table_samples_V_plus_W_2 <- tibble(x = sort(unique(samples_V_plus_W_2)),
+                                   freq_V_plus_W_2 = as.numeric(table(samples_V_plus_W_2)))
+
+min_T_V_W_2 <- min(samples_V_2, samples_W_2, samples_V_plus_W_2)
+max_T_V_W_2 <- max(samples_V_2, samples_W_2, samples_V_plus_W_2)
+
+table_samples_T_V_W_2 <- tibble(x = min_T_V_W_2:max_T_V_W_2) %>%
+  left_join(table_samples_V_2, by = "x") %>%
+  left_join(table_samples_W_2, by = "x") %>%
+  left_join(table_samples_V_plus_W_2, by = "x") %>%
+  replace(is.na(.), 0)
+
+```
+
+```{r define_distributions}
+
+neg_bin_dist <- tibble(x = 0:max(max_T_V_W_1, max_T_V_W_2)) %>%
+  mutate(dist_T = dnbinom(x = x, mu = R, size = k),
+         dist_V = dnbinom(x = x, mu = (1-mu)*R, size = k),
+         dist_W = dnbinom(x = x, mu = mu*R, size = k),
+         dist_U = dnbinom(x = x, mu = R, size = 2*k))
+
+neg_bin_dist$dist_V[1] * neg_bin_dist$dist_W[1] - neg_bin_dist$dist_U[1]
+
+```
+
+```{r create_plots_1}
+
+plot_T_1 <- ggplot() + 
+  geom_col(data = table_samples_T_V_W_1, aes(x = x, y = freq_T_1 / N), fill = "navy") +
+  geom_point(data = neg_bin_dist, mapping = aes(x = x, y = dist_T), color = "firebrick") +
+  scale_x_continuous(limits = c(-0.5, 15.5)) +
+  scale_y_continuous(limits = c(0, 1)) +
+  xlab(label = "T") +
+  ylab(label = NULL) +
+  theme_bw()
+
+plot_V_1 <- ggplot() + 
+  geom_col(data = table_samples_T_V_W_1, aes(x = x, y = freq_V_1 / N), fill = "navy") +
+  geom_point(data = neg_bin_dist, mapping = aes(x = x, y = dist_V), color = "firebrick") +
+  scale_x_continuous(limits = c(-0.5, 15.5)) +
+  scale_y_continuous(limits = c(0, 1)) +
+  xlab(label = "V") +
+  ylab(label = NULL) +
+  
+  theme_bw()
+
+plot_W_1 <- ggplot() + 
+  geom_col(data = table_samples_T_V_W_1, aes(x = x, y = freq_W_1 / N), fill = "navy") +
+  geom_point(data = neg_bin_dist, mapping = aes(x = x, y = dist_W), color = "firebrick") +
+  scale_x_continuous(limits = c(-0.5, 15.5)) +
+  scale_y_continuous(limits = c(0, 1)) +
+  xlab(label = "W") +
+  ylab(label = NULL) +
+  theme_bw()
+
+plot_V_plus_W_1 <- ggplot() + 
+  geom_col(data = table_samples_T_V_W_1, aes(x = x, y = freq_V_plus_W_1 / N), fill = "navy") +
+  geom_point(data = neg_bin_dist, mapping = aes(x = x, y = dist_T), color = "firebrick") +
+  scale_x_continuous(limits = c(-0.5, 15.5)) +
+  scale_y_continuous(limits = c(0, 1)) +
+  xlab(label = "V+W") +
+  ylab(label = NULL) +
+  theme_bw()
+
+```
+
+```{r create_plots_2}
+
+plot_V_2 <- ggplot() + 
+  geom_col(data = table_samples_T_V_W_2, aes(x = x, y = freq_V_2 / N), fill = "navy") +
+  geom_point(data = neg_bin_dist, mapping = aes(x = x, y = dist_V), color = "firebrick") +
+  scale_x_continuous(limits = c(-0.5, 15.5)) +
+  scale_y_continuous(limits = c(0, 1)) +
+  xlab(label = "V") +
+  ylab(label = NULL) +
+  theme_bw()
+
+plot_W_2 <- ggplot() + 
+  geom_col(data = table_samples_T_V_W_2, aes(x = x, y = freq_W_2 / N), fill = "navy") +
+  geom_point(data = neg_bin_dist, mapping = aes(x = x, y = dist_W), color = "firebrick") +
+  scale_x_continuous(limits = c(-0.5, 15.5)) +
+  scale_y_continuous(limits = c(0, 1)) +
+  xlab(label = "W") +
+  ylab(label = NULL) +
+  theme_bw()
+
+plot_V_plus_W_2 <- ggplot() + 
+  geom_col(data = table_samples_T_V_W_2, aes(x = x, y = freq_V_plus_W_2 / N), fill = "navy") +
+  geom_point(data = neg_bin_dist, mapping = aes(x = x, y = dist_U), color = "firebrick") +
+  scale_x_continuous(limits = c(-0.5, 15.5)) +
+  scale_y_continuous(limits = c(0, 1)) +
+  xlab(label = "V + W") +
+  ylab(label = NULL) +
+  theme_bw()
+
+```
+
+```{r create_plot_grids}
+
+plot_grid_V_W_1 <- plot_grid(plot_V_1 + theme(plot.margin = margin(0, 5, 5, 20)),
+                             plot_W_1 + theme(plot.margin = margin(0, 5, 5, 20)),
+                             labels = c('B', 'C'), label_size = 12)
+
+plot_grid_1 <- plot_grid(plot_T_1 + theme(plot.margin = margin(0, 5, 5, 20)),
+                         plot_grid_V_W_1 ,
+                         plot_V_plus_W_1 + theme(plot.margin = margin(0, 5, 5, 20)),
+                         labels = c('A', '', 'D'), label_size = 12, nrow = 3)
+
+
+plot_grid_V_W_2 <- plot_grid(plot_V_2 + theme(plot.margin = margin(0, 5, 5, 20)),
+                             plot_W_2 + theme(plot.margin = margin(0, 5, 5, 20)),
+                             labels = c('E', 'F'), label_size = 12)
+
+plot_grid_2 <- plot_grid(plot_grid_V_W_2,
+                         plot_V_plus_W_2 + theme(plot.margin = margin(0, 5, 5, 20)),
+                         labels = c('', 'G'), label_size = 12, nrow = 2)
+
+plot_grid <- plot_grid(plot_grid_1,
+                       plot_grid_2,
+                       labels = c('', ''), label_size = 12, ncol = 2)
+
+ggsave(filename = "plots/simulation/varia/plot_grid_sim_neg_binom.png",
+       plot = plot_grid,
+       width = 7, height = 7, units = "in")
+
+ggsave(filename = "plots/simulation/varia/plot_grid_sim_neg_binom.pdf",
+       plot = plot_grid,
+       width = 7, height = 7, units = "in")
+
+plot_grid
+
+```
+
+

@@ -71,10 +71,11 @@ overview_clusters_size_accross_months_de_2021 <- data_clusters_de_2021 %>%
 # for each country determine
 # (1) percentage of clusters of size one
 # (2) percentage of clusters not extending beyond one month
-# (3) percentage of clusters of size at least two not extending beyond one month
-# (4) mean and standard deviation of the number of months across which clusters extended
-# (5) maximal number of months across which clusters extended
-# (6) date last sequence was sampled
+# (3) percentage of clusters assigned to exactly one month
+# (4) percentage of clusters of size at least two not extending beyond one month
+# (5) mean and standard deviation of the number of months across which clusters extended
+# (6) maximal number of months across which clusters extended
+# (7) date last sequence was sampled
 overview_clusters_accross_months_ch_dk_de_2021 <- tibble(country = c("Switzerland", "Denmark", "Germany"),
                                                          perc_cluster_size_one = c(sum(data_clusters_ch_2021$counts == 1) / nrow(data_clusters_ch_2021),
                                                                                    sum(data_clusters_dk_2021$counts == 1) / nrow(data_clusters_dk_2021),
@@ -83,8 +84,8 @@ overview_clusters_accross_months_ch_dk_de_2021 <- tibble(country = c("Switzerlan
                                                                                sum(data_clusters_dk_2021$n_months_spread == 1) / nrow(data_clusters_dk_2021),
                                                                                sum(data_clusters_de_2021$n_months_spread == 1) / nrow(data_clusters_de_2021)),
                                                          perc_in_one_month_2021 = c(sum(data_clusters_ch_2021$n_months_spread_2021 == 1) / nrow(data_clusters_ch_2021),
-                                                                               sum(data_clusters_dk_2021$n_months_spread_2021 == 1) / nrow(data_clusters_dk_2021),
-                                                                               sum(data_clusters_de_2021$n_months_spread_2021 == 1) / nrow(data_clusters_de_2021)),
+                                                                                    sum(data_clusters_dk_2021$n_months_spread_2021 == 1) / nrow(data_clusters_dk_2021),
+                                                                                    sum(data_clusters_de_2021$n_months_spread_2021 == 1) / nrow(data_clusters_de_2021)),
                                                          perc_big_clusters_in_one_month = c(nrow(data_clusters_ch_2021 %>% filter(counts > 1 & n_months_spread == 1)) / nrow(data_clusters_ch_2021 %>% filter(counts > 1)),
                                                                                             nrow(data_clusters_dk_2021 %>% filter(counts > 1 & n_months_spread == 1)) / nrow(data_clusters_dk_2021 %>% filter(counts > 1)),
                                                                                             nrow(data_clusters_de_2021 %>% filter(counts > 1 & n_months_spread == 1)) / nrow(data_clusters_de_2021 %>% filter(counts > 1))),
