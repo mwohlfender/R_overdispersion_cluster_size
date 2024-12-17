@@ -63,7 +63,11 @@ plot_goodness_fit_model_five_ch <- ggplot() +
                                       "9" = "September", "10" = "October", "11" = "November", "12" = "December"))) +
   theme_bw() +
   theme(legend.position = "bottom",
-        legend.box = "vertical") +
+        legend.box = "vertical",
+        axis.title.x=element_text(color="black"),
+        axis.text.x=element_text(color="black"),
+        axis.title.y=element_text(color="black"),
+        axis.text.y=element_text(color="black")) +
   guides(colour = guide_legend(order = 1), 
          fill = guide_legend(order = 2))
 
@@ -117,7 +121,11 @@ plot_goodness_fit_model_five_dk <- ggplot() +
                                       "9" = "September", "10" = "October", "11" = "November", "12" = "December"))) +
   theme_bw() +
   theme(legend.position = "bottom",
-        legend.box = "vertical") +
+        legend.box = "vertical",
+        axis.title.x=element_text(color="black"),
+        axis.text.x=element_text(color="black"),
+        axis.title.y=element_text(color="black"),
+        axis.text.y=element_text(color="black")) +
   guides(colour = guide_legend(order = 1), 
          fill = guide_legend(order = 2))
 
@@ -171,7 +179,11 @@ plot_goodness_fit_model_five_de <- ggplot() +
                                       "9" = "September", "10" = "October", "11" = "November", "12" = "December"))) +
   theme_bw() +
   theme(legend.position = "bottom",
-        legend.box = "vertical") +
+        legend.box = "vertical",
+        axis.title.x=element_text(color="black"),
+        axis.text.x=element_text(color="black"),
+        axis.title.y=element_text(color="black"),
+        axis.text.y=element_text(color="black")) +
   guides(colour = guide_legend(order = 1), 
          fill = guide_legend(order = 2)) 
 

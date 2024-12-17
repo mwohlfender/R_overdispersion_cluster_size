@@ -42,7 +42,11 @@ for (cc in 1:n_countries) {
       xlab(label="Cluster size") +
       ylab(label="Frequency") +
       theme_bw() +
-      theme(legend.position="bottom")
+      theme(legend.position="bottom",
+            axis.title.x=element_text(color="black"),
+            axis.text.x=element_text(color="black"),
+            axis.title.y=element_text(color="black"),
+            axis.text.y=element_text(color="black"))
     
     path_plot <- paste0("plots/", countries[cc], "/posterior_predictive_check/model_one/plot_ppc_model_one_", countries[cc], "_", formatC(mm, width=2, flag="0"), ".png")
     

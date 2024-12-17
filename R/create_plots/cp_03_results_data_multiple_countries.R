@@ -252,7 +252,8 @@ plot_violin_clusters_2021 <- ggplot(data=data_multiple_countries_2021) +
   xlab("Month") +
   ylab("Cluster size") +
   theme_bw() +
-  theme(axis.text.x=element_text(angle=45, hjust=1),
+  theme(axis.text.x=element_text(angle=45, hjust=1, color="black"),
+        axis.text.y=element_text(color="black"),
         legend.position="bottom") +
   guides(shape = guide_legend(override.aes = list(size = c(5,4,4,4)))) +
   facet_grid(cols = vars(factor(country, levels=c("CH", "DK", "DE"), labels=c("Switzerland", "Denmark", "Germany"))))

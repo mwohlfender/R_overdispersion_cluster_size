@@ -15,8 +15,10 @@ plot_prior_R <- ggplot(data = data.frame(x = c(0, 3)), mapping = aes(x = x)) +
                      labels = seq(from = 0, to = 2, by = 0.2),
                      limits = c(-0.001, 2.001)) +
   theme_bw() + 
-  theme(axis.title.x = element_blank(), 
-        axis.title.y = element_blank())
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_text(color="black"),
+        axis.title.y = element_blank(),
+        axis.text.y = element_text(color="black"))
 
 
 # plot_prior_R_title <- plot_prior_R +
@@ -40,8 +42,10 @@ plot_prior_k <- ggplot(data = data.frame(x = c(0, 3)), mapping = aes(x = x)) +
                      labels = seq(from = 0, to = 2, by = 0.2),
                      limits = c(-0.001, 2.001)) +
   theme_bw() + 
-  theme(axis.title.x = element_blank(), 
-        axis.title.y = element_blank())
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_text(color="black"),
+        axis.title.y = element_blank(),
+        axis.text.y = element_text(color="black"))
 
 
 # plot_prior_k_title <- plot_prior_k +
@@ -65,8 +69,10 @@ plot_prior_mut_rate <- ggplot(data = data.frame(x = c(11, 17)), mapping = aes(x 
                      labels = seq(from = 0, to = 1, by = 0.2),
                      limits = c(-0.001, 1.001)) +
   theme_bw() + 
-  theme(axis.title.x = element_blank(), 
-        axis.title.y = element_blank())
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_text(color="black"),
+        axis.title.y = element_blank(),
+        axis.text.y = element_text(color="black"))
 
 
 # plot_prior_mut_rate_title <- plot_prior_mut_rate +
@@ -90,8 +96,10 @@ plot_prior_p_mut <- ggplot(data = data.frame(x = c(0, 1)), mapping = aes(x = x))
                      labels = seq(from = 0, to = 10, by = 2),
                      limits = c(-0.001, 10.001)) +
   theme_bw() + 
-  theme(axis.title.x = element_blank(), 
-        axis.title.y = element_blank())
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_text(color="black"),
+        axis.title.y = element_blank(),
+        axis.text.y = element_text(color="black"))
 
 
 
@@ -111,8 +119,10 @@ plot_prior_p_test <- ggplot(data = data.frame(x = c(0, 1)), mapping = aes(x = x)
                      labels = seq(from = 0, to = 4, by = 0.5),
                      limits = c(-0.001, 4.001)) +
   theme_bw() + 
-  theme(axis.title.x = element_blank(), 
-        axis.title.y = element_blank())
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_text(color="black"),
+        axis.title.y = element_blank(),
+        axis.text.y = element_text(color="black"))
 
 
 # plot_prior_p_test_title <- plot_prior_p_test +
