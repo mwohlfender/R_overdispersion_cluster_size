@@ -13,7 +13,7 @@ n_zeros <- ceiling(log(nrow(data_sim_parameters_grid_model_five), base=10))
 
 
 # read and process results of parameter estimations for number of estimates and run time plots
-# and rmse, coefficient of variance and coverage plots of R, k and testing probability ----
+# and for rmse, coefficient of variance and coverage plots of R, k and testing probability ----
 if (!(file.exists(path_results_sim_processed_model_five_v1)) | do_new_sim) {
   
   results <- data.frame(matrix(data = 0, nrow = nrow(data_sim_parameters_grid_model_five), ncol = 33))

@@ -60,63 +60,37 @@ table_samples_T_V_W <- tibble(x = min_T_V_W:max_T_V_W) %>%
   replace(is.na(.), 0)
 
 
-# X_1 and Y_1: independent negative binomial random variables 
-# X_1: negative binomial random variable with mean `(1 - mu) R` and dispersion parameter `k`
-# Y_1: negative binomial random variable with mean `mu R` and dispersion parameter `k`
-samples_X_1 <- rnbinom(n = N, mu = (1-mu)*R, size = k)
-samples_Y_1 <- rnbinom(n = N, mu = mu*R, size = k)
-samples_X_1_plus_Y_1 <- samples_X_1 + samples_Y_1
+# X and Y: independent negative binomial random variables 
+# X: negative binomial random variable with mean `(1 - mu) R` and dispersion parameter `k`
+# Y: negative binomial random variable with mean `mu R` and dispersion parameter `k`
+samples_X <- rnbinom(n = N, mu = (1-mu)*R, size = k)
+samples_Y <- rnbinom(n = N, mu = mu*R, size = k)
+samples_X_plus_Y <- samples_X + samples_Y
 
-table_samples_X_1 <- tibble(x = sort(unique(samples_X_1)),
-                            freq_X_1 = as.numeric(table(samples_X_1)))
-table_samples_Y_1 <- tibble(x = sort(unique(samples_Y_1)),
-                            freq_Y_1 = as.numeric(table(samples_Y_1)))
-table_samples_X_1_plus_Y_1 <- tibble(x = sort(unique(samples_X_1_plus_Y_1)),
-                                     freq_X_1_plus_Y_1 = as.numeric(table(samples_X_1_plus_Y_1)))
+table_samples_X <- tibble(x = sort(unique(samples_X)),
+                            freq_X = as.numeric(table(samples_X)))
+table_samples_Y <- tibble(x = sort(unique(samples_Y)),
+                            freq_Y = as.numeric(table(samples_Y)))
+table_samples_X_plus_Y <- tibble(x = sort(unique(samples_X_plus_Y)),
+                                     freq_X_plus_Y = as.numeric(table(samples_X_plus_Y)))
 
-min_X_Y_1 <- min(samples_X_1, samples_Y_1, samples_X_1_plus_Y_1)
-max_X_Y_1 <- max(samples_X_1, samples_Y_1, samples_X_1_plus_Y_1)
+min_X_Y <- min(samples_X, samples_Y, samples_X_plus_Y)
+max_X_Y <- max(samples_X, samples_Y, samples_X_plus_Y)
 
-table_samples_X_Y_1 <- tibble(x = min_X_Y_1:max_X_Y_1) %>%
-  left_join(table_samples_X_1, by = "x") %>%
-  left_join(table_samples_Y_1, by = "x") %>%
-  left_join(table_samples_X_1_plus_Y_1, by = "x") %>%
-  replace(is.na(.), 0)
-
-
-# X_2 and Y_2: independent negative binomial random variables 
-# X_2: negative binomial random variable with mean `0.5 R` and dispersion parameter `k`
-# Y_2: negative binomial random variable with mean `0.5 R` and dispersion parameter `k`
-samples_X_2 <- rnbinom(n = N, mu = 0.5*R, size = k)
-samples_Y_2 <- rnbinom(n = N, mu = 0.5*R, size = k)
-samples_X_2_plus_Y_2 <- samples_X_2 + samples_Y_2
-
-table_samples_X_2 <- tibble(x = sort(unique(samples_X_2)),
-                            freq_X_2 = as.numeric(table(samples_X_2)))
-table_samples_Y_2 <- tibble(x = sort(unique(samples_Y_2)),
-                            freq_Y_2 = as.numeric(table(samples_Y_2)))
-table_samples_X_2_plus_Y_2 <- tibble(x = sort(unique(samples_X_2_plus_Y_2)),
-                                     freq_X_2_plus_Y_2 = as.numeric(table(samples_X_2_plus_Y_2)))
-
-min_X_Y_2 <- min(samples_X_2, samples_Y_2, samples_X_2_plus_Y_2)
-max_X_Y_2 <- max(samples_X_2, samples_Y_2, samples_X_2_plus_Y_2)
-
-table_samples_X_Y_2 <- tibble(x = min_X_Y_2:max_X_Y_2) %>%
-  left_join(table_samples_X_2, by = "x") %>%
-  left_join(table_samples_Y_2, by = "x") %>%
-  left_join(table_samples_X_2_plus_Y_2, by = "x") %>%
+table_samples_X_Y <- tibble(x = min_X_Y:max_X_Y) %>%
+  left_join(table_samples_X, by = "x") %>%
+  left_join(table_samples_Y, by = "x") %>%
+  left_join(table_samples_X_plus_Y, by = "x") %>%
   replace(is.na(.), 0)
 
 
 
 # define distributions ----
 
-neg_bin_dist <- tibble(x = 0:max(max_T_V_W, max_X_Y_1)) %>%
+neg_bin_dist <- tibble(x = 0:max(max_T_V_W, max_X_Y)) %>%
   mutate(dist_T = dnbinom(x = x, mu = R, size = k),
          dist_V = dnbinom(x = x, mu = (1-mu)*R, size = k),
-         dist_W = dnbinom(x = x, mu = mu*R, size = k),
-         dist_X_2 = dnbinom(x = x, mu = 0.5*R, size = k),
-         dist_X_2_plus_Y_2 = dnbinom(x = x, mu = R, size = 2*k))
+         dist_W = dnbinom(x = x, mu = mu*R, size = k))
 
 
 
@@ -167,13 +141,13 @@ plot_W <- ggplot() +
         axis.text.y=element_text(color="black"))
 
 
-plot_X_1 <- ggplot() + 
-  geom_col(data = table_samples_X_Y_1, aes(x = x, y = freq_X_1 / N), fill = "navy") +
+plot_X <- ggplot() + 
+  geom_col(data = table_samples_X_Y, aes(x = x, y = freq_X / N), fill = "navy") +
   geom_point(data = neg_bin_dist, mapping = aes(x = x, y = dist_V), color = "black", fill = "firebrick", shape = 21, size = 3) +
   scale_x_continuous(limits = c(-0.5, upper_limit_x_axis + 0.5),
                      breaks = 0:upper_limit_x_axis) +
   scale_y_continuous(limits = c(0, 1)) +
-  xlab(label = expression(X[1])) +
+  xlab(label = expression(X)) +
   ylab(label = NULL) +
   theme_bw() +
   theme(axis.title.x=element_text(color="black"),
@@ -181,13 +155,13 @@ plot_X_1 <- ggplot() +
         axis.title.y=element_text(color="black"),
         axis.text.y=element_text(color="black"))
 
-plot_Y_1 <- ggplot() + 
-  geom_col(data = table_samples_X_Y_1, aes(x = x, y = freq_Y_1 / N), fill = "navy") +
+plot_Y <- ggplot() + 
+  geom_col(data = table_samples_X_Y, aes(x = x, y = freq_Y / N), fill = "navy") +
   geom_point(data = neg_bin_dist, mapping = aes(x = x, y = dist_W), color = "black", fill = "firebrick", shape = 21, size = 3) +
   scale_x_continuous(limits = c(-0.5, upper_limit_x_axis + 0.5),
                      breaks = 0:upper_limit_x_axis) +
   scale_y_continuous(limits = c(0, 1)) +
-  xlab(label = expression(Y[1])) +
+  xlab(label = expression(Y)) +
   ylab(label = NULL) +
   theme_bw() +
   theme(axis.title.x=element_text(color="black"),
@@ -195,14 +169,13 @@ plot_Y_1 <- ggplot() +
         axis.title.y=element_text(color="black"),
         axis.text.y=element_text(color="black"))
 
-plot_X_1_plus_Y_1 <- ggplot() + 
-  geom_col(data = table_samples_X_Y_1, aes(x = x, y = freq_X_1_plus_Y_1 / N), fill = "navy") +
-  geom_point(data = neg_bin_dist, mapping = aes(x = x, y = dist_X_2_plus_Y_2), color = "black", fill = "firebrick", shape = 25, size = 3) +
+plot_X_plus_Y <- ggplot() + 
+  geom_col(data = table_samples_X_Y, aes(x = x, y = freq_X_plus_Y / N), fill = "navy") +
   geom_point(data = neg_bin_dist, mapping = aes(x = x, y = dist_T), color = "black", fill = "firebrick", shape = 21, size = 3) +
   scale_x_continuous(limits = c(-0.5, upper_limit_x_axis + 0.5),
                      breaks = 0:upper_limit_x_axis) +
   scale_y_continuous(limits = c(0, 1)) +
-  xlab(label = expression(X[1] + Y[1])) +
+  xlab(label = expression(X + Y)) +
   ylab(label = NULL) +
   theme_bw() +
   theme(axis.title.x=element_text(color="black"),
@@ -210,81 +183,28 @@ plot_X_1_plus_Y_1 <- ggplot() +
         axis.title.y=element_text(color="black"),
         axis.text.y=element_text(color="black"))
 
-
-plot_X_2 <- ggplot() + 
-  geom_col(data = table_samples_X_Y_2, aes(x = x, y = freq_X_2 / N), fill = "navy") +
-  geom_point(data = neg_bin_dist, mapping = aes(x = x, y = dist_X_2), color = "black", fill = "firebrick", shape = 21, size = 3) +
-  scale_x_continuous(limits = c(-0.5, upper_limit_x_axis + 0.5),
-                     breaks = 0:upper_limit_x_axis) +
-  scale_y_continuous(limits = c(0, 1)) +
-  xlab(label = expression(X[2])) +
-  ylab(label = NULL) +
-  theme_bw() +
-  theme(axis.title.x=element_text(color="black"),
-        axis.text.x=element_text(color="black"),
-        axis.title.y=element_text(color="black"),
-        axis.text.y=element_text(color="black"))
-
-plot_Y_2 <- ggplot() + 
-  geom_col(data = table_samples_X_Y_2, aes(x = x, y = freq_Y_2 / N), fill = "navy") +
-  geom_point(data = neg_bin_dist, mapping = aes(x = x, y = dist_X_2), color = "black", fill = "firebrick", shape = 21, size = 3) +
-  scale_x_continuous(limits = c(-0.5, upper_limit_x_axis + 0.5),
-                     breaks = 0:upper_limit_x_axis) +
-  scale_y_continuous(limits = c(0, 1)) +
-  xlab(label = expression(Y[2])) +
-  ylab(label = NULL) +
-  theme_bw() +
-  theme(axis.title.x=element_text(color="black"),
-        axis.text.x=element_text(color="black"),
-        axis.title.y=element_text(color="black"),
-        axis.text.y=element_text(color="black"))
-
-plot_X_2_plus_Y_2 <- ggplot() + 
-  geom_col(data = table_samples_X_Y_2, aes(x = x, y = freq_X_2_plus_Y_2 / N), fill = "navy") +
-  geom_point(data = neg_bin_dist, mapping = aes(x = x, y = dist_X_2_plus_Y_2), color = "black", fill = "firebrick", shape = 25, size = 3) +
-  geom_point(data = neg_bin_dist, mapping = aes(x = x, y = dist_T), color = "black", fill = "firebrick", shape = 21, size = 3) +
-  scale_x_continuous(limits = c(-0.5, upper_limit_x_axis + 0.5),
-                     breaks = 0:upper_limit_x_axis) +
-  scale_y_continuous(limits = c(0, 1)) +
-  xlab(label = expression(X[2] + Y[2])) +
-  ylab(label = NULL) +
-  theme_bw() +
-  theme(axis.title.x=element_text(color="black"),
-        axis.text.x=element_text(color="black"),
-        axis.title.y=element_text(color="black"),
-        axis.text.y=element_text(color="black"))
 
 
 plot_grid_V_W <- plot_grid(plot_V + theme(plot.margin = margin(0, 5, 5, 20)),
                            plot_W + theme(plot.margin = margin(0, 5, 5, 20)),
                            labels = c('B', 'C'), label_size = 12)
 
-plot_grid_1 <- plot_grid(plot_T + theme(plot.margin = margin(5, 5, 5, 20)),
+plot_grid <- plot_grid(plot_T + theme(plot.margin = margin(5, 5, 5, 20)),
                          plot_grid_V_W + theme(plot.margin = margin(0, 5, 5, 20)),
                          labels = c('A', ''), label_size = 12, nrow = 2)
 
 
-plot_grid_X_Y_1 <- plot_grid(plot_X_1 + theme(plot.margin = margin(5, 5, 5, 20)),
-                             plot_Y_1 + theme(plot.margin = margin(5, 5, 5, 20)),
+plot_grid_X_Y <- plot_grid(plot_X + theme(plot.margin = margin(5, 5, 5, 20)),
+                             plot_Y + theme(plot.margin = margin(5, 5, 5, 20)),
                              labels = c('D', 'E'), label_size = 12)
 
-plot_grid_2 <- plot_grid(plot_grid_X_Y_1 + theme(plot.margin = margin(0, 5, 5, 20)),
-                         plot_X_1_plus_Y_1 + theme(plot.margin = margin(0, 5, 5, 20)),
+plot_grid_2 <- plot_grid(plot_grid_X_Y + theme(plot.margin = margin(0, 5, 5, 20)),
+                         plot_X_plus_Y + theme(plot.margin = margin(0, 5, 5, 20)),
                          labels = c('', 'F'), label_size = 12, nrow = 2)
 
-
-plot_grid_X_Y_2 <- plot_grid(plot_X_2 + theme(plot.margin = margin(5, 5, 5, 20)),
-                             plot_Y_2 + theme(plot.margin = margin(5, 5, 5, 20)),
-                             labels = c('G', 'H'), label_size = 12)
-
-plot_grid_3 <- plot_grid(plot_grid_X_Y_2 + theme(plot.margin = margin(0, 5, 5, 20)),
-                         plot_X_2_plus_Y_2 + theme(plot.margin = margin(0, 5, 5, 20)),
-                         labels = c('', 'I'), label_size = 12, nrow = 2)
-
-plot_grid <- plot_grid(plot_grid_1,
+plot_grid <- plot_grid(plot_grid,
                        plot_grid_2,
-                       plot_grid_3,
-                       labels = c('', '', ''), label_size = 12, ncol = 3)
+                       labels = c('', '', ''), label_size = 12, ncol = 2)
 
 
 ggsave(filename = "plots/simulation/varia/plot_grid_sim_neg_binom.png",

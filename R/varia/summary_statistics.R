@@ -32,3 +32,5 @@ summary_clusters <- tibble(country = c("Switzerland", "Denmark", "Germany"),
                            n_cases_in_clusters = c(sum(clusters_ch_2021$counts), sum(clusters_dk_2021$counts), sum(clusters_de_2021$counts)),
                            fraction_clusters_size_one = c(fraction_clusters_size_one_ch, fraction_clusters_size_one_dk, fraction_clusters_size_one_de)) %>%
   mutate(average_cluster_size = n_cases_in_clusters / n_clusters)
+
+

@@ -42,7 +42,8 @@ data_clusters_de_2021 <- data_clusters_de %>%
 # (3) maximal and minimal number of months across which clusters extended
 overview_clusters_size_accross_months_ch_2021 <- data_clusters_ch_2021 %>%
   group_by(counts) %>%
-  summarize(perc_n_months_spread_equal_one = sum(n_months_spread == 1) / n(),
+  summarize(frequency = n(),
+            perc_n_months_spread_equal_one = sum(n_months_spread == 1) / n(),
             mean_n_months_spread = mean(n_months_spread),
             sd_n_months_spread = sd(n_months_spread),
             median_n_months_spread = median(n_months_spread),
@@ -51,7 +52,8 @@ overview_clusters_size_accross_months_ch_2021 <- data_clusters_ch_2021 %>%
 
 overview_clusters_size_accross_months_dk_2021 <- data_clusters_dk_2021 %>%
   group_by(counts) %>%
-  summarize(perc_n_months_spread_equal_one = sum(n_months_spread == 1) / n(),
+  summarize(frequency = n(),
+            perc_n_months_spread_equal_one = sum(n_months_spread == 1) / n(),
             mean_n_months_spread = mean(n_months_spread),
             sd_n_months_spread = sd(n_months_spread),
             median_n_months_spread = median(n_months_spread),
@@ -60,12 +62,14 @@ overview_clusters_size_accross_months_dk_2021 <- data_clusters_dk_2021 %>%
 
 overview_clusters_size_accross_months_de_2021 <- data_clusters_de_2021 %>%
   group_by(counts) %>%
-  summarize(perc_n_months_spread_equal_one = sum(n_months_spread == 1) / n(),
+  summarize(frequency = n(),
+            perc_n_months_spread_equal_one = sum(n_months_spread == 1) / n(),
             mean_n_months_spread = mean(n_months_spread),
             sd_n_months_spread = sd(n_months_spread),
             median_n_months_spread = median(n_months_spread),
             min_n_months_spread = min(n_months_spread),
             max_n_months_spread = max(n_months_spread))
+
 
 # summarize cluster data of all three countries:
 # for each country determine
@@ -101,4 +105,5 @@ overview_clusters_accross_months_ch_dk_de_2021 <- tibble(country = c("Switzerlan
                                                          max_maxDate = c(max(data_clusters_ch_2021$maxDate),
                                                                          max(data_clusters_dk_2021$maxDate),
                                                                          max(data_clusters_de_2021$maxDate)))
+
 

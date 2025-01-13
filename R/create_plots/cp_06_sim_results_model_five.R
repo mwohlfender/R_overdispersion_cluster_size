@@ -582,8 +582,8 @@ for (ii in 1:length(n_clusters_range)) {
                          breaks = c(0, 0.1, 0.2, 0.4, 0.6, 0.8, 1),
                          labels = c("0", "0.1", "0.2", "0.4", "0.6", "0.8", "1")) +
       scale_y_continuous(name = "Estimated dispersion parameter",
-                         limits = c(0.025, 3.5),
-                         breaks = c(0.1, 0.3, 0.5, 1, 2, 3),
+                         limits = c(0.025, 4.65),
+                         breaks = c(0.1, 0.3, 0.5, 1, 2, 3, 4),
                          trans='log') +
       # scale_y_continuous(name = "Estimated dispersion parameter",
       #                    limits = c(0.025, 1.525),

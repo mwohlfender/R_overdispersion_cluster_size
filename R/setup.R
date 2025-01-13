@@ -287,7 +287,7 @@ path_results_sim_raw_model_five <- "results/simulation/02_model_five/raw/paramet
 path_results_sim_processed_model_one_v1 <- "results/simulation/01_model_one/processed/results_sim_model_one_processed_v1.csv"
 path_results_sim_processed_model_one_v2 <- "results/simulation/01_model_one/processed/results_sim_model_one_processed_v2.csv"
 
-# paths where processed results of simulation study of model 1 are stored
+# paths where processed results of simulation study of model 5 are stored
 path_results_sim_processed_model_five_v1 <- "results/simulation/02_model_five/processed/results_sim_model_five_processed_v1.csv"
 path_results_sim_processed_model_five_v2 <- "results/simulation/02_model_five/processed/results_sim_model_five_processed_v2.csv"
 
