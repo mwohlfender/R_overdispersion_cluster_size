@@ -1,5 +1,5 @@
 # Estimating $R_e$ and overdispersion in secondary cases from the size of identical sequence clusters of SARS-CoV-2
-This repository contains the code of the statistical analysis of the paper "Estimating $R_e$ and overdispersion in secondary cases from the size of identical sequence clusters of SARS-CoV-2" by Emma Hodcroft et al. A preprint is available on [medRxiv](https://www.medrxiv.org/content/10.1101/2024.05.26.24307940v1).
+This repository contains the code of the statistical analysis of the paper "Estimating $R_e$ and overdispersion in secondary cases from the size of identical sequence clusters of SARS-CoV-2" by Emma Hodcroft et al. published in [PLOS Computational Biology](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1012960).
 
 ## (A) Overview of content of repository
 The aim of this repository is to provide everything necessary to reproduce the statistical analysis of the paper cited above. All files (R-scripts as well as data) used to obtain the results are contained in this repository. Furthermore, the complete simulated data used for the validation of the model as well as all stanfit files containing the results of the parameter estimation can be found in this repository.
